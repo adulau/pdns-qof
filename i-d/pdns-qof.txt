@@ -4,10 +4,10 @@
 Internet Engineering Task Force                            A.D. Dulaunoy
 Internet-Draft                                                     CIRCL
 Intended status: Informational                               L.A. Kaplan
-Expires: April 13, 2012                                          CERT.at
-                                                            October 2011
+Expires: July 15, 2013                                           CERT.at
+                                                            January 2013
 
-                           Passive DNS - qos
+                   Passive DNS - Common Output Format
                      draft-ietf-xml2rfc-template-05
 
 Abstract
@@ -18,11 +18,11 @@ Abstract
 
 Status of this Memo
 
-   This Internet-Draft will expire on April 13, 2012.
+   This Internet-Draft will expire on July 15, 2013.
 
 Copyright Notice
 
-   Copyright (c) 2011 IETF Trust and the persons identified as the
+   Copyright (c) 2013 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -38,34 +38,54 @@ Table of Contents
 
    1.  Introduction . . . . . . . . . . . . . . . . . . . . . . . . .  2
      1.1.  Requirements Language  . . . . . . . . . . . . . . . . . .  2
-   2.  Simple List  . . . . . . . . . . . . . . . . . . . . . . . . .  2
-   3.  Figures  . . . . . . . . . . . . . . . . . . . . . . . . . . .  2
-   4.  Subsections and Tables . . . . . . . . . . . . . . . . . . . .  2
-     4.1.  A Subsection . . . . . . . . . . . . . . . . . . . . . . .  2
-     4.2.  Tables . . . . . . . . . . . . . . . . . . . . . . . . . .  2
-   5.  More about Lists . . . . . . . . . . . . . . . . . . . . . . .  3
-     5.1.  Numbering Lists across Lists and Sections  . . . . . . . .  3
-     5.2.  Where the List Numbering Continues . . . . . . . . . . . .  4
-   6.  Example of Code or MIB Module To Be Extracted  . . . . . . . .  4
-   7.  Acknowledgements . . . . . . . . . . . . . . . . . . . . . . .  5
-   8.  IANA Considerations  . . . . . . . . . . . . . . . . . . . . .  5
-   9.  Security Considerations  . . . . . . . . . . . . . . . . . . .  5
-   10. References . . . . . . . . . . . . . . . . . . . . . . . . . .  5
-     10.1.  Normative References  . . . . . . . . . . . . . . . . . .  5
-     10.2.  Informative References  . . . . . . . . . . . . . . . . .  5
+   2.  Mandatory Fields . . . . . . . . . . . . . . . . . . . . . . .  2
+     2.1.  first_seen . . . . . . . . . . . . . . . . . . . . . . . .  2
+     2.2.  last_seen  . . . . . . . . . . . . . . . . . . . . . . . .  2
+     2.3.  rrtype . . . . . . . . . . . . . . . . . . . . . . . . . .  2
+     2.4.  rrname . . . . . . . . . . . . . . . . . . . . . . . . . .  3
+   3.  Optional Fields  . . . . . . . . . . . . . . . . . . . . . . .  3
+     3.1.  sensor_id  . . . . . . . . . . . . . . . . . . . . . . . .  3
+     3.2.  count  . . . . . . . . . . . . . . . . . . . . . . . . . .  3
+     3.3.  ttl  . . . . . . . . . . . . . . . . . . . . . . . . . . .  3
+     3.4.  bailiwick  . . . . . . . . . . . . . . . . . . . . . . . .  3
+   4.  Acknowledgements . . . . . . . . . . . . . . . . . . . . . . .  3
+   5.  IANA Considerations  . . . . . . . . . . . . . . . . . . . . .  3
+   6.  Security Considerations  . . . . . . . . . . . . . . . . . . .  3
+   7.  References . . . . . . . . . . . . . . . . . . . . . . . . . .  3
+     7.1.  Normative References . . . . . . . . . . . . . . . . . . .  3
 
 Dulaunoy & Kaplan                 info                          [Page 1]
 
-Internet-Draft             Abbreviated Title                October 2011
+Internet-Draft             Abbreviated Title                January 2013
 
-   Appendix A. Additional Stuff . . . . . . . . . . . . . . . . . . .  6
-   Authors' Addresses . . . . . . . . . . . . . . . . . . . . . . . .  6
+     7.2.  Informative References . . . . . . . . . . . . . . . . . .  4
+   Appendix A. Additional Stuff . . . . . . . . . . . . . . . . . . .  4
+   Authors' Addresses . . . . . . . . . . . . . . . . . . . . . . . .  4
 
 1.  Introduction
 
    Passive DNS is a technique described by Florian Weimer in 2005 in
    Passive DNS replication, F Weimer - 17th Annual FIRST Conference on
-   Computer Security.
+   Computer Security.  Since then multiple Passive DNS implementations
+   evolved over time.  Users of these Passive DNS servers query a server
+   (often via Whois [Ref: WHOIS]), parse the results and process them in
+   other applications.
+
+   There are multiple implementation of Passive DNS software.  Users of
+   passive DNS query each implementation and aggregate the results for
+   their search.  This document describes the output format of three
+   Passive DNS Systems which are in use today and which already share a
+   nearly identical output format.  As the format and the meaning of
+   output fields from each Passive DNS need to be consistent, we propose
+   in this document a solution to commonly name each field along with
+   their cor responding interpretation.  The format format is following
+   a simple key-value structure.  The benefit of having a consistent
+   Passive DNS output format is that multiple client implementations can
+   query different servers without having to have a separate parser for
+   each individual server.  [http://code.google.com/p/passive-dns-query-
+   tool/] currently implements multiple parsers due to a lack of
+   standardization.  The document does not describe the protocol (e.g.
+   whois ref:TOADD) used to query the Passive DNS.
 
 1.1.  Requirements Language
 
@@ -73,197 +93,59 @@ Internet-Draft             Abbreviated Title                October 2011
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
    document are to be interpreted as described in RFC 2119 [RFC2119].
 
-2.  Simple List
+2.  Mandatory Fields
 
-   List styles: 'empty', 'symbols', 'letters', 'numbers', 'hanging',
-   'format'.
+   A field is composed a key followed by a value separated by the single
+   ':' character and a space before the value.  The format is based on
+   the initial work done by Florian Weimer and the RIPE whois format
+   (ref:http://www.enyo.de/fw/software/dnslogger/whois.html). The
+   ordered of the fields is not significant for the same resource type,
+   name tuple.
 
-   o  First bullet
+2.1.  first_seen
 
-   o  Second bullet
+   This field returns the first time that the record has been seen by
+   the passive DNS. The date is expressed in ISO 8601 and UTC.
 
-   You can write text here as well.
+2.2.  last_seen
 
-3.  Figures
+   This field returns the last time that the record has been seen by the
+   passive DNS. The date is expressed in ISO 8601 and UTC.
 
-   Figures should not exceed 69 characters wide to allow for the indent
-   of sections.
-
-                 Preamble text - can be omitted or empty.
-
-                       +-----------------------+
-                       | Use XML, be Happy :-) |
-                       |_______________________|
-
-        Cross-references allowed in pre- and postamble.  [min_ref].
-
-   The CDATA means you don't need to escape meta-characters (especially
-   < (&lt;) and & (&amp;)) but is not essential.  Figures may also have
-   a title attribute but it won't be displayed unless there is also an
-   anchor.  White space, both horizontal and vertical, is significant in
-   figures even if you don't use CDATA.
-
-4.  Subsections and Tables
-
-4.1.  A Subsection
-
-   By default 3 levels of nesting show in table of contents but that can
-   be adjusted with the value of the "tocdepth" processing instruction.
-
-4.2.  Tables
-
-   .. are very similar to figures:
+2.3.  rrtype
 
 
 Dulaunoy & Kaplan                 info                          [Page 2]
 
-Internet-Draft             Abbreviated Title                October 2011
+Internet-Draft             Abbreviated Title                January 2013
 
 
-     Tables use ttcol to define column headers and widths.  Every cell
-                  then has a "c" element for its content.
+   This field returns the resource record type as seen by the passive
+   DNS. The key is rr-type and the value is in the interpreted record
+   type.  If the value cannot be interpreted the decimal value is
+   returned.  The resource record type can be any values as described by
+   IANA in the DNS parameters document in the section 'DNS Label types'
+   (http://www.iana.org/assignments/dns-parameters).
 
-                        +----------+----------+
-                        | ttcol #1 | ttcol #2 |
-                        +----------+----------+
-                        |   c #1   |   c #2   |
-                        |   c #3   |   c #4   |
-                        |   c #5   |   c #6   |
-                        +----------+----------+
+2.4.  rrname
 
-                      which is a very simple example.
+   This field returns the name of the queried resource.
 
-5.  More about Lists
+3.  Optional Fields
 
-   Lists with 'hanging labels': the list item is indented the amount of
-   the hangIndent:
+3.1.  sensor_id
 
-   short  With a label shorter than the hangIndent.
+3.2.  count
 
-   fantastically long label  With a label longer than the hangIndent.
+   Specifies how many authoritative answers were received with the set
+   of answers (i.e.  same data) over all sensors.  The number of
+   requests is expressed as a decimal value.
 
-   vspace_trick  
-           Forces the new item to start on a new line.
+3.3.  ttl
 
-   Simulating more than one paragraph in a list item using <vspace>:
+3.4.  bailiwick
 
-   a.  First, a short item.
-
-   b.  Second, a longer list item.
-
-   And something that looks like a separate pararaph..
-
-   Simple indented paragraph using the "empty" style:
-
-      The quick, brown fox jumped over the lazy dog and lived to fool
-      many another hunter in the great wood in the west.
-
-5.1.  Numbering Lists across Lists and Sections
-
-   Numbering items continuously although they are in separate <list>
-   elements, maybe in separate sections using the "format" style and a
-   "counter" variable.
-
-   First list:
-
-   R11 #1
-
-   R12 #2
-
-   R13 #3
-
-   Specify the indent explicitly so that all the items line up nicely.
-
-   Second list:
-
-Dulaunoy & Kaplan                 info                          [Page 3]
-
-Internet-Draft             Abbreviated Title                October 2011
-
-
-   R14 #4
-
-   R15 #5
-
-   R16 #6
-
-5.2.  Where the List Numbering Continues
-
-   List continues here.
-
-   Third list:
-
-   R17 #7
-
-   R18 #8
-
-   R19 #9
-
-   R20 #10
-
-   The end of the list.
-
-6.  Example of Code or MIB Module To Be Extracted
-
-   The <artwork> element has a number of extra attributes that can be
-   used to substitute a more aesthetically pleasing rendition into HTML
-   output while continuing to use the ASCII art version in the text and
-   nroff outputs (see the xml2rfc README for details). It also has a
-   "type" attribute.  This is currently ignored except in the case
-   'type="abnf"'. In this case the "artwork" is expected to contain a
-   piece of valid Augmented Backus-Naur Format (ABNF) grammar.  This
-   will be syntax checked by xml2rfc and any errors will cause a fatal
-   error if the "strict" processing instruction is set to "yes".  The
-   ABNF will also be colorized in HTML output to highlight the syntactic
-   components.  Checking of additional "types" may be provided in future
-   versions of xml2rfc.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Dulaunoy & Kaplan                 info                          [Page 4]
-
-Internet-Draft             Abbreviated Title                October 2011
-
-
-   
-   /**** an example C program */
-   
-   #include <stdio.h>
-   
-   void
-   main(int argc, char *argv[])
-   {
-       int i;
-   
-       printf("program arguments are:\n");
-       for (i = 0; i < argc; i++) {
-           printf("%d: \"%s\"\n", i, argv[i]);
-       }
-   
-       exit(0);
-   } /* main */
-   
-   /* end of file */
-   
-
-7.  Acknowledgements
+4.  Acknowledgements
 
    This template was derived from an initial version written by Pekka
    Savola and contributed by him to the xml2rfc project.
@@ -271,7 +153,7 @@ Internet-Draft             Abbreviated Title                October 2011
    This document is part of a plan to make xml2rfc indispensable
    [DOMINATION].
 
-8.  IANA Considerations
+5.  IANA Considerations
 
    This memo includes no request to IANA.
 
@@ -282,26 +164,26 @@ Internet-Draft             Abbreviated Title                October 2011
    above). If there are no requirements for IANA, the section will be
    removed during conversion into an RFC by the RFC Editor.
 
-9.  Security Considerations
+6.  Security Considerations
 
    All drafts are required to have a security considerations section.
    See RFC 3552 [RFC3552] for a guide.
 
-10.  References
+7.  References
 
-10.1.  Normative References
+7.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119, March 1997.
 
+Dulaunoy & Kaplan                 info                          [Page 3]
+
+Internet-Draft             Abbreviated Title                January 2013
+
+
    [min_ref]  authSurName, authInitials, "Minimal Reference", 2006.
 
-10.2.  Informative References
-
-Dulaunoy & Kaplan                 info                          [Page 5]
-
-Internet-Draft             Abbreviated Title                October 2011
-
+7.2.  Informative References
 
    [DOMINATION]
               Mad Dominators, Inc., "Ultimate Plan for Taking Over the
@@ -328,8 +210,8 @@ Authors' Addresses
 
    Alexandre Dulaunoy
    CIRCL
-   6, rue de l'Etang
-   Contern, L-5326
+   41, avenue de la gare
+   Luxembourg, L-1611
    LU
    
    Phone: (+352) 247 88444
@@ -355,8 +237,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-Dulaunoy & Kaplan                 info                          [Page 6]
+Dulaunoy & Kaplan                 info                          [Page 4]
