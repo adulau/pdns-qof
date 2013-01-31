@@ -36,7 +36,7 @@
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="info" docName="draft-ietf-xml2rfc-template-05" ipr="full3978">
+<rfc category="info" docName="draft-ietf-dulaunoy-kaplan-pdns-cof-01" ipr="full3978">
   <!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
      you can add the attributes updates="NNNN" and obsoletes="NNNN" 
@@ -46,7 +46,7 @@
 
   <front>
     <title abbrev="Abbreviated Title">Passive DNS - Common Output Format</title>
-    <author fullname="Alexandre Dulaunoy" initials="A.D."
+    <author fullname="Alexandre Dulaunoy" initials=""
             surname="Dulaunoy">
       <organization>CIRCL</organization>
       <address>
@@ -65,7 +65,7 @@
     </author>
 
 
-    <author fullname="Leon Aaron Kaplan" initials="L.A."
+    <author fullname="Leon Aaron Kaplan" initials=""
             surname="Kaplan">
       <organization>CERT.at</organization>
       <address>
@@ -101,13 +101,11 @@
      <t>
     There are multiple implementation of Passive DNS software. Users of passive DNS query each implementation and aggregate the results for their search. This document describes the output format of three Passive DNS Systems which are in use today and which already share a nearly identical output format.
 
-As the format and the meaning of output fields from each Passive DNS need to be consistent, we propose in this document a solution to commonly name each field along with their cor
-responding interpretation. The format format is following a simple key-value structure.
-
+As the format and the meaning of output fields from each Passive DNS need to be consistent, we propose in this document a solution to commonly name each field along with their corresponding interpretation. The format format is following a simple key-value structure.
 The benefit of having a consistent Passive DNS output format is that multiple client implementations can query different servers without having to have a separate parser for each
 individual server. [http://code.google.com/p/passive-dns-query-tool/] currently implements multiple parsers due to a lack of standardization.
 
-The document does not describe the protocol (e.g. whois ref:TOADD) used to query the Passive DNS.
+The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) used to query the Passive DNS.
      </t>
 
       <section title="Requirements Language">
@@ -118,9 +116,39 @@ The document does not describe the protocol (e.g. whois ref:TOADD) used to query
       </section>
     </section>
 
-    <section title="Mandatory Fields">
-    <t>A field is composed a key followed by a value separated by the single ':' character and a space before the value. The format is based on the initial work done by Florian Weimer and the RIPE whois format (ref:http://www.enyo.de/fw/software/dnslogger/whois.html). The ordered of the fields is not significant for the same resource type, name tuple.</t>
+    <section title="Limitation">
+    <t> As a Passive DNS can include protection mechanisms for their operation, results might be different due to those protection measures.  These mechanisms filter out DNS answers if they fail some criteria. The bailiwick algorithm (c.f. http://www.isc.org/files/passive_dns_hardening_handout.pdf) protects the Passive DNS Database from cache poisoning attacks [ref: Dan Kaminsky].
 
+        Another limitiation that clients querying the database need to be aware of is that each query simply gets an snapshot-answer of the time of querying. Clients MUST NOT rely on consistent answers.
+    </t>
+    </section>
+    <section title="Format">
+     <t>A field is composed a key followed by a value separated by the single ':' character and a space before the value. The format is based on the initial work done by Florian Weimer and the RIPE whois format (ref:http://www.enyo.de/fw/software/dnslogger/whois.html). The ordered of the fields is not significant for the same resource type, name tuple.</t>
+    <figure><preamble>A sample output using the common format:</preamble><artwork><![CDATA[
+   rrname: www.foo.be
+   rrtype: AAAA
+   rdata: 2001:6f8:202:2df::2
+   first_seen: 2010-07-26 13:04:01
+   last_seen: 2012-02-06 09:59:00
+   count: 87
+    ]]></artwork></figure>
+    <section title="Output Format">
+    <t>
+    MUST Human Readable
+    SHOULD JSON
+    OPTIONAL Bind
+    </t>
+    <section title="Human Readable">
+    </section>
+    <section title="JSON">
+    </section>
+    <section title="Bind format">
+    </section>
+    </section>
+    </section>
+    <section title="Mandatory Fields">
+    <t>Implementation MUST support all the mandatory fields.</t>
+    <t>TODO pinpoint on the key for the 3tuple (rrtype,rrname,rdata)</t>
     <section title="first_seen">
     <t>This field returns the first time that the record has been seen by the passive DNS. The date is expressed in ISO 8601 and UTC.</t>
     </section>
@@ -131,15 +159,19 @@ The document does not describe the protocol (e.g. whois ref:TOADD) used to query
      <t>This field returns the resource record type as seen by the passive DNS. The key is rr-type and the value is in the interpreted record type. If the value cannot be interpreted the
      decimal value is returned.
 
-     The resource record type can be any values as described by IANA in the DNS parameters document in the section 'DNS Label types' (http://www.iana.org/assignments/dns-parameters).
-     </t>
+     The resource record type can be any values as described by IANA in the DNS parameters document in the section 'DNS Label types' (http://www.iana.org/assignments/dns-parameters).</t>
     </section>
     <section title="rrname">
     <t>This field returns the name of the queried resource.</t>
     </section>
+    <section title="rdata">
+    <t>This field returns the data of the queried resource.</t>
+    </section>
     </section>
     <section title="Optional Fields">
+    <t>Implementation SHOULD support one or more field.</t>
     <section title="sensor_id">
+    <t>This field returns the sensor information where the record was seen. The sensor_id is expressed in a decimal value.</t>
     </section>
     <section title="count">
     <t>Specifies how many authoritative answers were received with the set of answers (i.e. same data) over all sensors. The number of requests is expressed as a decimal value.</t>
@@ -148,10 +180,12 @@ The document does not describe the protocol (e.g. whois ref:TOADD) used to query
     </section>
     <section title="bailiwick">
     </section>
+    <section title="class">
+    </section>
     </section>
 
     <section title="Extended Fields">
-    <t>A x- prefixed key means that is an extension and a non-standard field defined by the implementation of the passive DNS.</t>
+    <t>An x- prefixed key means that is an extension and a non-standard field defined by the implementation of the passive DNS.</t>
     </section>
 
     <!-- This PI places the pagebreak correctly (before the section title) in the text output. -->
@@ -162,27 +196,19 @@ The document does not describe the protocol (e.g. whois ref:TOADD) used to query
 
 
     <section anchor="Acknowledgements" title="Acknowledgements">
-      <t>This template was derived from an initial version written by Pekka
-      Savola and contributed by him to the xml2rfc project.</t>
+      <t>Thanks to the Passive DNS developers who contributed to the document.</t>
 
-      <t>This document is part of a plan to make xml2rfc indispensable <xref
-      target="DOMINATION"></xref>.</t>
     </section>
 
     <!-- Possibly a 'Contributors' section ... -->
 
     <section anchor="IANA" title="IANA Considerations">
       <t>This memo includes no request to IANA.</t>
-
-      <t>All drafts are required to have an IANA considerations section (see
-      <xref target="I-D.narten-iana-considerations-rfc2434bis">the update of
-      RFC 2434</xref> for a guide). If the draft does not require IANA to do
-      anything, the section contains an explicit statement that this is the
-      case (as above). If there are no requirements for IANA, the section will
-      be removed during conversion into an RFC by the RFC Editor.</t>
     </section>
 
     <section anchor="Security" title="Security Considerations">
+      <t>In some cases, Passive DNS output might contain confidential information and its access might be restricted. When an user is querying multiple Passive DNS and aggregating the data, the sensitivity of the data must be considered.</t>
+      <t>Authentication of the output can be implemented on the server via an extended field.</t>
       <t>All drafts are required to have a security considerations section.
       See <xref target="RFC3552">RFC 3552</xref> for a guide.</t>
     </section>
