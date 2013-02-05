@@ -9,6 +9,9 @@
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
 <!ENTITY RFC2629 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2629.xml">
 <!ENTITY RFC3552 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3552.xml">
+<!ENTITY RFC1035 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1035.xml">
+<!ENTITY RFC1034 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1034.xml">
+<!ENTITY RFC4627 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4627.xml">
 <!ENTITY I-D.narten-iana-considerations-rfc2434bis SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.narten-iana-considerations-rfc2434bis.xml">
 ]>
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
@@ -123,69 +126,97 @@ The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) used
     </t>
     </section>
     <section title="Format">
-     <t>A field is composed a key followed by a value separated by the single ':' character and a space before the value. The format is based on the initial work done by Florian Weimer and the RIPE whois format (ref:http://www.enyo.de/fw/software/dnslogger/whois.html). The ordered of the fields is not significant for the same resource type, name tuple.</t>
-    <figure><preamble>A sample output using the common format:</preamble><artwork><![CDATA[
-   rrname: www.foo.be
-   rrtype: AAAA
-   rdata: 2001:6f8:202:2df::2
-   first_seen: 2010-07-26 13:04:01
-   last_seen: 2012-02-06 09:59:00
-   count: 87
-    ]]></artwork></figure>
-    <section title="Output Format">
-    <t>
-    MUST Human Readable
-    SHOULD JSON
-    OPTIONAL Bind
-    </t>
-    <section title="Human Readable">
-    </section>
-    <section title="JSON">
-    </section>
-    <section title="Bind format">
-    </section>
-    </section>
+		<t>A field is composed a key followed by a value separated by the single ':' character and a space before the value. The format is based on the initial work done by Florian Weimer and the RIPE whois format (ref:http://www.enyo.de/fw/software/dnslogger/whois.html). The order of the fields is not significant for the same resource type. That measn, the same name tuple plus timing information identifies a unique answer per server.</t>
+		<figure><preamble>A sample output using the common format:</preamble><artwork><![CDATA[
+	   rrname: www.foo.be
+	   rrtype: AAAA
+	   rdata: 2001:6f8:202:2df::2
+	   time_first: 2010-07-26 13:04:01
+	   time_last: 2012-02-06 09:59:00
+	   count: 87
+		]]></artwork></figure>
+		<section title="Output Format">
+			<t>
+				Depending on the clients request, there might be one of three different answers from the server: Whois (human readable) output format (key-value), <xref target="RFC4627">JSON</xref> output and optionally Bind zone file output format. XXX FIXME: how does the client select which answer format he wants? XXX
+			</t>
+			<section title="Whois Human Readable">
+				<t>
+					This output format originates with the original design of BFK's passive DNS server implementation. The intent is to be be human readable. Every implementation MUST support the Whois human readable format.
+				</t>
+				<figure><preamble>A sample output using the Whois format:</preamble><artwork><![CDATA[
+			rrname: www.foo.be
+			rrtype: AAAA
+			rdata: 2001:6f8:202:2df::2
+			time_first: 2010-07-26 13:04:01
+			time_last: 2012-02-06 09:59:00
+			count: 87
+				  ]]></artwork></figure>
+			</section>
+			<section title="JSON">
+				<t>The intent of this output format is to be easily parseable by scripts. Every implementation SHOULD support the JSON output format.</t>
+				<figure><preamble>A sample output using the JSON format:</preamble><artwork><![CDATA[
+... (list of )...  
+{ "count": 97167, 
+"time_first": "2010-06-25 17:07:02",
+"rrtype": "A", "rrname": "google-public-dns-a.google.com.", 
+"rdata": "8.8.8.8",
+"time_last": "2013-02-05 17:34:03" } 
+... (separated by newline)...
+				  ]]></artwork></figure>
+			</section>
+			<section title="Bind format">
+				<figure><preamble>A sample output using the Bind format:</preamble><artwork><![CDATA[
+google-public-dns-a.google.com. IN A 8.8.8.8
+				  ]]></artwork></figure>
+			</section>
+		</section>
     </section>
     <section title="Mandatory Fields">
     <t>Implementation MUST support all the mandatory fields.</t>
-    <t>TODO pinpoint on the key for the 3tuple (rrtype,rrname,rdata)</t>
-    <section title="first_seen">
-    <t>This field returns the first time that the record has been seen by the passive DNS. The date is expressed in ISO 8601 and UTC.</t>
-    </section>
-    <section title="last_seen">
-    <t>This field returns the last time that the record has been seen by the passive DNS. The date is expressed in ISO 8601 and UTC.</t>
-    </section>
-    <section title="rrtype">
-     <t>This field returns the resource record type as seen by the passive DNS. The key is rr-type and the value is in the interpreted record type. If the value cannot be interpreted the
-     decimal value is returned.
+    <t>The tuple (rrtype,rrname,rdata) will always be unique within one answer per server.</t>
+		<section title="rrname">
+		<t>This field returns the name of the queried resource.</t>
+		</section>
+		<section title="rrtype">
+		 <t>This field returns the resource record type as seen by the passive DNS. The key is rrtype and the value is in the interpreted record type. If the value cannot be interpreted the
+		 decimal value is returned.
 
-     The resource record type can be any values as described by IANA in the DNS parameters document in the section 'DNS Label types' (http://www.iana.org/assignments/dns-parameters).</t>
-    </section>
-    <section title="rrname">
-    <t>This field returns the name of the queried resource.</t>
-    </section>
-    <section title="rdata">
-    <t>This field returns the data of the queried resource.</t>
-    </section>
-    </section>
+		 The resource record type can be any values as described by IANA in the DNS parameters document in the section 'DNS Label types' (http://www.iana.org/assignments/dns-parameters).
+		 Currently known and supported textual descritptions of rrtypes are: A, AAAA, CNAME, PTR, SOA, TXT, DNAME, NS, SRV, RP, NAPTR, HINFO, A6
+		 A client MUST be able to understand these textual rtype values. In addition, a client MUST be able to handle a decimal value (as mentioned above) as answer.
+		</t>
+		</section>
+		<section title="rdata">
+			<t>This field returns the data of the queried resource. In general, this is to be interpreted as string. Depending on the rtype, this can be an IPv4 or IPv6 address, a domain name (as in the case of CNAMEs), an SPF record, etc.  A client MUST be able to interpret any value which is legal as the right hand side in a DNS zone file  <xref target="RFC1035">RFC 1035</xref> and <xref target="RFC1034">RFC 1034</xref>.</t>
+		</section>
+		<section title="time_first">
+			<t>This field returns the first time that the record / unique tuple (rrname, rrtype, rdata) has been seen by the passive DNS. The date is expressed in ISO 8601 and UTC.</t>
+		</section>
+		<section title="time_last">
+		<t>This field returns the last time that the unique tuple (rrname, rrtype, rdata) record has been seen by the passive DNS. The date is expressed in ISO 8601 and UTC.</t>
+		</section>
+	</section>
     <section title="Optional Fields">
-    <t>Implementation SHOULD support one or more field.</t>
-    <section title="sensor_id">
-    <t>This field returns the sensor information where the record was seen. The sensor_id is expressed in a decimal value.</t>
-    </section>
-    <section title="count">
-    <t>Specifies how many authoritative answers were received with the set of answers (i.e. same data) over all sensors. The number of requests is expressed as a decimal value.</t>
-    </section>
-    <section title="ttl">
-    </section>
-    <section title="bailiwick">
-    </section>
-    <section title="class">
-    </section>
+		<t>Implementation SHOULD support one or more field.</t>
+		<section title="sensor_id">
+		<t>This field returns the sensor information where the record was seen. The sensor_id is expressed in a decimal value.</t>
+		</section>
+		<section title="count">
+		<t>Specifies how many authoritative answers were received with the set of answers (i.e. same data) over all sensors. The number of requests is expressed as a decimal value.</t>
+		</section>
+		<section title="ttl">
+			<t>the TTL as specified in <xref target="RFC1035">RFC 1035</xref> as a decimal value.</t>
+		</section>
+		<section title="bailiwick">
+			<t> XXX FIXME: input from ISC needed</t>
+		</section>
+		<section title="class">
+			<t>the class as specified in <xref target="RFC1035">RFC 1035</xref>. Valid values are IN, HS (for HESIOD), CH (for CHAOS). May be omitted, the default assumption that a client should make is IN.</t>
+		</section>
     </section>
 
     <section title="Extended Fields">
-    <t>An x- prefixed key means that is an extension and a non-standard field defined by the implementation of the passive DNS.</t>
+		<t>An x- prefixed key means that is an extension and a non-standard field defined by the implementation of the passive DNS.</t>
     </section>
 
     <!-- This PI places the pagebreak correctly (before the section title) in the text output. -->
@@ -208,7 +239,7 @@ The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) used
 
     <section anchor="Security" title="Security Considerations">
       <t>In some cases, Passive DNS output might contain confidential information and its access might be restricted. When an user is querying multiple Passive DNS and aggregating the data, the sensitivity of the data must be considered.</t>
-      <t>Authentication of the output can be implemented on the server via an extended field.</t>
+      <t>Authentication and signing of the output MAY be implemented on the server via an extended field, namely x-signature-sha265 which contains a SHA256 signature of the output text, signed with the ssh-key of the server sending the answer.</t>
       <t>All drafts are required to have a security considerations section.
       See <xref target="RFC3552">RFC 3552</xref> for a guide.</t>
     </section>
@@ -233,6 +264,9 @@ The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) used
     <references title="Normative References">
       <!--?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml"?-->
       &RFC2119;
+	  &RFC1035;
+	  &RFC1034;
+	  &RFC4627;
 
       <reference anchor="min_ref">
         <!-- the following is the minimum to make xml2rfc happy -->
