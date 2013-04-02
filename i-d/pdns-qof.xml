@@ -84,6 +84,21 @@
         <uri>http://www.cert.at/</uri>
       </address>
     </author>
+
+    <author fullname="Paul Vixie" initials=""
+            surname="Vixie">
+      <organization>ISC</organization>
+      <address>
+        <postal>
+          <street></street>
+          <city></city>
+          <region></region>
+          <code></code>
+          <country></country>
+        </postal>
+        <phone></phone>
+		<email>vixie@isc.org</email>
+        <uri>/</uri>
     <date month="January" year="2013" />
 
     <area>General</area>
@@ -139,19 +154,6 @@ The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) used
 			<t>
 				Depending on the clients request, there might be one of three different answers from the server: Whois (human readable) output format (key-value), <xref target="RFC4627">JSON</xref> output and optionally Bind zone file output format. XXX FIXME: how does the client select which answer format he wants? XXX
 			</t>
-			<section title="Whois Human Readable">
-				<t>
-					This output format originates with the original design of BFK's passive DNS server implementation. The intent is to be be human readable. Every implementation MUST support the Whois human readable format.
-				</t>
-				<figure><preamble>A sample output using the Whois format:</preamble><artwork><![CDATA[
-			rrname: www.foo.be
-			rrtype: AAAA
-			rdata: 2001:6f8:202:2df::2
-			time_first: 2010-07-26 13:04:01
-			time_last: 2012-02-06 09:59:00
-			count: 87
-				  ]]></artwork></figure>
-			</section>
 			<section title="JSON">
 				<t>The intent of this output format is to be easily parseable by scripts. Every implementation SHOULD support the JSON output format.</t>
 				<figure><preamble>A sample output using the JSON format:</preamble><artwork><![CDATA[
@@ -162,11 +164,6 @@ The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) used
 "rdata": "8.8.8.8",
 "time_last": "2013-02-05 17:34:03" } 
 ... (separated by newline)...
-				  ]]></artwork></figure>
-			</section>
-			<section title="Bind format">
-				<figure><preamble>A sample output using the Bind format:</preamble><artwork><![CDATA[
-google-public-dns-a.google.com. IN A 8.8.8.8
 				  ]]></artwork></figure>
 			</section>
 		</section>
@@ -184,36 +181,38 @@ google-public-dns-a.google.com. IN A 8.8.8.8
 		 The resource record type can be any values as described by IANA in the DNS parameters document in the section 'DNS Label types' (http://www.iana.org/assignments/dns-parameters).
 		 Currently known and supported textual descritptions of rrtypes are: A, AAAA, CNAME, PTR, SOA, TXT, DNAME, NS, SRV, RP, NAPTR, HINFO, A6
 		 A client MUST be able to understand these textual rtype values. In addition, a client MUST be able to handle a decimal value (as mentioned above) as answer.
+
+		 XXX reference to RFC 3597.XXX
 		</t>
 		</section>
 		<section title="rdata">
 			<t>This field returns the data of the queried resource. In general, this is to be interpreted as string. Depending on the rtype, this can be an IPv4 or IPv6 address, a domain name (as in the case of CNAMEs), an SPF record, etc.  A client MUST be able to interpret any value which is legal as the right hand side in a DNS zone file  <xref target="RFC1035">RFC 1035</xref> and <xref target="RFC1034">RFC 1034</xref>.</t>
+		 XXX reference to RFC 3597.XXX
 		</section>
 		<section title="time_first">
-			<t>This field returns the first time that the record / unique tuple (rrname, rrtype, rdata) has been seen by the passive DNS. The date is expressed in ISO 8601 and UTC.</t>
+			<t>This field returns the first time that the record / unique tuple (rrname, rrtype, rdata) has been seen by the passive DNS. The date is expressed in seconds (decimal ascii) since 1st of January 1970 (unix timestamp). The time zone MUST be UTC.</t>
 		</section>
 		<section title="time_last">
-		<t>This field returns the last time that the unique tuple (rrname, rrtype, rdata) record has been seen by the passive DNS. The date is expressed in ISO 8601 and UTC.</t>
+		<t>This field returns the last time that the unique tuple (rrname, rrtype, rdata) record has been seen by the passive DNS. The date is XXXX.</t>
 		</section>
 	</section>
     <section title="Optional Fields">
 		<t>Implementation SHOULD support one or more field.</t>
-		<section title="sensor_id">
-		<t>This field returns the sensor information where the record was seen. The sensor_id is expressed in a decimal value.</t>
-		</section>
 		<section title="count">
-		<t>Specifies how many authoritative answers were received with the set of answers (i.e. same data) over all sensors. The number of requests is expressed as a decimal value.</t>
-		</section>
-		<section title="ttl">
-			<t>the TTL as specified in <xref target="RFC1035">RFC 1035</xref> as a decimal value.</t>
+		#<t>Specifies how many answers were received with the set of answers (i.e. same data). The number of requests is expressed as a decimal value.</t>
+		<t>Specifies the number of times this particular event denoted by the other type fields has been seen in the given time interval (between time_last and time_first). Decimal number.</t>
 		</section>
 		<section title="bailiwick">
-			<t> XXX FIXME: input from ISC needed</t>
-		</section>
-		<section title="class">
-			<t>the class as specified in <xref target="RFC1035">RFC 1035</xref>. Valid values are IN, HS (for HESIOD), CH (for CHAOS). May be omitted, the default assumption that a client should make is IN.</t>
+			<t>The bailiwick is the best estimate of the apex of the zone where this data is authoritative. String.</t>
 		</section>
     </section>
+	<section title="Additional Fields">
+		<t>Implementations MAY support the following fields:</t>
+		<section title="x-sensor_id">
+		<t>This field returns the sensor information where the record was seen. The sensor_id is an opaque byte string as defined by RFC5001 (XXX ref))</t>
+		</section>
+    </section>
+
 
     <section title="Extended Fields">
 		<t>An x- prefixed key means that is an extension and a non-standard field defined by the implementation of the passive DNS.</t>
