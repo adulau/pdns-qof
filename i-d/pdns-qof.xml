@@ -98,7 +98,10 @@
         </postal>
         <phone></phone>
 		<email>vixie@isc.org</email>
-        <uri>/</uri>
+        <uri>http://www.isc.org/</uri>
+       </address>
+    </author>
+
     <date month="January" year="2013" />
 
     <area>General</area>
@@ -186,8 +189,8 @@ The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) used
 		</t>
 		</section>
 		<section title="rdata">
-			<t>This field returns the data of the queried resource. In general, this is to be interpreted as string. Depending on the rtype, this can be an IPv4 or IPv6 address, a domain name (as in the case of CNAMEs), an SPF record, etc.  A client MUST be able to interpret any value which is legal as the right hand side in a DNS zone file  <xref target="RFC1035">RFC 1035</xref> and <xref target="RFC1034">RFC 1034</xref>.</t>
-		 XXX reference to RFC 3597.XXX
+			<t>This field returns the data of the queried resource. In general, this is to be interpreted as string. Depending on the rtype, this can be an IPv4 or IPv6 address, a domain name (as in the case of CNAMEs), an SPF record, etc.  A client MUST be able to interpret any value which is legal as the right hand side in a DNS zone file  <xref target="RFC1035">RFC 1035</xref> and <xref target="RFC1034">RFC 1034</xref>.
+		 XXX reference to RFC 3597.XXX</t>
 		</section>
 		<section title="time_first">
 			<t>This field returns the first time that the record / unique tuple (rrname, rrtype, rdata) has been seen by the passive DNS. The date is expressed in seconds (decimal ascii) since 1st of January 1970 (unix timestamp). The time zone MUST be UTC.</t>
@@ -199,7 +202,7 @@ The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) used
     <section title="Optional Fields">
 		<t>Implementation SHOULD support one or more field.</t>
 		<section title="count">
-		#<t>Specifies how many answers were received with the set of answers (i.e. same data). The number of requests is expressed as a decimal value.</t>
+		<t>Specifies how many answers were received with the set of answers (i.e. same data). The number of requests is expressed as a decimal value.</t>
 		<t>Specifies the number of times this particular event denoted by the other type fields has been seen in the given time interval (between time_last and time_first). Decimal number.</t>
 		</section>
 		<section title="bailiwick">
