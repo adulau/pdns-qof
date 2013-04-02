@@ -205,7 +205,7 @@ The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) used
 		<section title="bailiwick">
 			<t>The bailiwick is the best estimate of the apex of the zone where this data is authoritative. String.</t>
 		</section>
-    </section>
+	</section>
 	<section title="Additional Fields">
 		<t>Implementations MAY support the following fields:</t>
 		<section title="x-sensor_id">
@@ -213,10 +213,6 @@ The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) used
 		</section>
     </section>
 
-
-    <section title="Extended Fields">
-		<t>An x- prefixed key means that is an extension and a non-standard field defined by the implementation of the passive DNS.</t>
-    </section>
 
     <!-- This PI places the pagebreak correctly (before the section title) in the text output. -->
 
@@ -238,9 +234,6 @@ The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) used
 
     <section anchor="Security" title="Security Considerations">
       <t>In some cases, Passive DNS output might contain confidential information and its access might be restricted. When an user is querying multiple Passive DNS and aggregating the data, the sensitivity of the data must be considered.</t>
-      <t>Authentication and signing of the output MAY be implemented on the server via an extended field, namely x-signature-sha265 which contains a SHA256 signature of the output text, signed with the ssh-key of the server sending the answer.</t>
-      <t>All drafts are required to have a security considerations section.
-      See <xref target="RFC3552">RFC 3552</xref> for a guide.</t>
     </section>
   </middle>
 
@@ -291,20 +284,6 @@ The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) used
 
       &I-D.narten-iana-considerations-rfc2434bis;
 
-      <!-- A reference written by by an organization not a person. -->
-
-      <reference anchor="DOMINATION"
-                 target="http://www.example.com/dominator.html">
-        <front>
-          <title>Ultimate Plan for Taking Over the World</title>
-
-          <author>
-            <organization>Mad Dominators, Inc.</organization>
-          </author>
-
-          <date year="1984" />
-        </front>
-      </reference>
     </references>
 
     <section anchor="app-additional" title="Additional Stuff">
