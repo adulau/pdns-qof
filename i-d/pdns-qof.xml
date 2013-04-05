@@ -159,7 +159,7 @@ The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) used
 				Depending on the clients request, there might be one of three different answers from the server: Whois (human readable) output format (key-value), <xref target="RFC4627">JSON</xref> output and optionally Bind zone file output format. XXX FIXME: how does the client select which answer format he wants? XXX
 			</t>
 			<section title="JSON">
-				<t>The intent of this output format is to be easily parseable by scripts. Every implementation SHOULD support the JSON output format.</t>
+				<t>The intent of this output format is to be easily parseable by scripts. Every implementation MUST support the JSON output format.</t>
 				<figure><preamble>A sample output using the JSON format:</preamble><artwork><![CDATA[
 ... (list of )...  
 { "count": 97167, 
