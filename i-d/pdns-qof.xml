@@ -102,9 +102,25 @@
 		<email>vixie@isc.org</email>
         <uri>/</uri>
        </address>
-       </author>
-    <date month="January" year="2013" />
+    </author>
 
+	<author fullname="Henry Stern" initials="hs" surname="Stern">
+		<organization>Cisco</organization>
+		<address>
+			<postal>
+				<street>1741 Brunswick Street, Suite 500</street>
+				<city>Halifax</city>
+				<region>Nova Scotia</region>
+				<code>B3J 3X8</code>
+				<country>Canada</country>
+			</postal>
+			<phone>+1 408 922 4555</phone>
+			<email>hestern@cisco.com</email>
+			<uri>http://www.cisco.com/security</uri>
+		</address>
+	</author>
+
+    <date month="April" year="2013" />
     <area>General</area>
 
     <workgroup>Internet Engineering Task Force</workgroup>
@@ -119,15 +135,15 @@
 
   <middle>
     <section title="Introduction">
-     <t>Passive DNS is a technique described by Florian Weimer in 2005 in Passive DNS replication, F Weimer - 17th Annual FIRST Conference on Computer Security. Since then multiple Passive DNS implementations evolved over time. Users of these Passive DNS servers query a server (often via Whois [Ref: WHOIS]), parse the results and process them in other applications.</t>
+     <t>Passive DNS is a technique described by Florian Weimer in 2005 in Passive DNS replication, F Weimer - 17th Annual FIRST Conference on Computer Security. Since then multiple Passive DNS implementations evolved over time. Users of these Passive DNS servers query a server (often via Whois [Ref: WHOIS] or HTTP and ReST), parse the results and process them in other applications.</t>
      <t>
     There are multiple implementation of Passive DNS software. Users of passive DNS query each implementation and aggregate the results for their search. This document describes the output format of three Passive DNS Systems which are in use today and which already share a nearly identical output format.
 
-As the format and the meaning of output fields from each Passive DNS need to be consistent, we propose in this document a solution to commonly name each field along with their corresponding interpretation. The format format is following a simple key-value structure.
+	As the format and the meaning of output fields from each Passive DNS need to be consistent, we propose in this document a solution to commonly name each field along with their corresponding interpretation. The format format is following a simple key-value structure in <xref target="RFC4627">JSON</xref> format.
 The benefit of having a consistent Passive DNS output format is that multiple client implementations can query different servers without having to have a separate parser for each
 individual server. [http://code.google.com/p/passive-dns-query-tool/] currently implements multiple parsers due to a lack of standardization.
 
-The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) used to query the Passive DNS.
+The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) nor the query format used to query the Passive DNS. Neither does this document describe "pre-recursor" Passive DNS Systems.
      </t>
 
       <section title="Requirements Language">
@@ -144,23 +160,11 @@ The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) used
         Another limitiation that clients querying the database need to be aware of is that each query simply gets an snapshot-answer of the time of querying. Clients MUST NOT rely on consistent answers.
     </t>
     </section>
-    <section title="Format">
-		<t>A field is composed a key followed by a value separated by the single ':' character and a space before the value. The format is based on the initial work done by Florian Weimer and the RIPE whois format (ref:http://www.enyo.de/fw/software/dnslogger/whois.html). The order of the fields is not significant for the same resource type. That measn, the same name tuple plus timing information identifies a unique answer per server.</t>
-		<figure><preamble>A sample output using the common format:</preamble><artwork><![CDATA[
-	   rrname: www.foo.be
-	   rrtype: AAAA
-	   rdata: 2001:6f8:202:2df::2
-	   time_first: 2010-07-26 13:04:01
-	   time_last: 2012-02-06 09:59:00
-	   count: 87
-		]]></artwork></figure>
-		<section title="Output Format">
-			<t>
-				Depending on the clients request, there might be one of three different answers from the server: Whois (human readable) output format (key-value), <xref target="RFC4627">JSON</xref> output and optionally Bind zone file output format. XXX FIXME: how does the client select which answer format he wants? XXX
-			</t>
-			<section title="JSON">
-				<t>The intent of this output format is to be easily parseable by scripts. Every implementation MUST support the JSON output format.</t>
-				<figure><preamble>A sample output using the JSON format:</preamble><artwork><![CDATA[
+    <section title="Common Output Format">
+		<t>The formatting of the answer follows the <xref target="RFC4627">JSON</xref> format. The order of the fields is not significant for the same resource type. That means, the same name tuple plus timing information identifies a unique answer per server.</t>
+		<section title="Overview and Example">
+		<t>The intent of this output format is to be easily parseable by scripts. Every implementation MUST support the JSON output format.</t>
+		<figure><preamble>A sample output using the JSON format:</preamble><artwork><![CDATA[
 ... (list of )...  
 { "count": 97167, 
 "time_first": "2010-06-25 17:07:02",
@@ -169,51 +173,49 @@ The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) used
 "time_last": "2013-02-05 17:34:03" } 
 ... (separated by newline)...
 				  ]]></artwork></figure>
+		</section>
+		<section title="Mandatory Fields">
+		<t>Implementation MUST support all the mandatory fields.</t>
+		<t>The tuple (rrtype,rrname,rdata) will always be unique within one answer per server.</t>
+			<section title="rrname">
+			<t>This field returns the name of the queried resource.</t>
+			</section>
+			<section title="rrtype">
+			 <t>This field returns the resource record type as seen by the passive DNS. The key is rrtype and the value is in the interpreted record type. If the value cannot be interpreted the
+			 decimal value is returned following the principle of transparency as described in <xref target="RFC3597">RFC 3597</xref>.
+
+			 The resource record type can be any values as described by IANA in the DNS parameters document in the section 'DNS Label types' (http://www.iana.org/assignments/dns-parameters).
+			 Currently known and supported textual descritptions of rrtypes are: A, AAAA, CNAME, PTR, SOA, TXT, DNAME, NS, SRV, RP, NAPTR, HINFO, A6
+			 A client MUST be able to understand these textual rtype values. In addition, a client MUST be able to handle a decimal value (as mentioned above) as answer.
+			</t>
+			</section>
+			<section title="rdata">
+				<t>This field returns the data of the queried resource. In general, this is to be interpreted as string. Depending on the rtype, this can be an IPv4 or IPv6 address, a domain name (as in the case of CNAMEs), an SPF record, etc.  A client MUST be able to interpret any value which is legal as the right hand side in a DNS zone file  <xref target="RFC1035">RFC 1035</xref> and <xref target="RFC1034">RFC 1034</xref>. If the rdata came from an unknown DNS resource records, the server must follow the transparency principle as described in <xref target="RFC3597">RFC 3597</xref>. (binary stream if any? base64?)</t>
+			</section>
+			<section title="time_first">
+				<t>This field returns the first time that the record / unique tuple (rrname, rrtype, rdata) has been seen by the passive DNS. The date is expressed in seconds (decimal ascii) since 1st of January 1970 (unix timestamp). The time zone MUST be UTC.</t>
+			</section>
+			<section title="time_last">
+			<t>This field returns the last time that the unique tuple (rrname, rrtype, rdata) record has been seen by the passive DNS. The date is expressed in seconds (decimal ascii) since 1st of January 1970 (unix timestamp). The time zone MUST be UTC..</t>
 			</section>
 		</section>
-    </section>
-    <section title="Mandatory Fields">
-    <t>Implementation MUST support all the mandatory fields.</t>
-    <t>The tuple (rrtype,rrname,rdata) will always be unique within one answer per server.</t>
-		<section title="rrname">
-		<t>This field returns the name of the queried resource.</t>
+		<section title="Optional Fields">
+			<t>Implementation SHOULD support one or more field.</t>
+			<section title="count">
+			<t>Specifies how many answers were received with the set of answers (i.e. same data). The number of requests is expressed as a decimal value.</t>
+			<t>Specifies the number of times this particular event denoted by the other type fields has been seen in the given time interval (between time_last and time_first). Decimal number.</t>
+			</section>
+			<section title="bailiwick">
+				<t>The bailiwick is the best estimate of the apex of the zone where this data is authoritative. String.</t>
+			</section>
 		</section>
-		<section title="rrtype">
-		 <t>This field returns the resource record type as seen by the passive DNS. The key is rrtype and the value is in the interpreted record type. If the value cannot be interpreted the
-		 decimal value is returned following the principle of transparency as described in <xref target="RFC3597">RFC 3597</xref>.
-
-		 The resource record type can be any values as described by IANA in the DNS parameters document in the section 'DNS Label types' (http://www.iana.org/assignments/dns-parameters).
-		 Currently known and supported textual descritptions of rrtypes are: A, AAAA, CNAME, PTR, SOA, TXT, DNAME, NS, SRV, RP, NAPTR, HINFO, A6
-		 A client MUST be able to understand these textual rtype values. In addition, a client MUST be able to handle a decimal value (as mentioned above) as answer.
-		</t>
+		<section title="Additional Fields">
+			<t>Implementations MAY support the following fields:</t>
+			<section title="sensor_id">
+			<t>This field returns the sensor information where the record was seen. The sensor_id is an opaque byte string as defined by <xref target="RFC5001"> RFC 5001 in section 2.3</xref>.</t>
 		</section>
-		<section title="rdata">
-			<t>This field returns the data of the queried resource. In general, this is to be interpreted as string. Depending on the rtype, this can be an IPv4 or IPv6 address, a domain name (as in the case of CNAMEs), an SPF record, etc.  A client MUST be able to interpret any value which is legal as the right hand side in a DNS zone file  <xref target="RFC1035">RFC 1035</xref> and <xref target="RFC1034">RFC 1034</xref>. If the rdata came from an unknown DNS resource records, the server must follow the transparency principle as described in <xref target="RFC3597">RFC 3597</xref>. (binary stream if any? base64?)
-		 </t>
-		</section>
-		<section title="time_first">
-			<t>This field returns the first time that the record / unique tuple (rrname, rrtype, rdata) has been seen by the passive DNS. The date is expressed in seconds (decimal ascii) since 1st of January 1970 (unix timestamp). The time zone MUST be UTC.</t>
-		</section>
-		<section title="time_last">
-		<t>This field returns the last time that the unique tuple (rrname, rrtype, rdata) record has been seen by the passive DNS. The date is expressed in seconds (decimal ascii) since 1st of January 1970 (unix timestamp). The time zone MUST be UTC..</t>
 		</section>
 	</section>
-    <section title="Optional Fields">
-		<t>Implementation SHOULD support one or more field.</t>
-		<section title="count">
-		<t>Specifies how many answers were received with the set of answers (i.e. same data). The number of requests is expressed as a decimal value.</t>
-		<t>Specifies the number of times this particular event denoted by the other type fields has been seen in the given time interval (between time_last and time_first). Decimal number.</t>
-		</section>
-		<section title="bailiwick">
-			<t>The bailiwick is the best estimate of the apex of the zone where this data is authoritative. String.</t>
-		</section>
-	</section>
-	<section title="Additional Fields">
-		<t>Implementations MAY support the following fields:</t>
-		<section title="x-sensor_id">
-		<t>This field returns the sensor information where the record was seen. The sensor_id is an opaque byte string as defined by <xref target="RFC5001"> RFC 5001 in section 2.3</xref>.</t>
-		</section>
-    </section>
 
 
     <!-- This PI places the pagebreak correctly (before the section title) in the text output. -->
@@ -290,25 +292,8 @@ The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) used
 
     </references>
 
-    <section anchor="app-additional" title="Additional Stuff">
+    <section anchor="app-additional" title="Appendix">
       <t>This becomes an Appendix.</t>
     </section>
-
-    <!-- Change Log
-
-v00 2006-03-15  EBD   Initial version
-
-v01 2006-04-03  EBD   Moved PI location back to position 1 -
-                      v3.1 of XMLmind is better with them at this location.
-v02 2007-03-07  AH    removed extraneous nested_list attribute,
-                      other minor corrections
-v03 2007-03-09  EBD   Added comments on null IANA sections and fixed heading capitalization.
-                      Modified comments around figure to reflect non-implementation of
-                      figure indent control.  Put in reference using anchor="DOMINATION".
-                      Fixed up the date specification comments to reflect current truth.
-v04 2007-03-09 AH     Major changes: shortened discussion of PIs,
-                      added discussion of rfc include.
-v05 2007-03-10 EBD    Added preamble to C program example to tell about ABNF and alternative 
-                      images. Removed meta-characters from comments (causes problems).  -->
   </back>
 </rfc>
