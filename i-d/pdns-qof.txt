@@ -4,10 +4,12 @@
 Internet Engineering Task Force                                 Dulaunoy
 Internet-Draft                                                     CIRCL
 Intended status: Informational                                    Kaplan
-Expires: July 15, 2013                                           CERT.at
+Expires: October 13, 2013                                        CERT.at
                                                                    Vixie
                                                                      ISC
-                                                            January 2013
+                                                                hs Stern
+                                                                   Cisco
+                                                              April 2013
 
                    Passive DNS - Common Output Format
                  draft-ietf-dulaunoy-kaplan-pdns-cof-01
@@ -20,7 +22,7 @@ Abstract
 
 Status of this Memo
 
-   This Internet-Draft will expire on July 15, 2013.
+   This Internet-Draft will expire on October 13, 2013.
 
 Copyright Notice
 
@@ -41,32 +43,31 @@ Table of Contents
    1.  Introduction . . . . . . . . . . . . . . . . . . . . . . . . .  2
      1.1.  Requirements Language  . . . . . . . . . . . . . . . . . .  2
    2.  Limitation . . . . . . . . . . . . . . . . . . . . . . . . . .  2
-   3.  Format . . . . . . . . . . . . . . . . . . . . . . . . . . . .  3
-     3.1.  Output Format  . . . . . . . . . . . . . . . . . . . . . .  3
-       3.1.1.  JSON . . . . . . . . . . . . . . . . . . . . . . . . .  3
-   4.  Mandatory Fields . . . . . . . . . . . . . . . . . . . . . . .  3
-     4.1.  rrname . . . . . . . . . . . . . . . . . . . . . . . . . .  4
-     4.2.  rrtype . . . . . . . . . . . . . . . . . . . . . . . . . .  4
-     4.3.  rdata  . . . . . . . . . . . . . . . . . . . . . . . . . .  4
-     4.4.  time_first . . . . . . . . . . . . . . . . . . . . . . . .  4
-     4.5.  time_last  . . . . . . . . . . . . . . . . . . . . . . . .  4
-   5.  Optional Fields  . . . . . . . . . . . . . . . . . . . . . . .  4
-     5.1.  count  . . . . . . . . . . . . . . . . . . . . . . . . . .  4
-     5.2.  bailiwick  . . . . . . . . . . . . . . . . . . . . . . . .  5
+   3.  Common Output Format . . . . . . . . . . . . . . . . . . . . .  3
+     3.1.  Overview and Example . . . . . . . . . . . . . . . . . . .  3
+     3.2.  Mandatory Fields . . . . . . . . . . . . . . . . . . . . .  3
+       3.2.1.  rrname . . . . . . . . . . . . . . . . . . . . . . . .  3
+       3.2.2.  rrtype . . . . . . . . . . . . . . . . . . . . . . . .  3
+       3.2.3.  rdata  . . . . . . . . . . . . . . . . . . . . . . . .  3
+       3.2.4.  time_first . . . . . . . . . . . . . . . . . . . . . .  4
+       3.2.5.  time_last  . . . . . . . . . . . . . . . . . . . . . .  4
+     3.3.  Optional Fields  . . . . . . . . . . . . . . . . . . . . .  4
+       3.3.1.  count  . . . . . . . . . . . . . . . . . . . . . . . .  4
 
-Dulaunoy, Kaplan & Vixie          info                          [Page 1]
+Dulaunoy, Kaplan, Vixie & Stern   info                          [Page 1]
 
-Internet-Draft             Abbreviated Title                January 2013
+Internet-Draft             Abbreviated Title                  April 2013
 
-   6.  Additional Fields  . . . . . . . . . . . . . . . . . . . . . .  5
-     6.1.  x-sensor_id  . . . . . . . . . . . . . . . . . . . . . . .  5
-   7.  Acknowledgements . . . . . . . . . . . . . . . . . . . . . . .  5
-   8.  IANA Considerations  . . . . . . . . . . . . . . . . . . . . .  5
-   9.  Security Considerations  . . . . . . . . . . . . . . . . . . .  5
-   10. References . . . . . . . . . . . . . . . . . . . . . . . . . .  5
-     10.1.  Normative References  . . . . . . . . . . . . . . . . . .  5
-     10.2.  Informative References  . . . . . . . . . . . . . . . . .  6
-   Appendix A. Additional Stuff . . . . . . . . . . . . . . . . . . .  6
+       3.3.2.  bailiwick  . . . . . . . . . . . . . . . . . . . . . .  4
+     3.4.  Additional Fields  . . . . . . . . . . . . . . . . . . . .  4
+       3.4.1.  sensor_id  . . . . . . . . . . . . . . . . . . . . . .  4
+   4.  Acknowledgements . . . . . . . . . . . . . . . . . . . . . . .  4
+   5.  IANA Considerations  . . . . . . . . . . . . . . . . . . . . .  5
+   6.  Security Considerations  . . . . . . . . . . . . . . . . . . .  5
+   7.  References . . . . . . . . . . . . . . . . . . . . . . . . . .  5
+     7.1.  Normative References . . . . . . . . . . . . . . . . . . .  5
+     7.2.  Informative References . . . . . . . . . . . . . . . . . .  5
+   Appendix A. Appendix . . . . . . . . . . . . . . . . . . . . . . .  5
    Authors' Addresses . . . . . . . . . . . . . . . . . . . . . . . .  6
 
 1.  Introduction
@@ -75,8 +76,8 @@ Internet-Draft             Abbreviated Title                January 2013
    Passive DNS replication, F Weimer - 17th Annual FIRST Conference on
    Computer Security.  Since then multiple Passive DNS implementations
    evolved over time.  Users of these Passive DNS servers query a server
-   (often via Whois [Ref: WHOIS]), parse the results and process them in
-   other applications.
+   (often via Whois [Ref: WHOIS] or HTTP and ReST), parse the results
+   and process them in other applications.
 
    There are multiple implementation of Passive DNS software.  Users of
    passive DNS query each implementation and aggregate the results for
@@ -86,13 +87,15 @@ Internet-Draft             Abbreviated Title                January 2013
    output fields from each Passive DNS need to be consistent, we propose
    in this document a solution to commonly name each field along with
    their corresponding interpretation.  The format format is following a
-   simple key-value structure.  The benefit of having a consistent
-   Passive DNS output format is that multiple client implementations can
-   query different servers without having to have a separate parser for
-   each individual server.  [http://code.google.com/p/passive-dns-query-
-   tool/] currently implements multiple parsers due to a lack of
-   standardization.  The document does not describe the protocol (e.g.
-   whois, HTTP REST or XMPP) used to query the Passive DNS.
+   simple key-value structure in JSON [RFC4627] format.  The benefit of
+   having a consistent Passive DNS output format is that multiple client
+   implementations can query different servers without having to have a
+   separate parser for each individual server.  [http://code.google.com/
+   p/passive-dns-query-tool/] currently implements multiple parsers due
+   to a lack of standardization.  The document does not describe the
+   protocol (e.g.  whois, HTTP REST or XMPP) nor the query format used
+   to query the Passive DNS. Neither does this document describe "pre-
+   recursor" Passive DNS Systems.
 
 1.1.  Requirements Language
 
@@ -105,58 +108,31 @@ Internet-Draft             Abbreviated Title                January 2013
    As a Passive DNS can include protection mechanisms for their
    operation, results might be different due to those protection
    measures.  These mechanisms filter out DNS answers if they fail some
-
-
-
-
-
-
-
-
-
-
-Dulaunoy, Kaplan & Vixie          info                          [Page 2]
-
-Internet-Draft             Abbreviated Title                January 2013
-
    criteria.  The bailiwick algorithm (c.f.  http://www.isc.org/files/
    passive_dns_hardening_handout.pdf) protects the Passive DNS Database
    from cache poisoning attacks [ref: Dan Kaminsky].  Another
    limitiation that clients querying the database need to be aware of is
+
+
+
+Dulaunoy, Kaplan, Vixie & Stern   info                          [Page 2]
+
+Internet-Draft             Abbreviated Title                  April 2013
+
    that each query simply gets an snapshot-answer of the time of
    querying.  Clients MUST NOT rely on consistent answers.
 
-3.  Format
+3.  Common Output Format
 
-   A field is composed a key followed by a value separated by the single
-   ':' character and a space before the value.  The format is based on
-   the initial work done by Florian Weimer and the RIPE whois format
-   (ref:http://www.enyo.de/fw/software/dnslogger/whois.html). The order
-   of the fields is not significant for the same resource type.  That
-   measn, the same name tuple plus timing information identifies a
+   The formatting of the answer follows the JSON [RFC4627] format.  The
+   order of the fields is not significant for the same resource type.
+   That means, the same name tuple plus timing information identifies a
    unique answer per server.
 
-   A sample output using the common format:
-
-       rrname: www.foo.be
-       rrtype: AAAA
-       rdata: 2001:6f8:202:2df::2
-       time_first: 2010-07-26 13:04:01
-       time_last: 2012-02-06 09:59:00
-       count: 87
-
-3.1.  Output Format
-
-   Depending on the clients request, there might be one of three
-   different answers from the server: Whois (human readable) output
-   format (key-value), JSON [RFC4627] output and optionally Bind zone
-   file output format.  XXX FIXME: how does the client select which
-   answer format he wants?  XXX
-
-3.1.1.  JSON
+3.1.  Overview and Example
 
    The intent of this output format is to be easily parseable by
-   scripts.  Every implementation SHOULD support the JSON output format.
+   scripts.  Every implementation MUST support the JSON output format.
 
    A sample output using the JSON format:
 
@@ -168,24 +144,18 @@ Internet-Draft             Abbreviated Title                January 2013
    "time_last": "2013-02-05 17:34:03" }
    ... (separated by newline)...
 
-4.  Mandatory Fields
+3.2.  Mandatory Fields
 
    Implementation MUST support all the mandatory fields.
 
    The tuple (rrtype,rrname,rdata) will always be unique within one
    answer per server.
 
-
-Dulaunoy, Kaplan & Vixie          info                          [Page 3]
-
-Internet-Draft             Abbreviated Title                January 2013
-
-
-4.1.  rrname
+3.2.1.  rrname
 
    This field returns the name of the queried resource.
 
-4.2.  rrtype
+3.2.2.  rrtype
 
    This field returns the resource record type as seen by the passive
    DNS. The key is rrtype and the value is in the interpreted record
@@ -200,7 +170,16 @@ Internet-Draft             Abbreviated Title                January 2013
    addition, a client MUST be able to handle a decimal value (as
    mentioned above) as answer.
 
-4.3.  rdata
+3.2.3.  rdata
+
+
+
+
+
+Dulaunoy, Kaplan, Vixie & Stern   info                          [Page 3]
+
+Internet-Draft             Abbreviated Title                  April 2013
+
 
    This field returns the data of the queried resource.  In general,
    this is to be interpreted as string.  Depending on the rtype, this
@@ -212,73 +191,73 @@ Internet-Draft             Abbreviated Title                January 2013
    principle as described in RFC 3597 [RFC3597].  (binary stream if any?
    base64?)
 
-4.4.  time_first
+3.2.4.  time_first
 
    This field returns the first time that the record / unique tuple
    (rrname, rrtype, rdata) has been seen by the passive DNS. The date is
    expressed in seconds (decimal ascii) since 1st of January 1970 (unix
    timestamp). The time zone MUST be UTC.
 
-4.5.  time_last
+3.2.5.  time_last
 
    This field returns the last time that the unique tuple (rrname,
    rrtype, rdata) record has been seen by the passive DNS. The date is
    expressed in seconds (decimal ascii) since 1st of January 1970 (unix
    timestamp). The time zone MUST be UTC..
 
-5.  Optional Fields
+3.3.  Optional Fields
 
    Implementation SHOULD support one or more field.
 
-5.1.  count
+3.3.1.  count
 
    Specifies how many answers were received with the set of answers
    (i.e.  same data). The number of requests is expressed as a decimal
    value.
 
-
-Dulaunoy, Kaplan & Vixie          info                          [Page 4]
-
-Internet-Draft             Abbreviated Title                January 2013
-
-
    Specifies the number of times this particular event denoted by the
    other type fields has been seen in the given time interval (between
    time_last and time_first). Decimal number.
 
-5.2.  bailiwick
+3.3.2.  bailiwick
 
    The bailiwick is the best estimate of the apex of the zone where this
    data is authoritative.  String.
 
-6.  Additional Fields
+3.4.  Additional Fields
 
    Implementations MAY support the following fields:
 
-6.1.  x-sensor_id
+3.4.1.  sensor_id
 
    This field returns the sensor information where the record was seen.
    The sensor_id is an opaque byte string as defined by RFC 5001 in
    section 2.3 [RFC5001].
 
-7.  Acknowledgements
+4.  Acknowledgements
+
+
+Dulaunoy, Kaplan, Vixie & Stern   info                          [Page 4]
+
+Internet-Draft             Abbreviated Title                  April 2013
+
 
    Thanks to the Passive DNS developers who contributed to the document.
 
-8.  IANA Considerations
+5.  IANA Considerations
 
    This memo includes no request to IANA.
 
-9.  Security Considerations
+6.  Security Considerations
 
    In some cases, Passive DNS output might contain confidential
    information and its access might be restricted.  When an user is
    querying multiple Passive DNS and aggregating the data, the
    sensitivity of the data must be considered.
 
-10.  References
+7.  References
 
-10.1.  Normative References
+7.1.  Normative References
 
    [RFC1034]  Mockapetris, P., "Domain names - concepts and facilities",
               STD 13, RFC 1034, November 1987.
@@ -298,14 +277,9 @@ Internet-Draft             Abbreviated Title                January 2013
    [RFC5001]  Austein, R., "DNS Name Server Identifier (NSID) Option",
               RFC 5001, August 2007.
 
-Dulaunoy, Kaplan & Vixie          info                          [Page 5]
-
-Internet-Draft             Abbreviated Title                January 2013
-
-
    [min_ref]  authSurName, authInitials, "Minimal Reference", 2006.
 
-10.2.  Informative References
+7.2.  Informative References
 
    [I-D.narten-iana-considerations-rfc2434bis]
               Narten, T and H Alvestrand, "Guidelines for Writing an
@@ -320,9 +294,14 @@ Internet-Draft             Abbreviated Title                January 2013
               Text on Security Considerations", BCP 72, RFC 3552, July
               2003.
 
-Appendix A.  Additional Stuff
+Appendix A.  Appendix
 
    This becomes an Appendix.
+
+Dulaunoy, Kaplan, Vixie & Stern   info                          [Page 5]
+
+Internet-Draft             Abbreviated Title                  April 2013
+
 
 Authors' Addresses
 
@@ -355,8 +334,29 @@ Authors' Addresses
    URI:   /
 
 
+   Henry Stern
+   Cisco
+   1741 Brunswick Street, Suite 500
+   Halifax, Nova Scotia B3J 3X8
+   Canada
+   
+   Phone: +1 408 922 4555
+   Email: hestern@cisco.com
+   URI:   http://www.cisco.com/security
 
 
 
 
-Dulaunoy, Kaplan & Vixie          info                          [Page 6]
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy, Kaplan, Vixie & Stern   info                          [Page 6]
