@@ -89,7 +89,7 @@
 
     <author fullname="Paul Vixie" initials=""
             surname="Vixie">
-      <organization>ISC</organization>
+      <organization>Farsight Security, Inc.</organization>
       <address>
         <postal>
           <street></street>
@@ -99,7 +99,7 @@
           <country></country>
         </postal>
         <phone></phone>
-		<email>vixie@isc.org</email>
+		<email>paul@redbarn.org</email>
         <uri>/</uri>
        </address>
     </author>
