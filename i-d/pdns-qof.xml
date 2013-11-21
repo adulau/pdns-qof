@@ -141,7 +141,7 @@
 
 	As the format and the meaning of output fields from each Passive DNS need to be consistent, we propose in this document a solution to commonly name each field along with their corresponding interpretation. The format format is following a simple key-value structure in <xref target="RFC4627">JSON</xref> format.
 The benefit of having a consistent Passive DNS output format is that multiple client implementations can query different servers without having to have a separate parser for each
-individual server. [http://code.google.com/p/passive-dns-query-tool/] currently implements multiple parsers due to a lack of standardization.
+individual server. [https://github.com/chrislee35/passivedns-client] currently implements multiple parsers due to a lack of standardization.
 
 The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) nor the query format used to query the Passive DNS. Neither does this document describe "pre-recursor" Passive DNS Systems.
      </t>
