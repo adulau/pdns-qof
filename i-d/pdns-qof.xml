@@ -196,7 +196,7 @@ The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) nor 
 				<t>This field returns the first time that the record / unique tuple (rrname, rrtype, rdata) has been seen by the passive DNS. The date is expressed in seconds (decimal ascii) since 1st of January 1970 (unix timestamp). The time zone MUST be UTC.</t>
 			</section>
 			<section title="time_last">
-			<t>This field returns the last time that the unique tuple (rrname, rrtype, rdata) record has been seen by the passive DNS. The date is expressed in seconds (decimal ascii) since 1st of January 1970 (unix timestamp). The time zone MUST be UTC..</t>
+			<t>This field returns the last time that the unique tuple (rrname, rrtype, rdata) record has been seen by the passive DNS. The date is expressed in seconds (decimal ascii) since 1st of January 1970 (unix timestamp). The time zone MUST be UTC.</t>
 			</section>
 		</section>
 		<section title="Optional Fields">
