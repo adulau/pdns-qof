@@ -213,7 +213,13 @@ The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) nor 
 			<t>Implementations MAY support the following fields:</t>
 			<section title="sensor_id">
 			<t>This field returns the sensor information where the record was seen. The sensor_id is an opaque byte string as defined by <xref target="RFC5001"> RFC 5001 in section 2.3</xref>.</t>
-		</section>
+		    </section>
+            <section title="zone_time_first">
+            <t>This field returns the first time that the unique tuple (rrname, rrtype, rdata) record has been seen via zone file import. The date is expressed in seconds (decimal ascii) since 1st of January 1970 (unix timestamp). The time zone MUST be UTC.</t>
+            </section>
+            <section title="zone_time_last">
+            <t>This field returns the last time that the unique tuple (rrname, rrtype, rdata) record has been seen via zone file import. The date is expressed in seconds (decimal ascii) since 1st of January 1970 (unix timestamp). The time zone MUST be UTC.</t>
+            </section>
 		</section>
 	</section>
 
