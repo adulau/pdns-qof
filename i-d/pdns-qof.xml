@@ -166,11 +166,11 @@ The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) nor 
 		<t>The intent of this output format is to be easily parseable by scripts. Every implementation MUST support the JSON output format.</t>
 		<figure><preamble>A sample output using the JSON format:</preamble><artwork><![CDATA[
 ... (list of )...  
-{ "count": 97167, 
-"time_first": "2010-06-25 17:07:02",
-"rrtype": "A", "rrname": "google-public-dns-a.google.com.", 
+{ "count": 97167,
+"time_first": "1277353744",
+"rrtype": "A", "rrname": "google-public-dns-a.google.com.",
 "rdata": "8.8.8.8",
-"time_last": "2013-02-05 17:34:03" } 
+"time_last": "1386405372" }
 ... (separated by newline)...
 				  ]]></artwork></figure>
 		</section>
