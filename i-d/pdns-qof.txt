@@ -4,12 +4,12 @@
 Internet Engineering Task Force                                 Dulaunoy
 Internet-Draft                                                     CIRCL
 Intended status: Informational                                    Kaplan
-Expires: June 12, 2014                                           CERT.at
+Expires: June 20, 2014                                           CERT.at
                                                                    Vixie
                                                  Farsight Security, Inc.
                                                                hs. Stern
                                                                    Cisco
-                                                        December 9, 2013
+                                                       December 17, 2013
 
 
                    Passive DNS - Common Output Format
@@ -38,7 +38,7 @@ Status of this Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on June 12, 2014.
+   This Internet-Draft will expire on June 20, 2014.
 
 
 
@@ -52,7 +52,7 @@ Status of this Memo
 
 
 
-Dulaunoy, et al.          Expires June 12, 2014                 [Page 1]
+Dulaunoy, et al.          Expires June 20, 2014                 [Page 1]
 
 Internet-Draft              Abbreviated Title              December 2013
 
@@ -73,15 +73,15 @@ Table of Contents
      3.3.  Optional Fields . . . . . . . . . . . . . . . . . . . . . . 5
        3.3.1.  count . . . . . . . . . . . . . . . . . . . . . . . . . 5
        3.3.2.  bailiwick . . . . . . . . . . . . . . . . . . . . . . . 5
-     3.4.  Additional Fields . . . . . . . . . . . . . . . . . . . . . 6
+     3.4.  Additional Fields . . . . . . . . . . . . . . . . . . . . . 5
        3.4.1.  sensor_id . . . . . . . . . . . . . . . . . . . . . . . 6
        3.4.2.  zone_time_first . . . . . . . . . . . . . . . . . . . . 6
        3.4.3.  zone_time_last  . . . . . . . . . . . . . . . . . . . . 6
    4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . . . 6
    5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . . . 6
    6.  Security Considerations . . . . . . . . . . . . . . . . . . . . 6
-   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . . . 7
-     7.1.  Normative References  . . . . . . . . . . . . . . . . . . . 7
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+     7.1.  Normative References  . . . . . . . . . . . . . . . . . . . 6
      7.2.  Informative References  . . . . . . . . . . . . . . . . . . 7
    Appendix A.  Appendix . . . . . . . . . . . . . . . . . . . . . . . 7
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . . . 7
@@ -108,7 +108,7 @@ Table of Contents
 
 
 
-Dulaunoy, et al.          Expires June 12, 2014                 [Page 2]
+Dulaunoy, et al.          Expires June 20, 2014                 [Page 2]
 
 Internet-Draft              Abbreviated Title              December 2013
 
@@ -164,7 +164,7 @@ Internet-Draft              Abbreviated Title              December 2013
 
 
 
-Dulaunoy, et al.          Expires June 12, 2014                 [Page 3]
+Dulaunoy, et al.          Expires June 20, 2014                 [Page 3]
 
 Internet-Draft              Abbreviated Title              December 2013
 
@@ -220,7 +220,7 @@ Internet-Draft              Abbreviated Title              December 2013
 
 
 
-Dulaunoy, et al.          Expires June 12, 2014                 [Page 4]
+Dulaunoy, et al.          Expires June 20, 2014                 [Page 4]
 
 Internet-Draft              Abbreviated Title              December 2013
 
@@ -234,8 +234,7 @@ Internet-Draft              Abbreviated Title              December 2013
    value which is legal as the right hand side in a DNS zone file RFC
    1035 [RFC1035] and RFC 1034 [RFC1034].  If the rdata came from an
    unknown DNS resource records, the server must follow the transparency
-   principle as described in RFC 3597 [RFC3597]. (binary stream if any?
-   base64?)
+   principle as described in RFC 3597 [RFC3597].
 
 3.2.4.  time_first
 
@@ -270,20 +269,17 @@ Internet-Draft              Abbreviated Title              December 2013
    The bailiwick is the best estimate of the apex of the zone where this
    data is authoritative.  String.
 
-
-
-
-
-
-
-Dulaunoy, et al.          Expires June 12, 2014                 [Page 5]
-
-Internet-Draft              Abbreviated Title              December 2013
-
-
 3.4.  Additional Fields
 
    Implementations MAY support the following fields:
+
+
+
+
+Dulaunoy, et al.          Expires June 20, 2014                 [Page 5]
+
+Internet-Draft              Abbreviated Title              December 2013
+
 
 3.4.1.  sensor_id
 
@@ -326,17 +322,6 @@ Internet-Draft              Abbreviated Title              December 2013
 
 7.  References
 
-
-
-
-
-
-
-Dulaunoy, et al.          Expires June 12, 2014                 [Page 6]
-
-Internet-Draft              Abbreviated Title              December 2013
-
-
 7.1.  Normative References
 
    [RFC1034]  Mockapetris, P., "Domain names - concepts and facilities",
@@ -344,6 +329,13 @@ Internet-Draft              Abbreviated Title              December 2013
 
    [RFC1035]  Mockapetris, P., "Domain names - implementation and
               specification", STD 13, RFC 1035, November 1987.
+
+
+
+Dulaunoy, et al.          Expires June 20, 2014                 [Page 6]
+
+Internet-Draft              Abbreviated Title              December 2013
+
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119, March 1997.
@@ -380,19 +372,6 @@ Appendix A.  Appendix
    This becomes an Appendix.
 
 
-
-
-
-
-
-
-
-
-Dulaunoy, et al.          Expires June 12, 2014                 [Page 7]
-
-Internet-Draft              Abbreviated Title              December 2013
-
-
 Authors' Addresses
 
    Alexandre Dulaunoy
@@ -404,6 +383,14 @@ Authors' Addresses
    Phone: (+352) 247 88444
    Email: alexandre.dulaunoy@circl.lu
    URI:   http://www.circl.lu/
+
+
+
+
+
+Dulaunoy, et al.          Expires June 20, 2014                 [Page 7]
+
+Internet-Draft              Abbreviated Title              December 2013
 
 
    Leon Aaron Kaplan
@@ -444,7 +431,20 @@ Authors' Addresses
 
 
 
-Dulaunoy, et al.          Expires June 12, 2014                 [Page 8]
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy, et al.          Expires June 20, 2014                 [Page 8]
 
 Internet-Draft              Abbreviated Title              December 2013
 
@@ -500,5 +500,5 @@ Intellectual Property
 
 
 
-Dulaunoy, et al.          Expires June 12, 2014                 [Page 9]
+Dulaunoy, et al.          Expires June 20, 2014                 [Page 9]
 
