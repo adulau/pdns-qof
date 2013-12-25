@@ -16,6 +16,7 @@
 <!ENTITY RFC3597 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3597.xml">
 <!ENTITY RFC3912 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3912.xml">
 <!ENTITY RFC6648 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6648.xml">
+<!ENTITY RFC2234 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2234.xml">
 
 <!ENTITY I-D.narten-iana-considerations-rfc2434bis SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.narten-iana-considerations-rfc2434bis.xml">
 ]>
@@ -179,11 +180,28 @@ The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</
 ... (separated by newline)...
 				  ]]></artwork></figure>
 		</section>
+        <section title="ABNF grammar">
+			<figure><preamble>Formal grammar as defined in <xref target="RFC2234">ABNF</xref></preamble><artwork><![CDATA[
+answer          = entries 
+entries         = * ( entry CR)
+entry           = "{" keyvallist "}" 
+keyvallist      = [ member *( value-separator member ) ]
+member          = field name-separator value
+name-separator  = ws %x3A ws            ; : colon
+value           = value                 ; as defined in the JSON RFC
+field           = "rrame" | "rrtype" | "rdata" | "time_first" | 
+                  "time_last" | "count" | "bailiwick" | "sensor_id" |
+                  "zone_time_first" | "zone_time_last" | futureField 
+futureField     = string
+CR              = %x0D
+					]]></artwork></figure>
+			<t>Note that value is defined in <xref target="RFC4627">JSON</xref> and has the exact same specification as there. The same goes for the definition of string.</t>
+		</section>
 		<section title="Mandatory Fields">
-		<t>Implementation MUST support all the mandatory fields.</t>
-		<t>The tuple (rrname,rrtype,rdata) will always be unique within one answer per server.</t>
+			<t>Implementation MUST support all the mandatory fields.</t>
+			<t>Uniqueness property: the tuple (rrname,rrtype,rdata) will always be unique within one answer per server. While rrname and rrtype are always individual JSON primitive types (strings, numbers, booleans or null), rdata MAY be an array as defined in <xref target="RFC4627">JSON</xref>. Implementors of this draft MUST be able to deal with rdata being returned as JSON array or alternatively as a JSON string. <!-- MOTE: this is not good --></t>
 			<section title="rrname">
-			<t>This field returns the name of the queried resource.</t>
+				<t>This field returns the name of the queried resource.</t>
 			</section>
 			<section title="rrtype">
 			 <t>This field returns the resource record type as seen by the passive DNS. The key is rrtype and the value is in the interpreted record type. If the value cannot be interpreted the
@@ -210,7 +228,7 @@ The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</
 			<t>Specifies how many authoritative DNS answers were received at the Passive DNS Server's collectors with the set of answers (i.e. same data). The number of requests is expressed as a decimal value.</t>
 			<t>Specifies the number of times this particular event denoted by the other type fields has been seen in the given time interval (between time_last and time_first). Decimal number.</t>
 			</section>
-			<section title="Bailiwick">
+			<section title="bailiwick">
 				<t>The bailiwick is the best estimate of the apex of the zone where this data is authoritative. String.</t>
 			</section>
 		</section>
@@ -281,6 +299,7 @@ The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</
       &RFC5001;
       &RFC3597;
       &RFC6648;
+      &RFC2234;
     </references>
     <references>
          <reference anchor="WEINERPDNS" target="http://www.enyo.de/fw/software/dnslogger/first2005-paper.pdf">
