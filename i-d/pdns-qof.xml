@@ -51,7 +51,7 @@
   <!-- ***** FRONT MATTER ***** -->
 
   <front>
-    <title abbrev="Abbreviated Title">Passive DNS - Common Output Format</title>
+    <title abbrev="Passive DNS - Common Output Format">Passive DNS - Common Output Format</title>
     <author fullname="Alexandre Dulaunoy" initials=""
             surname="Dulaunoy">
       <organization>CIRCL</organization>

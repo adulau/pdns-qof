@@ -55,7 +55,7 @@ Copyright Notice
 
 Dulaunoy, et al.          Expires June 28, 2014                 [Page 1]
 
-Internet-Draft              Abbreviated Title              December 2013
+Internet-Draft     Passive DNS - Common Output Format      December 2013
 
 
    include Simplified BSD License text as described in Section 4.e of
@@ -111,7 +111,7 @@ Table of Contents
 
 Dulaunoy, et al.          Expires June 28, 2014                 [Page 2]
 
-Internet-Draft              Abbreviated Title              December 2013
+Internet-Draft     Passive DNS - Common Output Format      December 2013
 
 
    output fields from each Passive DNS need to be consistent, we propose
@@ -167,7 +167,7 @@ Internet-Draft              Abbreviated Title              December 2013
 
 Dulaunoy, et al.          Expires June 28, 2014                 [Page 3]
 
-Internet-Draft              Abbreviated Title              December 2013
+Internet-Draft     Passive DNS - Common Output Format      December 2013
 
 
    ... (list of )...
@@ -223,7 +223,7 @@ Internet-Draft              Abbreviated Title              December 2013
 
 Dulaunoy, et al.          Expires June 28, 2014                 [Page 4]
 
-Internet-Draft              Abbreviated Title              December 2013
+Internet-Draft     Passive DNS - Common Output Format      December 2013
 
 
    This field returns the first time that the record / unique tuple
@@ -279,7 +279,7 @@ Internet-Draft              Abbreviated Title              December 2013
 
 Dulaunoy, et al.          Expires June 28, 2014                 [Page 5]
 
-Internet-Draft              Abbreviated Title              December 2013
+Internet-Draft     Passive DNS - Common Output Format      December 2013
 
 
 3.4.3.  zone_time_last
@@ -335,7 +335,7 @@ Internet-Draft              Abbreviated Title              December 2013
 
 Dulaunoy, et al.          Expires June 28, 2014                 [Page 6]
 
-Internet-Draft              Abbreviated Title              December 2013
+Internet-Draft     Passive DNS - Common Output Format      December 2013
 
 
 7.2.  References
@@ -391,7 +391,7 @@ Authors' Addresses
 
 Dulaunoy, et al.          Expires June 28, 2014                 [Page 7]
 
-Internet-Draft              Abbreviated Title              December 2013
+Internet-Draft     Passive DNS - Common Output Format      December 2013
 
 
    Leon Aaron Kaplan
