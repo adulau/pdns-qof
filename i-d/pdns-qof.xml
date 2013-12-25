@@ -164,9 +164,11 @@ The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</
     </t>
     </section>
     <section title="Common Output Format">
+		<section title="Overview">
 		<t>The formatting of the answer follows the <xref target="RFC4627">JSON</xref> format. The order of the fields is not significant for the same resource type. That means, the same name tuple plus timing information identifies a unique answer per server.</t>
-		<section title="Overview and Example">
 		<t>The intent of this output format is to be easily parsable by scripts. Every implementation MUST support the JSON output format.</t> <!-- note: it is "parsable" if you want to be really nit-picking. See: https://en.wiktionary.org/wiki/parsable -->
+		</section>
+		<section title="Example">
 		<figure><preamble>A sample output using the JSON format:</preamble><artwork><![CDATA[
 ... (list of )...  
 { "count": 97167,
