@@ -63,7 +63,7 @@
           <city>Luxembourg</city>
           <region></region>
           <code>L-1611</code>
-          <country>LU</country>
+          <country>Luxembourg</country>
         </postal>
         <phone>(+352) 247 88444</phone>
         <email>alexandre.dulaunoy@circl.lu</email>
@@ -82,7 +82,7 @@
           <city>Vienna</city>
           <region></region>
           <code>A-1010</code>
-          <country>AT</country>
+          <country>Austria</country>
         </postal>
         <phone>+43 1 5056416 78</phone>
         <email>kaplan@cert.at</email>
@@ -95,20 +95,20 @@
       <organization>Farsight Security, Inc.</organization>
       <address>
         <postal>
-          <street></street>
-          <city></city>
-          <region></region>
-          <code></code>
-          <country></country>
+          <street>11400 La Honda Road</street>
+          <city>Woodside</city>
+          <region>California</region>
+          <code>94062</code>
+          <country>U.S.A.</country>
         </postal>
         <phone></phone>
 		<email>paul@redbarn.org</email>
-        <uri>/</uri>
+        <uri>https://www.farsightsecurity.com/</uri>
        </address>
     </author>
 
 	<author fullname="Henry Stern" initials="H." surname="Stern">
-		<organization>Cisco</organization>
+		<organization>Farsight Security, Inc.</organization>
 		<address>
 			<postal>
 				<street>1741 Brunswick Street, Suite 500</street>
@@ -164,9 +164,11 @@ The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</
     </t>
     </section>
     <section title="Common Output Format">
+		<section title="Overview">
 		<t>The formatting of the answer follows the <xref target="RFC4627">JSON</xref> format. The order of the fields is not significant for the same resource type. That means, the same name tuple plus timing information identifies a unique answer per server.</t>
-		<section title="Overview and Example">
-		<t>The intent of this output format is to be easily parseable by scripts. Every implementation MUST support the JSON output format.</t>
+		<t>The intent of this output format is to be easily parsable by scripts. Every implementation MUST support the JSON output format.</t> <!-- note: it is "parsable" if you want to be really nit-picking. See: https://en.wiktionary.org/wiki/parsable -->
+		</section>
+		<section title="Example">
 		<figure><preamble>A sample output using the JSON format:</preamble><artwork><![CDATA[
 ... (list of )...  
 { "count": 97167,
@@ -196,10 +198,10 @@ The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</
 				<t>This field returns the data of the queried resource. In general, this is to be interpreted as string. Depending on the rtype, this can be an IPv4 or IPv6 address, a domain name (as in the case of CNAMEs), an SPF record, etc.  A client MUST be able to interpret any value which is legal as the right hand side in a DNS zone file  <xref target="RFC1035">RFC 1035</xref> and <xref target="RFC1034">RFC 1034</xref>. If the rdata came from an unknown DNS resource records, the server must follow the transparency principle as described in <xref target="RFC3597">RFC 3597</xref>.</t>
 			</section>
 			<section title="time_first">
-				<t>This field returns the first time that the record / unique tuple (rrname, rrtype, rdata) has been seen by the passive DNS. The date is expressed in seconds (decimal ascii) since 1st of January 1970 (unix timestamp). The time zone MUST be UTC.</t>
+				<t>This field returns the first time that the record / unique tuple (rrname, rrtype, rdata) has been seen by the passive DNS. The date is expressed in seconds (decimal ASCII) since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC.</t>
 			</section>
 			<section title="time_last">
-			<t>This field returns the last time that the unique tuple (rrname, rrtype, rdata) record has been seen by the passive DNS. The date is expressed in seconds (decimal ascii) since 1st of January 1970 (unix timestamp). The time zone MUST be UTC.</t>
+			<t>This field returns the last time that the unique tuple (rrname, rrtype, rdata) record has been seen by the passive DNS. The date is expressed in seconds (decimal ASCII) since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC.</t>
 			</section>
 		</section>
 		<section title="Optional Fields">
@@ -208,7 +210,7 @@ The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</
 			<t>Specifies how many authoritative DNS answers were received at the Passive DNS Server's collectors with the set of answers (i.e. same data). The number of requests is expressed as a decimal value.</t>
 			<t>Specifies the number of times this particular event denoted by the other type fields has been seen in the given time interval (between time_last and time_first). Decimal number.</t>
 			</section>
-			<section title="bailiwick">
+			<section title="Bailiwick">
 				<t>The bailiwick is the best estimate of the apex of the zone where this data is authoritative. String.</t>
 			</section>
 		</section>
@@ -218,10 +220,10 @@ The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</
 			<t>This field returns the sensor information where the record was seen. The sensor_id is an opaque byte string as defined by <xref target="RFC5001"> RFC 5001 in section 2.3</xref>.</t>
 		    </section>
             <section title="zone_time_first">
-            <t>This field returns the first time that the unique tuple (rrname, rrtype, rdata) record has been seen via zone file import. The date is expressed in seconds (decimal ascii) since 1st of January 1970 (unix timestamp). The time zone MUST be UTC.</t>
+            <t>This field returns the first time that the unique tuple (rrname, rrtype, rdata) record has been seen via zone file import. The date is expressed in seconds (decimal ASCII) since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC.</t>
             </section>
             <section title="zone_time_last">
-            <t>This field returns the last time that the unique tuple (rrname, rrtype, rdata) record has been seen via zone file import. The date is expressed in seconds (decimal ascii) since 1st of January 1970 (unix timestamp). The time zone MUST be UTC.</t>
+            <t>This field returns the last time that the unique tuple (rrname, rrtype, rdata) record has been seen via zone file import. The date is expressed in seconds (decimal ASCII) since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC.</t>
             </section>
               </section>
         <section title="Additional Fields Registry">
@@ -249,7 +251,7 @@ The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</
     </section>
 
     <section anchor="Security" title="Security Considerations">
-      <t>In some cases, Passive DNS output might contain confidential information and its access might be restricted. When an user is querying multiple Passive DNS and aggregating the data, the sensitivity of the data must be considered.</t>
+      <t>In some cases, Passive DNS output might contain confidential information and its access might be restricted. When a user is querying multiple Passive DNS and aggregating the data, the sensitivity of the data must be considered.</t>
     </section>
   </middle>
 
