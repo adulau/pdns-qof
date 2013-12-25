@@ -80,7 +80,7 @@ Table of Contents
        3.2.5.  time_last . . . . . . . . . . . . . . . . . . . . . . . 5
      3.3.  Optional Fields . . . . . . . . . . . . . . . . . . . . . . 5
        3.3.1.  count . . . . . . . . . . . . . . . . . . . . . . . . . 5
-       3.3.2.  bailiwick . . . . . . . . . . . . . . . . . . . . . . . 5
+       3.3.2.  Bailiwick . . . . . . . . . . . . . . . . . . . . . . . 5
      3.4.  Additional Fields . . . . . . . . . . . . . . . . . . . . . 5
        3.4.1.  sensor_id . . . . . . . . . . . . . . . . . . . . . . . 6
        3.4.2.  zone_time_first . . . . . . . . . . . . . . . . . . . . 6
@@ -240,14 +240,14 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
 
    This field returns the first time that the record / unique tuple
    (rrname, rrtype, rdata) has been seen by the passive DNS.  The date
-   is expressed in seconds (decimal ascii) since 1st of January 1970
-   (unix timestamp).  The time zone MUST be UTC.
+   is expressed in seconds (decimal ASCII) since 1st of January 1970
+   (Unix timestamp).  The time zone MUST be UTC.
 
 3.2.5.  time_last
 
    This field returns the last time that the unique tuple (rrname,
    rrtype, rdata) record has been seen by the passive DNS.  The date is
-   expressed in seconds (decimal ascii) since 1st of January 1970 (unix
+   expressed in seconds (decimal ASCII) since 1st of January 1970 (Unix
    timestamp).  The time zone MUST be UTC.
 
 3.3.  Optional Fields
@@ -264,7 +264,7 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    other type fields has been seen in the given time interval (between
    time_last and time_first).  Decimal number.
 
-3.3.2.  bailiwick
+3.3.2.  Bailiwick
 
    The bailiwick is the best estimate of the apex of the zone where this
    data is authoritative.  String.
@@ -291,15 +291,15 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
 
    This field returns the first time that the unique tuple (rrname,
    rrtype, rdata) record has been seen via zone file import.  The date
-   is expressed in seconds (decimal ascii) since 1st of January 1970
-   (unix timestamp).  The time zone MUST be UTC.
+   is expressed in seconds (decimal ASCII) since 1st of January 1970
+   (Unix timestamp).  The time zone MUST be UTC.
 
 3.4.3.  zone_time_last
 
    This field returns the last time that the unique tuple (rrname,
    rrtype, rdata) record has been seen via zone file import.  The date
-   is expressed in seconds (decimal ascii) since 1st of January 1970
-   (unix timestamp).  The time zone MUST be UTC.
+   is expressed in seconds (decimal ASCII) since 1st of January 1970
+   (Unix timestamp).  The time zone MUST be UTC.
 
 3.5.  Additional Fields Registry
 
@@ -322,7 +322,7 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
 6.  Security Considerations
 
    In some cases, Passive DNS output might contain confidential
-   information and its access might be restricted.  When an user is
+   information and its access might be restricted.  When a user is
    querying multiple Passive DNS and aggregating the data, the
    sensitivity of the data must be considered.
 
