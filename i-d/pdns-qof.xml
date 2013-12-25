@@ -179,11 +179,25 @@ The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</
 ... (separated by newline)...
 				  ]]></artwork></figure>
 		</section>
+<!--
+        <section title="ABNF grammar">
+			<figure><preamble>ABNF:</preamble><artwork><![CDATA[
+answer 		= elements 
+elements	= * ( element CR)
+element		= "{" keyvallist "}" 
+keyvallist	= JSON object 
+CR			= %x0D
+					]]></artwork></figure>
+			<t>Note that JSON Object is defined in <xref target="RFC4627">JSON</xref></t>.
+		</section>
+-->
 		<section title="Mandatory Fields">
 		<t>Implementation MUST support all the mandatory fields.</t>
-		<t>The tuple (rrname,rrtype,rdata) will always be unique within one answer per server.</t>
+			<section title="General remarks on mandatory fields">
+				<t>Uniqueness property: the tuple (rrname,rrtype,rdata) will always be unique within one answer per server. While rrname and rrtype are always individual JSON primitive types (strings, numbers, booleans or null), rdata MAY be an array as defined in <xref target="RFC4627">JSON</xref></t>
+			</section>	
 			<section title="rrname">
-			<t>This field returns the name of the queried resource.</t>
+				<t>This field returns the name of the queried resource.</t>
 			</section>
 			<section title="rrtype">
 			 <t>This field returns the resource record type as seen by the passive DNS. The key is rrtype and the value is in the interpreted record type. If the value cannot be interpreted the
