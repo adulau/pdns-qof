@@ -157,7 +157,7 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    DNS Database from cache poisoning attacks [CACHEPOISONING].  Another
    limitiation that clients querying the database need to be aware of is
    that each query simply gets an snapshot-answer of the time of
-   querying.  Clients MUST NOT rely on consistent answers.  Not must
+   querying.  Clients MUST NOT rely on consistent answers.  Nor must
    they assume that answers must be identical across multiple Passive
    DNS Servers.
 
@@ -178,8 +178,8 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
 
 3.1.  Overview and Example
 
-   The intent of this output format is to be easily parseable by
-   scripts.  Every implementation MUST support the JSON output format.
+   The intent of this output format is to be easily parsable by scripts.
+   Every implementation MUST support the JSON output format.
 
    A sample output using the JSON format:
 
