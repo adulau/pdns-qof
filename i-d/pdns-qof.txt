@@ -362,7 +362,7 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    DNS recursors.  In this process, they intentionally omit the source
    IP, source port, destination IP and destination port.  Furthermore,
    since multiple sensors feed into a passive DNS server, the resulting
-   data gets mixed together, reducing the likelyhood that Passive DNS
+   data gets mixed together, reducing the likelihood that Passive DNS
    Servers are able to find out much about the actual person querying
    the DNS records nor who actually sent the query.  In this sense,
    passive DNS Servers are similar to keeping an archive of all previous
