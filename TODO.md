@@ -2,7 +2,7 @@
 TODO
 =====
 
-  * get an updated address of Henry 
+  * <del>get an updated address of Henry </del> DONE
   * formal grammar (ABNF) for the output format
   * create query API RFC
   * move samples to a separate section
