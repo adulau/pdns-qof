@@ -14,7 +14,7 @@ Expires: June 28, 2014                                           CERT.at
 
 
                    Passive DNS - Common Output Format
-                 draft-ietf-dulaunoy-kaplan-pdns-cof-01
+                 draft-ietf-dulaunoy-passive-dns-cof-00
 
 Abstract
 
@@ -82,13 +82,14 @@ Table of Contents
        3.4.1.  sensor_id . . . . . . . . . . . . . . . . . . . . . .   5
        3.4.2.  zone_time_first . . . . . . . . . . . . . . . . . . .   5
        3.4.3.  zone_time_last  . . . . . . . . . . . . . . . . . . .   6
+     3.5.  Additional Fields Registry  . . . . . . . . . . . . . . .   6
    4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   6
    5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   6
    6.  Security Considerations . . . . . . . . . . . . . . . . . . .   6
    7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   6
      7.1.  Normative References  . . . . . . . . . . . . . . . . . .   6
      7.2.  References  . . . . . . . . . . . . . . . . . . . . . . .   7
-     7.3.  Informative References  . . . . . . . . . . . . . . . . .   7
+     7.3.  Informative References  . . . . . . . . . . . . . . . . .   8
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   8
 
 1.  Introduction
@@ -105,7 +106,6 @@ Table of Contents
    their search.  This document describes the output format of four
    Passive DNS Systems ([DNSDB],[PDNSCERTAT], [PDNSCIRCL] and [PDNSCOF])
    which are in use today and which already share a nearly identical
-   output format.  As the format and the meaning of output fields from
 
 
 
@@ -114,6 +114,7 @@ Dulaunoy, et al.          Expires June 28, 2014                 [Page 2]
 Internet-Draft     Passive DNS - Common Output Format      December 2013
 
 
+   output format.  As the format and the meaning of output fields from
    each Passive DNS need to be consistent, we propose in this document a
    solution to commonly name each field along with their corresponding
    interpretation.  The format format is following a simple key-value
@@ -157,7 +158,6 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    scripts.  Every implementation MUST support the JSON output format.
 
    A sample output using the JSON format:
-
 
 
 
@@ -289,6 +289,13 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    is expressed in seconds (decimal ascii) since 1st of January 1970
    (unix timestamp).  The time zone MUST be UTC.
 
+3.5.  Additional Fields Registry
+
+   In accordance with [RFC6648], designers of new passive DNS
+   applications that would need additional fields can request and
+   register new field name at https://github.com/adulau/pdns-qof/wiki/
+   Additional-Fields.
+
 4.  Acknowledgements
 
    Thanks to the Passive DNS developers who contributed to the document.
@@ -323,13 +330,6 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    [RFC3912]  Daigle, L., "WHOIS Protocol Specification", RFC 3912,
               September 2004.
 
-   [RFC4627]  Crockford, D., "The application/json Media Type for
-              JavaScript Object Notation (JSON)", RFC 4627, July 2006.
-
-   [RFC5001]  Austein, R., "DNS Name Server Identifier (NSID) Option",
-              RFC 5001, August 2007.
-
-
 
 
 
@@ -337,6 +337,16 @@ Dulaunoy, et al.          Expires June 28, 2014                 [Page 6]
 
 Internet-Draft     Passive DNS - Common Output Format      December 2013
 
+
+   [RFC4627]  Crockford, D., "The application/json Media Type for
+              JavaScript Object Notation (JSON)", RFC 4627, July 2006.
+
+   [RFC5001]  Austein, R., "DNS Name Server Identifier (NSID) Option",
+              RFC 5001, August 2007.
+
+   [RFC6648]  Saint-Andre, P., Crocker, D., and M. Nottingham,
+              "Deprecating the "X-" Prefix and Similar Constructs in
+              Application Protocols", BCP 178, RFC 6648, June 2012.
 
 7.2.  References
 
@@ -376,16 +386,6 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
               "Passive DNS Replication", 2005, <http://www.enyo.de/fw/
               software/dnslogger/first2005-paper.pdf>.
 
-7.3.  Informative References
-
-   [I-D.narten-iana-considerations-rfc2434bis]
-              Narten, T. and H. Alvestrand, "Guidelines for Writing an
-              IANA Considerations Section in RFCs", draft-narten-iana-
-              considerations-rfc2434bis-09 (work in progress), March
-              2008.
-
-
-
 
 
 
@@ -393,6 +393,14 @@ Dulaunoy, et al.          Expires June 28, 2014                 [Page 7]
 
 Internet-Draft     Passive DNS - Common Output Format      December 2013
 
+
+7.3.  Informative References
+
+   [I-D.narten-iana-considerations-rfc2434bis]
+              Narten, T. and H. Alvestrand, "Guidelines for Writing an
+              IANA Considerations Section in RFCs", draft-narten-iana-
+              considerations-rfc2434bis-09 (work in progress), March
+              2008.
 
    [RFC3552]  Rescorla, E. and B. Korver, "Guidelines for Writing RFC
               Text on Security Considerations", BCP 72, RFC 3552, July
@@ -429,6 +437,19 @@ Authors' Addresses
    URI:   /
 
 
+
+
+
+
+
+
+
+
+Dulaunoy, et al.          Expires June 28, 2014                 [Page 8]
+
+Internet-Draft     Passive DNS - Common Output Format      December 2013
+
+
    Henry Stern
    Cisco
    1741 Brunswick Street, Suite 500
@@ -445,4 +466,39 @@ Authors' Addresses
 
 
 
-Dulaunoy, et al.          Expires June 28, 2014                 [Page 8]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy, et al.          Expires June 28, 2014                 [Page 9]
