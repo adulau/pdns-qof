@@ -160,7 +160,7 @@ The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</
     <section title="Limitation">
     <t> As a Passive DNS can include protection mechanisms for their operation, results might be different due to those protection measures.  These mechanisms filter out DNS answers if they fail some criteria. The <xref target="BAILIWICK">bailiwick algorithm</xref> protects the Passive DNS Database from <xref target="CACHEPOISONING">cache poisoning attacks</xref>.
 
-        Another limitiation that clients querying the database need to be aware of is that each query simply gets an snapshot-answer of the time of querying. Clients MUST NOT rely on consistent answers. Not must they assume that answers must be identical across multiple Passive DNS Servers.
+        Another limitiation that clients querying the database need to be aware of is that each query simply gets an snapshot-answer of the time of querying. Clients MUST NOT rely on consistent answers. Nor must they assume that answers must be identical across multiple Passive DNS Servers.
     </t>
     </section>
     <section title="Common Output Format">
