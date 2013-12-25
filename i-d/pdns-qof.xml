@@ -15,6 +15,8 @@
 <!ENTITY RFC5001 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5001.xml">
 <!ENTITY RFC3597 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3597.xml">
 <!ENTITY RFC3912 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3912.xml">
+<!ENTITY RFC6648 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6648.xml">
+
 <!ENTITY I-D.narten-iana-considerations-rfc2434bis SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.narten-iana-considerations-rfc2434bis.xml">
 ]>
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
@@ -42,7 +44,7 @@
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="info" docName="draft-ietf-dulaunoy-kaplan-pdns-cof-01" ipr="trust200902">
+<rfc category="info" docName="draft-ietf-dulaunoy-passive-dns-cof-00" ipr="trust200902">
   <!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
      you can add the attributes updates="NNNN" and obsoletes="NNNN" 
@@ -138,7 +140,7 @@
     <section title="Introduction">
      <t>Passive DNS is a technique described by Florian Weimer in 2005 in <xref target="WEINERPDNS">Passive DNS replication, F Weimer - 17th Annual FIRST Conference on Computer Security</xref>. Since then multiple Passive DNS implementations evolved over time. Users of these Passive DNS servers query a server (often via <xref target="RFC3912">WHOIS</xref> or HTTP <xref target="REST">REST</xref>), parse the results and process them in other applications.</t>
      <t>
-    There are multiple implementation of Passive DNS software. Users of passive DNS query each implementation and aggregate the results for their search. This document describes the output format of three Passive DNS Systems (<xref target="DNSDB"/>,<xref target="PDNSCERTAT"/> and <xref target="PDNSCIRCL"/>) which are in use today and which already share a nearly identical output format.
+    There are multiple implementation of Passive DNS software. Users of passive DNS query each implementation and aggregate the results for their search. This document describes the output format of four Passive DNS Systems (<xref target="DNSDB"/>,<xref target="PDNSCERTAT"/>, <xref target="PDNSCIRCL"/> and <xref target="PDNSCOF"/>) which are in use today and which already share a nearly identical output format.
 
 	As the format and the meaning of output fields from each Passive DNS need to be consistent, we propose in this document a solution to commonly name each field along with their corresponding interpretation. The format is following a simple key-value structure in <xref target="RFC4627">JSON</xref> format.
 The benefit of having a consistent Passive DNS output format is that multiple client implementations can query different servers without having to have a separate parser for each
@@ -221,8 +223,11 @@ The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</
             <section title="zone_time_last">
             <t>This field returns the last time that the unique tuple (rrname, rrtype, rdata) record has been seen via zone file import. The date is expressed in seconds (decimal ascii) since 1st of January 1970 (unix timestamp). The time zone MUST be UTC.</t>
             </section>
-		</section>
-	</section>
+              </section>
+        <section title="Additional Fields Registry">
+           <t>In accordance with <xref target="RFC6648"/>, designers of new passive DNS applications that would need additional fields can request and register new field name at https://github.com/adulau/pdns-qof/wiki/Additional-Fields.</t>
+        </section>
+    </section>
 
 
     <!-- This PI places the pagebreak correctly (before the section title) in the text output. -->
@@ -273,6 +278,7 @@ The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</
       &RFC4627;
       &RFC5001;
       &RFC3597;
+      &RFC6648;
     </references>
     <references>
          <reference anchor="WEINERPDNS" target="http://www.enyo.de/fw/software/dnslogger/first2005-paper.pdf">
@@ -331,7 +337,13 @@ The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</
           <date year="2012"/>
           </front>
         </reference>
-
+        <reference anchor="PDNSCOF" target="https://github.com/adulau/pdns-qof-server/">
+          <front>
+          <title>Passive DNS server interface using the common output format</title>
+          <author fullname="Alexandre Dulaunoy"/>
+          <date year="2013"/>
+          </front>
+        </reference>
     </references>
 
     <references title="Informative References">
