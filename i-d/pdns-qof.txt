@@ -88,8 +88,7 @@ Table of Contents
    7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   6
      7.1.  Normative References  . . . . . . . . . . . . . . . . . .   6
      7.2.  References  . . . . . . . . . . . . . . . . . . . . . . .   7
-     7.3.  References  . . . . . . . . . . . . . . . . . . . . . . .   7
-     7.4.  Informative References  . . . . . . . . . . . . . . . . .   7
+     7.3.  Informative References  . . . . . . . . . . . . . . . . .   7
    Appendix A.  Appendix . . . . . . . . . . . . . . . . . . . . . .   7
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   7
 
@@ -106,6 +105,7 @@ Table of Contents
    passive DNS query each implementation and aggregate the results for
    their search.  This document describes the output format of three
    Passive DNS Systems which are in use today and which already share a
+   nearly identical output format.  As the format and the meaning of
 
 
 
@@ -114,19 +114,18 @@ Dulaunoy, et al.          Expires June 28, 2014                 [Page 2]
 Internet-Draft              Abbreviated Title              December 2013
 
 
-   nearly identical output format.  As the format and the meaning of
    output fields from each Passive DNS need to be consistent, we propose
    in this document a solution to commonly name each field along with
    their corresponding interpretation.  The format format is following a
    simple key-value structure in JSON [RFC4627] format.  The benefit of
    having a consistent Passive DNS output format is that multiple client
    implementations can query different servers without having to have a
-   separate parser for each individual server. [https://github.com/
-   chrislee35/passivedns-client] currently implements multiple parsers
-   due to a lack of standardization.  The document does not describe the
-   protocol (e.g. WHOIS [RFC3912], HTTP REST or XMPP) nor the query
-   format used to query the Passive DNS.  Neither does this document
-   describe "pre-recursor" Passive DNS Systems.
+   separate parser for each individual server. passivedns-client
+   [PDNSCLIENT]currently implements multiple parsers due to a lack of
+   standardization.  The document does not describe the protocol (e.g.
+   WHOIS [RFC3912], HTTP REST or XMPP) nor the query format used to
+   query the Passive DNS.  Neither does this document describe "pre-
+   recursor" Passive DNS Systems.
 
 1.1.  Requirements Language
 
@@ -158,6 +157,7 @@ Internet-Draft              Abbreviated Title              December 2013
    scripts.  Every implementation MUST support the JSON output format.
 
    A sample output using the JSON format:
+
 
 
 
@@ -329,7 +329,7 @@ Internet-Draft              Abbreviated Title              December 2013
    [RFC5001]  Austein, R., "DNS Name Server Identifier (NSID) Option",
               RFC 5001, August 2007.
 
-   [min_ref]  authSurName, authInitials., "Minimal Reference", 2006.
+
 
 
 
@@ -340,18 +340,21 @@ Internet-Draft              Abbreviated Title              December 2013
 
 7.2.  References
 
-   [CACHEPOISONING]
-              "Black ops 2008: It's the end of the cache as we know
-              it.", 2008, <http://kurser.lobner.dk/dDist/DMK_BO2K8.pdf>.
-
-7.3.  References
-
    [BAILIWICK]
               "Passive DNS Hardening", 2010, <https://
               archive.farsightsecurity.com/Passive_DNS/
               passive_dns_hardening_handout.pdf>.
 
-7.4.  Informative References
+   [CACHEPOISONING]
+              "Black ops 2008: It's the end of the cache as we know
+              it.", 2008, <http://kurser.lobner.dk/dDist/DMK_BO2K8.pdf>.
+
+   [PDNSCLIENT]
+              "Queries 5 major Passive DNS databases: BFK, CERTEE,
+              DNSParse, ISC, and VirusTotal.", 2013, <https://github.com
+              /chrislee35/passivedns-client>.
+
+7.3.  Informative References
 
    [I-D.narten-iana-considerations-rfc2434bis]
               Narten, T. and H. Alvestrand, "Guidelines for Writing an
@@ -371,8 +374,6 @@ Internet-Draft              Abbreviated Title              December 2013
 
 Appendix A.  Appendix
 
-   This becomes an Appendix.
-
 Authors' Addresses
 
    Alexandre Dulaunoy
@@ -384,7 +385,6 @@ Authors' Addresses
    Phone: (+352) 247 88444
    Email: alexandre.dulaunoy@circl.lu
    URI:   http://www.circl.lu/
-
 
 
 

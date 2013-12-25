@@ -142,7 +142,7 @@
 
 	As the format and the meaning of output fields from each Passive DNS need to be consistent, we propose in this document a solution to commonly name each field along with their corresponding interpretation. The format format is following a simple key-value structure in <xref target="RFC4627">JSON</xref> format.
 The benefit of having a consistent Passive DNS output format is that multiple client implementations can query different servers without having to have a separate parser for each
-individual server. [https://github.com/chrislee35/passivedns-client] currently implements multiple parsers due to a lack of standardization.
+individual server. <xref target="PDNSCLIENT">passivedns-client</xref>currently implements multiple parsers due to a lack of standardization.
 
 The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</xref>, HTTP REST or XMPP) nor the query format used to query the Passive DNS. Neither does this document describe "pre-recursor" Passive DNS Systems.
      </t>
@@ -273,20 +273,6 @@ The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</
       &RFC4627;
       &RFC5001;
       &RFC3597;
-
-      <reference anchor="min_ref">
-        <!-- the following is the minimum to make xml2rfc happy -->
-
-        <front>
-          <title>Minimal Reference</title>
-
-          <author initials="authInitials" surname="authSurName">
-            <organization></organization>
-          </author>
-
-          <date year="2006" />
-        </front>
-      </reference>
     </references>
     <references>
         <reference anchor="CACHEPOISONING" target="http://kurser.lobner.dk/dDist/DMK_BO2K8.pdf">
@@ -296,14 +282,18 @@ The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</
             <date year="2008"/>
           </front>
         </reference>
-    </references>
-
-    <references>
         <reference anchor="BAILIWICK" target="https://archive.farsightsecurity.com/Passive_DNS/passive_dns_hardening_handout.pdf">
           <front>
             <title>Passive DNS Hardening</title>
             <author fullname="Robert Edmonds"/>
             <date year="2010"/>
+          </front>
+        </reference>
+        <reference anchor="PDNSCLIENT" target="https://github.com/chrislee35/passivedns-client">
+          <front>
+            <title>Queries 5 major Passive DNS databases: BFK, CERTEE, DNSParse, ISC, and VirusTotal.</title>
+            <author fullname="Chris Lee"/>
+            <date year="2013"/>
           </front>
         </reference>
     </references>
@@ -322,7 +312,6 @@ The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</
     </references>
 
     <section anchor="app-additional" title="Appendix">
-      <t>This becomes an Appendix.</t>
     </section>
   </back>
 </rfc>
