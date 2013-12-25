@@ -89,13 +89,13 @@ Table of Contents
      3.7.  Additional Fields Registry  . . . . . . . . . . . . . . . . 7
    4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . . . 7
    5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . . . 7
-   6.  Security Considerations . . . . . . . . . . . . . . . . . . . . 7
-   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . . . 7
-     7.1.  Normative References  . . . . . . . . . . . . . . . . . . . 7
-     7.2.  References  . . . . . . . . . . . . . . . . . . . . . . . . 8
-     7.3.  Informative References  . . . . . . . . . . . . . . . . . . 9
+   6.  Privacy Considerations  . . . . . . . . . . . . . . . . . . . . 7
+   7.  Security Considerations . . . . . . . . . . . . . . . . . . . . 7
+   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+     8.1.  Normative References  . . . . . . . . . . . . . . . . . . . 8
+     8.2.  References  . . . . . . . . . . . . . . . . . . . . . . . . 8
+     8.3.  Informative References  . . . . . . . . . . . . . . . . . . 9
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . . . 9
-
 
 
 
@@ -355,7 +355,27 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    This memo includes no request to IANA.
 
 
-6.  Security Considerations
+6.  Privacy Considerations
+
+   Passive DNS Servers collect DNS answers from multiple collecting
+   points ("sensors") which are located on the Internet-facing side of
+   DNS recursors.  In this process, they intentionally omit the source
+   IP, source port, destination IP and destination port.  Furthermore,
+   since multiple sensors feed into a passive DNS server, the resulting
+   data gets mixed together, reducing the likelyhood that Passive DNS
+   Servers are able to find out much about the actual person querying
+   the DNS records nor who actually sent the query.  In this sense,
+   passive DNS Servers are similar to keeping an archive of all previous
+   phone books -- if public DNS records can be compared to phone
+   numbers, as they often are.  Nevertheless, the authors encourage
+   Passive DNS implementors to take special care of privacy issues.
+   draft-bortzmeyer-dnsop-dns-privacy-01.txt is an excellent starting
+   point for this.  Finally, the overall recommendations in RFC6973
+   [RFC6973] should be taken into consideration when designing any
+   application which uses Passive DNS data.
+
+
+7.  Security Considerations
 
    In some cases, Passive DNS output might contain confidential
    information and its access might be restricted.  When a user is
@@ -363,9 +383,17 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    sensitivity of the data must be considered.
 
 
-7.  References
+8.  References
 
-7.1.  Normative References
+
+
+
+Dulaunoy, et al.          Expires June 28, 2014                 [Page 7]
+
+Internet-Draft     Passive DNS - Common Output Format      December 2013
+
+
+8.1.  Normative References
 
    [RFC1034]  Mockapetris, P., "Domain names - concepts and facilities",
               STD 13, RFC 1034, November 1987.
@@ -385,14 +413,6 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    [RFC3912]  Daigle, L., "WHOIS Protocol Specification", RFC 3912,
               September 2004.
 
-
-
-
-Dulaunoy, et al.          Expires June 28, 2014                 [Page 7]
-
-Internet-Draft     Passive DNS - Common Output Format      December 2013
-
-
    [RFC4627]  Crockford, D., "The application/json Media Type for
               JavaScript Object Notation (JSON)", RFC 4627, July 2006.
 
@@ -403,7 +423,12 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
               "Deprecating the "X-" Prefix and Similar Constructs in
               Application Protocols", BCP 178, RFC 6648, June 2012.
 
-7.2.  References
+   [RFC6973]  Cooper, A., Tschofenig, H., Aboba, B., Peterson, J.,
+              Morris, J., Hansen, M., and R. Smith, "Privacy
+              Considerations for Internet Protocols", RFC 6973,
+              July 2013.
+
+8.2.  References
 
    [BAILIWICK]
               "Passive DNS Hardening", 2010, <https://
@@ -415,6 +440,14 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
               it.", 2008, <http://kurser.lobner.dk/dDist/DMK_BO2K8.pdf>.
 
    [DNSDB]    "DNSDB API", 2013, <https://api.dnsdb.info/>.
+
+
+
+
+Dulaunoy, et al.          Expires June 28, 2014                 [Page 8]
+
+Internet-Draft     Passive DNS - Common Output Format      December 2013
+
 
    [PDNSCERTAT]
               "pDNS presentation at 4th Centr R&D workshop Frankfurt Jun
@@ -441,15 +474,7 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
               "Passive DNS Replication", 2005, <http://www.enyo.de/fw/
               software/dnslogger/first2005-paper.pdf>.
 
-
-
-
-Dulaunoy, et al.          Expires June 28, 2014                 [Page 8]
-
-Internet-Draft     Passive DNS - Common Output Format      December 2013
-
-
-7.3.  Informative References
+8.3.  Informative References
 
    [I-D.narten-iana-considerations-rfc2434bis]
               Narten, T. and H. Alvestrand, "Guidelines for Writing an
@@ -460,6 +485,24 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    [RFC3552]  Rescorla, E. and B. Korver, "Guidelines for Writing RFC
               Text on Security Considerations", BCP 72, RFC 3552,
               July 2003.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy, et al.          Expires June 28, 2014                 [Page 9]
+
+Internet-Draft     Passive DNS - Common Output Format      December 2013
 
 
 Authors' Addresses
@@ -497,14 +540,6 @@ Authors' Addresses
    URI:   https://www.farsightsecurity.com/
 
 
-
-
-
-Dulaunoy, et al.          Expires June 28, 2014                 [Page 9]
-
-Internet-Draft     Passive DNS - Common Output Format      December 2013
-
-
    Henry Stern
    Farsight Security, Inc.
    1741 Brunswick Street, Suite 500
@@ -514,41 +549,6 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    Phone: +1 408 922 4555
    Email: stern@fsi.io
    URI:   https://www.farsightsecurity.com/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
