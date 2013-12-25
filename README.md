@@ -1,5 +1,5 @@
-Passive DNS Query Output Format Description
-===========================================
+Passive DNS - Common Output Format
+==================================
 
 This document describes the output format used between Passive DNS query interface. The output format description
  includes also a common meaning per Passive DNS system.
