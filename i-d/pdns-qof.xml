@@ -179,18 +179,20 @@ The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</
 ... (separated by newline)...
 				  ]]></artwork></figure>
 		</section>
-<!--
         <section title="ABNF grammar">
 			<figure><preamble>ABNF:</preamble><artwork><![CDATA[
-answer 		= elements 
-elements	= * ( element CR)
-element		= "{" keyvallist "}" 
-keyvallist	= JSON object 
-CR			= %x0D
+answer          = elements 
+elements        = * ( element CR)
+element         = "{" keyvallist "}" 
+keyvallist      = JSONobject 
+JSONobject      = [ member *( value-separator member ) ]
+member          = string name-separator value
+name-separator  = ws %x3A ws  ; : colon
+value           = value ; as defined in the JSON RFC
+CR              = %x0D
 					]]></artwork></figure>
-			<t>Note that JSON Object is defined in <xref target="RFC4627">JSON</xref></t>.
+			<t>Note that value is defined in <xref target="RFC4627">JSON</xref> and has the exact same specification as there.</t>
 		</section>
--->
 		<section title="Mandatory Fields">
 		<t>Implementation MUST support all the mandatory fields.</t>
 			<section title="General remarks on mandatory fields">
