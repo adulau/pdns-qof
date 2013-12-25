@@ -89,23 +89,23 @@ Table of Contents
      7.1.  Normative References  . . . . . . . . . . . . . . . . . .   6
      7.2.  References  . . . . . . . . . . . . . . . . . . . . . . .   7
      7.3.  Informative References  . . . . . . . . . . . . . . . . .   7
-   Appendix A.  Appendix . . . . . . . . . . . . . . . . . . . . . .   7
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   7
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   8
 
 1.  Introduction
 
    Passive DNS is a technique described by Florian Weimer in 2005 in
    Passive DNS replication, F Weimer - 17th Annual FIRST Conference on
-   Computer Security.  Since then multiple Passive DNS implementations
-   evolved over time.  Users of these Passive DNS servers query a server
-   (often via WHOIS [RFC3912] or HTTP REST [REST]), parse the results
-   and process them in other applications.
+   Computer Security [WEINERPDNS].  Since then multiple Passive DNS
+   implementations evolved over time.  Users of these Passive DNS
+   servers query a server (often via WHOIS [RFC3912] or HTTP REST
+   [REST]), parse the results and process them in other applications.
 
    There are multiple implementation of Passive DNS software.  Users of
    passive DNS query each implementation and aggregate the results for
-   their search.  This document describes the output format of three
-   Passive DNS Systems which are in use today and which already share a
-   nearly identical output format.  As the format and the meaning of
+   their search.  This document describes the output format of four
+   Passive DNS Systems ([DNSDB],[PDNSCERTAT], [PDNSCIRCL] and [PDNSCOF])
+   which are in use today and which already share a nearly identical
+   output format.  As the format and the meaning of output fields from
 
 
 
@@ -114,11 +114,11 @@ Dulaunoy, et al.          Expires June 28, 2014                 [Page 2]
 Internet-Draft     Passive DNS - Common Output Format      December 2013
 
 
-   output fields from each Passive DNS need to be consistent, we propose
-   in this document a solution to commonly name each field along with
-   their corresponding interpretation.  The format format is following a
-   simple key-value structure in JSON [RFC4627] format.  The benefit of
-   having a consistent Passive DNS output format is that multiple client
+   each Passive DNS need to be consistent, we propose in this document a
+   solution to commonly name each field along with their corresponding
+   interpretation.  The format format is following a simple key-value
+   structure in JSON [RFC4627] format.  The benefit of having a
+   consistent Passive DNS output format is that multiple client
    implementations can query different servers without having to have a
    separate parser for each individual server. passivedns-client
    [PDNSCLIENT]currently implements multiple parsers due to a lack of
@@ -250,7 +250,7 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
 
    Specifies the number of times this particular event denoted by the
    other type fields has been seen in the given time interval (between
-   time_last and time_first).  Decimal number.
+   time_last and time_first).
 
 3.3.2.  bailiwick
 
@@ -349,14 +349,32 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
               "Black ops 2008: It's the end of the cache as we know
               it.", 2008, <http://kurser.lobner.dk/dDist/DMK_BO2K8.pdf>.
 
+   [DNSDB]    "DNSDB API", 2013, <https://api.dnsdb.info/>.
+
+   [PDNSCERTAT]
+              "pDNS presentation at 4th Centr R&D workshop Frankfurt Jun
+              5th 2012", 2012, <http://www.centr.org/system/files/agenda
+              /attachment/rd4-papst-passive_dns.pdf>.
+
+   [PDNSCIRCL]
+              "CIRCL Passive DNS", 2012, <http://pdns.circl.lu/>.
+
    [PDNSCLIENT]
               "Queries 5 major Passive DNS databases: BFK, CERTEE,
               DNSParse, ISC, and VirusTotal.", 2013, <https://github.com
               /chrislee35/passivedns-client>.
 
+   [PDNSCOF]  "Passive DNS server interface using the common output
+              format", 2013, <https://github.com/adulau/pdns-qof-server/
+              >.
+
    [REST]     "Representational State Transfer (REST)", 2000,
               <http://www.ics.uci.edu/~fielding/pubs/dissertation/
               rest_arch_style.htm>.
+
+   [WEINERPDNS]
+              "Passive DNS Replication", 2005, <http://www.enyo.de/fw/
+              software/dnslogger/first2005-paper.pdf>.
 
 7.3.  Informative References
 
@@ -365,24 +383,6 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
               IANA Considerations Section in RFCs", draft-narten-iana-
               considerations-rfc2434bis-09 (work in progress), March
               2008.
-
-   [RFC2629]  Rose, M., "Writing I-Ds and RFCs using XML", RFC 2629,
-              June 1999.
-
-   [RFC3552]  Rescorla, E. and B. Korver, "Guidelines for Writing RFC
-              Text on Security Considerations", BCP 72, RFC 3552, July
-              2003.
-
-   [RFC3912]  Daigle, L., "WHOIS Protocol Specification", RFC 3912,
-              September 2004.
-
-Appendix A.  Appendix
-
-Authors' Addresses
-
-
-
-
 
 
 
@@ -393,6 +393,12 @@ Dulaunoy, et al.          Expires June 28, 2014                 [Page 7]
 
 Internet-Draft     Passive DNS - Common Output Format      December 2013
 
+
+   [RFC3552]  Rescorla, E. and B. Korver, "Guidelines for Writing RFC
+              Text on Security Considerations", BCP 72, RFC 3552, July
+              2003.
+
+Authors' Addresses
 
    Alexandre Dulaunoy
    CIRCL
@@ -432,12 +438,6 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    Phone: +1 408 922 4555
    Email: hestern@cisco.com
    URI:   http://www.cisco.com/security
-
-
-
-
-
-
 
 
 

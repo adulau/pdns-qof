@@ -138,7 +138,7 @@
     <section title="Introduction">
      <t>Passive DNS is a technique described by Florian Weimer in 2005 in <xref target="WEINERPDNS">Passive DNS replication, F Weimer - 17th Annual FIRST Conference on Computer Security</xref>. Since then multiple Passive DNS implementations evolved over time. Users of these Passive DNS servers query a server (often via <xref target="RFC3912">WHOIS</xref> or HTTP <xref target="REST">REST</xref>), parse the results and process them in other applications.</t>
      <t>
-    There are multiple implementation of Passive DNS software. Users of passive DNS query each implementation and aggregate the results for their search. This document describes the output format of three Passive DNS Systems (<xref target="DNSDB"/>,<xref target="PDNSCERTAT"/> and <xref target="PDNSCIRCL"/>) which are in use today and which already share a nearly identical output format.
+    There are multiple implementation of Passive DNS software. Users of passive DNS query each implementation and aggregate the results for their search. This document describes the output format of four Passive DNS Systems (<xref target="DNSDB"/>,<xref target="PDNSCERTAT"/>, <xref target="PDNSCIRCL"/> and <xref target="PDNSCOF"/>) which are in use today and which already share a nearly identical output format.
 
 	As the format and the meaning of output fields from each Passive DNS need to be consistent, we propose in this document a solution to commonly name each field along with their corresponding interpretation. The format format is following a simple key-value structure in <xref target="RFC4627">JSON</xref> format.
 The benefit of having a consistent Passive DNS output format is that multiple client implementations can query different servers without having to have a separate parser for each
@@ -204,7 +204,7 @@ The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</
 			<t>Implementation SHOULD support one or more field.</t>
 			<section title="count">
 			<t>Specifies how many answers were received with the set of answers (i.e. same data). The number of requests is expressed as a decimal value.</t>
-			<t>Specifies the number of times this particular event denoted by the other type fields has been seen in the given time interval (between time_last and time_first). Decimal number.</t>
+			<t>Specifies the number of times this particular event denoted by the other type fields has been seen in the given time interval (between time_last and time_first).</t>
 			</section>
 			<section title="bailiwick">
 				<t>The bailiwick is the best estimate of the apex of the zone where this data is authoritative. String.</t>
@@ -331,7 +331,13 @@ The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</
           <date year="2012"/>
           </front>
         </reference>
-
+        <reference anchor="PDNSCOF" target="https://github.com/adulau/pdns-qof-server/">
+          <front>
+          <title>Passive DNS server interface using the common output format</title>
+          <author fullname="Alexandre Dulaunoy"/>
+          <date year="2013"/>
+          </front>
+        </reference>
     </references>
 
     <references title="Informative References">
