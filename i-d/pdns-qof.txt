@@ -98,8 +98,8 @@ Table of Contents
    Passive DNS replication, F Weimer - 17th Annual FIRST Conference on
    Computer Security.  Since then multiple Passive DNS implementations
    evolved over time.  Users of these Passive DNS servers query a server
-   (often via WHOIS [RFC3912] or HTTP and ReST), parse the results and
-   process them in other applications.
+   (often via WHOIS [RFC3912] or HTTP REST [REST]), parse the results
+   and process them in other applications.
 
    There are multiple implementation of Passive DNS software.  Users of
    passive DNS query each implementation and aggregate the results for
@@ -123,9 +123,9 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    separate parser for each individual server. passivedns-client
    [PDNSCLIENT]currently implements multiple parsers due to a lack of
    standardization.  The document does not describe the protocol (e.g.
-   WHOIS [RFC3912], HTTP REST or XMPP) nor the query format used to
-   query the Passive DNS.  Neither does this document describe "pre-
-   recursor" Passive DNS Systems.
+   WHOIS [RFC3912], HTTP REST [REST]) nor the query format used to query
+   the Passive DNS.  Neither does this document describe "pre-recursor"
+   Passive DNS Systems.
 
 1.1.  Requirements Language
 
@@ -354,6 +354,10 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
               DNSParse, ISC, and VirusTotal.", 2013, <https://github.com
               /chrislee35/passivedns-client>.
 
+   [REST]     "Representational State Transfer (REST)", 2000,
+              <http://www.ics.uci.edu/~fielding/pubs/dissertation/
+              rest_arch_style.htm>.
+
 7.3.  Informative References
 
    [I-D.narten-iana-considerations-rfc2434bis]
@@ -376,6 +380,20 @@ Appendix A.  Appendix
 
 Authors' Addresses
 
+
+
+
+
+
+
+
+
+
+Dulaunoy, et al.          Expires June 28, 2014                 [Page 7]
+
+Internet-Draft     Passive DNS - Common Output Format      December 2013
+
+
    Alexandre Dulaunoy
    CIRCL
    41, avenue de la gare
@@ -385,13 +403,6 @@ Authors' Addresses
    Phone: (+352) 247 88444
    Email: alexandre.dulaunoy@circl.lu
    URI:   http://www.circl.lu/
-
-
-
-
-Dulaunoy, et al.          Expires June 28, 2014                 [Page 7]
-
-Internet-Draft     Passive DNS - Common Output Format      December 2013
 
 
    Leon Aaron Kaplan
@@ -421,17 +432,6 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    Phone: +1 408 922 4555
    Email: hestern@cisco.com
    URI:   http://www.cisco.com/security
-
-
-
-
-
-
-
-
-
-
-
 
 
 
