@@ -14,6 +14,7 @@
 <!ENTITY RFC4627 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4627.xml">
 <!ENTITY RFC5001 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5001.xml">
 <!ENTITY RFC3597 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3597.xml">
+<!ENTITY RFC3912 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3912.xml">
 <!ENTITY I-D.narten-iana-considerations-rfc2434bis SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.narten-iana-considerations-rfc2434bis.xml">
 ]>
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
@@ -41,7 +42,7 @@
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="info" docName="draft-ietf-dulaunoy-kaplan-pdns-cof-01" ipr="full3978">
+<rfc category="info" docName="draft-ietf-dulaunoy-kaplan-pdns-cof-01" ipr="trust200902">
   <!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
      you can add the attributes updates="NNNN" and obsoletes="NNNN" 
@@ -135,7 +136,7 @@
 
   <middle>
     <section title="Introduction">
-     <t>Passive DNS is a technique described by Florian Weimer in 2005 in Passive DNS replication, F Weimer - 17th Annual FIRST Conference on Computer Security. Since then multiple Passive DNS implementations evolved over time. Users of these Passive DNS servers query a server (often via Whois [Ref: WHOIS] or HTTP and ReST), parse the results and process them in other applications.</t>
+     <t>Passive DNS is a technique described by Florian Weimer in 2005 in Passive DNS replication, F Weimer - 17th Annual FIRST Conference on Computer Security. Since then multiple Passive DNS implementations evolved over time. Users of these Passive DNS servers query a server (often via <xref target="RFC3912">WHOIS</xref> or HTTP and ReST), parse the results and process them in other applications.</t>
      <t>
     There are multiple implementation of Passive DNS software. Users of passive DNS query each implementation and aggregate the results for their search. This document describes the output format of three Passive DNS Systems which are in use today and which already share a nearly identical output format.
 
@@ -143,7 +144,7 @@
 The benefit of having a consistent Passive DNS output format is that multiple client implementations can query different servers without having to have a separate parser for each
 individual server. [https://github.com/chrislee35/passivedns-client] currently implements multiple parsers due to a lack of standardization.
 
-The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) nor the query format used to query the Passive DNS. Neither does this document describe "pre-recursor" Passive DNS Systems.
+The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</xref>, HTTP REST or XMPP) nor the query format used to query the Passive DNS. Neither does this document describe "pre-recursor" Passive DNS Systems.
      </t>
 
       <section title="Requirements Language">
@@ -155,7 +156,7 @@ The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) nor 
     </section>
 
     <section title="Limitation">
-    <t> As a Passive DNS can include protection mechanisms for their operation, results might be different due to those protection measures.  These mechanisms filter out DNS answers if they fail some criteria. The bailiwick algorithm (c.f. http://www.isc.org/files/passive_dns_hardening_handout.pdf) protects the Passive DNS Database from cache poisoning attacks [ref: Dan Kaminsky].
+    <t> As a Passive DNS can include protection mechanisms for their operation, results might be different due to those protection measures.  These mechanisms filter out DNS answers if they fail some criteria. The <xref target="BAILIWICK">bailiwick algorithm</xref> protects the Passive DNS Database from <xref target="CACHEPOISONING">cache poisoning attacks</xref>.
 
         Another limitiation that clients querying the database need to be aware of is that each query simply gets an snapshot-answer of the time of querying. Clients MUST NOT rely on consistent answers.
     </t>
@@ -268,7 +269,8 @@ The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) nor 
       &RFC2119;
 	  &RFC1035;
 	  &RFC1034;
-	  &RFC4627;
+      &RFC3912;
+      &RFC4627;
       &RFC5001;
       &RFC3597;
 
@@ -286,6 +288,25 @@ The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) nor 
         </front>
       </reference>
     </references>
+    <references>
+        <reference anchor="CACHEPOISONING" target="http://kurser.lobner.dk/dDist/DMK_BO2K8.pdf">
+          <front>
+            <title>Black ops 2008: It&#8217;s the end of the cache as we know it.</title>
+            <author fullname="Dan Kaminsky"/>
+            <date year="2008"/>
+          </front>
+        </reference>
+    </references>
+
+    <references>
+        <reference anchor="BAILIWICK" target="https://archive.farsightsecurity.com/Passive_DNS/passive_dns_hardening_handout.pdf">
+          <front>
+            <title>Passive DNS Hardening</title>
+            <author fullname="Robert Edmonds"/>
+            <date year="2010"/>
+          </front>
+        </reference>
+    </references>
 
     <references title="Informative References">
       <!-- Here we use entities that we defined at the beginning. -->
@@ -293,6 +314,8 @@ The document does not describe the protocol (e.g. whois, HTTP REST or XMPP) nor 
       &RFC2629;
 
       &RFC3552;
+
+      &RFC3912;
 
       &I-D.narten-iana-considerations-rfc2434bis;
 

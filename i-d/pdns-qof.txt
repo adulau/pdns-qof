@@ -1,15 +1,16 @@
 
 
 
+
 Internet Engineering Task Force                                 Dulaunoy
 Internet-Draft                                                     CIRCL
 Intended status: Informational                                    Kaplan
-Expires: June 20, 2014                                           CERT.at
+Expires: June 28, 2014                                           CERT.at
                                                                    Vixie
                                                  Farsight Security, Inc.
                                                                hs. Stern
                                                                    Cisco
-                                                       December 17, 2013
+                                                       December 25, 2013
 
 
                    Passive DNS - Common Output Format
@@ -21,12 +22,10 @@ Abstract
    query interface.  The output format description includes also a
    common meaning per Passive DNS system.
 
-Status of this Memo
+Status of This Memo
 
-   By submitting this Internet-Draft, each author represents that any
-   applicable patent or other IPR claims of which he or she is aware
-   have been or will be disclosed, and any of which he or she becomes
-   aware will be disclosed, in accordance with Section 6 of BCP 79.
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
 
    Internet-Drafts are working documents of the Internet Engineering
    Task Force (IETF).  Note that other groups may also distribute
@@ -38,80 +37,61 @@ Status of this Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on June 20, 2014.
+   This Internet-Draft will expire on June 28, 2014.
+
+Copyright Notice
+
+   Copyright (c) 2013 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents
+   (http://trustee.ietf.org/license-info) in effect on the date of
+   publication of this document.  Please review these documents
+   carefully, as they describe your rights and restrictions with respect
+   to this document.  Code Components extracted from this document must
 
 
 
-
-
-
-
-
-
-
-
-
-
-Dulaunoy, et al.          Expires June 20, 2014                 [Page 1]
+Dulaunoy, et al.          Expires June 28, 2014                 [Page 1]
 
 Internet-Draft              Abbreviated Title              December 2013
 
+
+   include Simplified BSD License text as described in Section 4.e of
+   the Trust Legal Provisions and are provided without warranty as
+   described in the Simplified BSD License.
 
 Table of Contents
 
-   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . . . 3
-     1.1.  Requirements Language . . . . . . . . . . . . . . . . . . . 3
-   2.  Limitation  . . . . . . . . . . . . . . . . . . . . . . . . . . 3
-   3.  Common Output Format  . . . . . . . . . . . . . . . . . . . . . 4
-     3.1.  Overview and Example  . . . . . . . . . . . . . . . . . . . 4
-     3.2.  Mandatory Fields  . . . . . . . . . . . . . . . . . . . . . 4
-       3.2.1.  rrname  . . . . . . . . . . . . . . . . . . . . . . . . 4
-       3.2.2.  rrtype  . . . . . . . . . . . . . . . . . . . . . . . . 4
-       3.2.3.  rdata . . . . . . . . . . . . . . . . . . . . . . . . . 5
-       3.2.4.  time_first  . . . . . . . . . . . . . . . . . . . . . . 5
-       3.2.5.  time_last . . . . . . . . . . . . . . . . . . . . . . . 5
-     3.3.  Optional Fields . . . . . . . . . . . . . . . . . . . . . . 5
-       3.3.1.  count . . . . . . . . . . . . . . . . . . . . . . . . . 5
-       3.3.2.  bailiwick . . . . . . . . . . . . . . . . . . . . . . . 5
-     3.4.  Additional Fields . . . . . . . . . . . . . . . . . . . . . 5
-       3.4.1.  sensor_id . . . . . . . . . . . . . . . . . . . . . . . 6
-       3.4.2.  zone_time_first . . . . . . . . . . . . . . . . . . . . 6
-       3.4.3.  zone_time_last  . . . . . . . . . . . . . . . . . . . . 6
-   4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . . . 6
-   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . . . 6
-   6.  Security Considerations . . . . . . . . . . . . . . . . . . . . 6
-   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . . . 6
-     7.1.  Normative References  . . . . . . . . . . . . . . . . . . . 6
-     7.2.  Informative References  . . . . . . . . . . . . . . . . . . 7
-   Appendix A.  Appendix . . . . . . . . . . . . . . . . . . . . . . . 7
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . . . 7
-   Intellectual Property and Copyright Statements  . . . . . . . . . . 9
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Dulaunoy, et al.          Expires June 20, 2014                 [Page 2]
-
-Internet-Draft              Abbreviated Title              December 2013
-
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+     1.1.  Requirements Language . . . . . . . . . . . . . . . . . .   3
+   2.  Limitation  . . . . . . . . . . . . . . . . . . . . . . . . .   3
+   3.  Common Output Format  . . . . . . . . . . . . . . . . . . . .   3
+     3.1.  Overview and Example  . . . . . . . . . . . . . . . . . .   3
+     3.2.  Mandatory Fields  . . . . . . . . . . . . . . . . . . . .   4
+       3.2.1.  rrname  . . . . . . . . . . . . . . . . . . . . . . .   4
+       3.2.2.  rrtype  . . . . . . . . . . . . . . . . . . . . . . .   4
+       3.2.3.  rdata . . . . . . . . . . . . . . . . . . . . . . . .   4
+       3.2.4.  time_first  . . . . . . . . . . . . . . . . . . . . .   4
+       3.2.5.  time_last . . . . . . . . . . . . . . . . . . . . . .   5
+     3.3.  Optional Fields . . . . . . . . . . . . . . . . . . . . .   5
+       3.3.1.  count . . . . . . . . . . . . . . . . . . . . . . . .   5
+       3.3.2.  bailiwick . . . . . . . . . . . . . . . . . . . . . .   5
+     3.4.  Additional Fields . . . . . . . . . . . . . . . . . . . .   5
+       3.4.1.  sensor_id . . . . . . . . . . . . . . . . . . . . . .   5
+       3.4.2.  zone_time_first . . . . . . . . . . . . . . . . . . .   5
+       3.4.3.  zone_time_last  . . . . . . . . . . . . . . . . . . .   6
+   4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   6
+   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   6
+   6.  Security Considerations . . . . . . . . . . . . . . . . . . .   6
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   6
+     7.1.  Normative References  . . . . . . . . . . . . . . . . . .   6
+     7.2.  References  . . . . . . . . . . . . . . . . . . . . . . .   7
+     7.3.  References  . . . . . . . . . . . . . . . . . . . . . . .   7
+     7.4.  Informative References  . . . . . . . . . . . . . . . . .   7
+   Appendix A.  Appendix . . . . . . . . . . . . . . . . . . . . . .   7
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   7
 
 1.  Introduction
 
@@ -119,13 +99,21 @@ Internet-Draft              Abbreviated Title              December 2013
    Passive DNS replication, F Weimer - 17th Annual FIRST Conference on
    Computer Security.  Since then multiple Passive DNS implementations
    evolved over time.  Users of these Passive DNS servers query a server
-   (often via Whois [Ref: WHOIS] or HTTP and ReST), parse the results
-   and process them in other applications.
+   (often via WHOIS [RFC3912] or HTTP and ReST), parse the results and
+   process them in other applications.
 
    There are multiple implementation of Passive DNS software.  Users of
    passive DNS query each implementation and aggregate the results for
    their search.  This document describes the output format of three
    Passive DNS Systems which are in use today and which already share a
+
+
+
+Dulaunoy, et al.          Expires June 28, 2014                 [Page 2]
+
+Internet-Draft              Abbreviated Title              December 2013
+
+
    nearly identical output format.  As the format and the meaning of
    output fields from each Passive DNS need to be consistent, we propose
    in this document a solution to commonly name each field along with
@@ -133,12 +121,12 @@ Internet-Draft              Abbreviated Title              December 2013
    simple key-value structure in JSON [RFC4627] format.  The benefit of
    having a consistent Passive DNS output format is that multiple client
    implementations can query different servers without having to have a
-   separate parser for each individual server.
-   [https://github.com/chrislee35/passivedns-client] currently
-   implements multiple parsers due to a lack of standardization.  The
-   document does not describe the protocol (e.g. whois, HTTP REST or
-   XMPP) nor the query format used to query the Passive DNS.  Neither
-   does this document describe "pre-recursor" Passive DNS Systems.
+   separate parser for each individual server. [https://github.com/
+   chrislee35/passivedns-client] currently implements multiple parsers
+   due to a lack of standardization.  The document does not describe the
+   protocol (e.g. WHOIS [RFC3912], HTTP REST or XMPP) nor the query
+   format used to query the Passive DNS.  Neither does this document
+   describe "pre-recursor" Passive DNS Systems.
 
 1.1.  Requirements Language
 
@@ -146,28 +134,16 @@ Internet-Draft              Abbreviated Title              December 2013
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
    document are to be interpreted as described in RFC 2119 [RFC2119].
 
-
 2.  Limitation
 
    As a Passive DNS can include protection mechanisms for their
    operation, results might be different due to those protection
    measures.  These mechanisms filter out DNS answers if they fail some
-   criteria.  The bailiwick algorithm (c.f.
-   http://www.isc.org/files/passive_dns_hardening_handout.pdf) protects
-   the Passive DNS Database from cache poisoning attacks [ref: Dan
-   Kaminsky].  Another limitiation that clients querying the database
-   need to be aware of is that each query simply gets an snapshot-answer
-   of the time of querying.  Clients MUST NOT rely on consistent
-   answers.
-
-
-
-
-
-Dulaunoy, et al.          Expires June 20, 2014                 [Page 3]
-
-Internet-Draft              Abbreviated Title              December 2013
-
+   criteria.  The bailiwick algorithm [BAILIWICK] protects the Passive
+   DNS Database from cache poisoning attacks [CACHEPOISONING].  Another
+   limitiation that clients querying the database need to be aware of is
+   that each query simply gets an snapshot-answer of the time of
+   querying.  Clients MUST NOT rely on consistent answers.
 
 3.  Common Output Format
 
@@ -182,6 +158,17 @@ Internet-Draft              Abbreviated Title              December 2013
    scripts.  Every implementation MUST support the JSON output format.
 
    A sample output using the JSON format:
+
+
+
+
+
+
+
+Dulaunoy, et al.          Expires June 28, 2014                 [Page 3]
+
+Internet-Draft              Abbreviated Title              December 2013
+
 
    ... (list of )...
    { "count": 97167,
@@ -217,14 +204,6 @@ Internet-Draft              Abbreviated Title              December 2013
    addition, a client MUST be able to handle a decimal value (as
    mentioned above) as answer.
 
-
-
-
-Dulaunoy, et al.          Expires June 20, 2014                 [Page 4]
-
-Internet-Draft              Abbreviated Title              December 2013
-
-
 3.2.3.  rdata
 
    This field returns the data of the queried resource.  In general,
@@ -237,6 +216,15 @@ Internet-Draft              Abbreviated Title              December 2013
    principle as described in RFC 3597 [RFC3597].
 
 3.2.4.  time_first
+
+
+
+
+
+Dulaunoy, et al.          Expires June 28, 2014                 [Page 4]
+
+Internet-Draft              Abbreviated Title              December 2013
+
 
    This field returns the first time that the record / unique tuple
    (rrname, rrtype, rdata) has been seen by the passive DNS.  The date
@@ -273,14 +261,6 @@ Internet-Draft              Abbreviated Title              December 2013
 
    Implementations MAY support the following fields:
 
-
-
-
-Dulaunoy, et al.          Expires June 20, 2014                 [Page 5]
-
-Internet-Draft              Abbreviated Title              December 2013
-
-
 3.4.1.  sensor_id
 
    This field returns the sensor information where the record was seen.
@@ -294,6 +274,14 @@ Internet-Draft              Abbreviated Title              December 2013
    is expressed in seconds (decimal ascii) since 1st of January 1970
    (unix timestamp).  The time zone MUST be UTC.
 
+
+
+
+Dulaunoy, et al.          Expires June 28, 2014                 [Page 5]
+
+Internet-Draft              Abbreviated Title              December 2013
+
+
 3.4.3.  zone_time_last
 
    This field returns the last time that the unique tuple (rrname,
@@ -301,16 +289,13 @@ Internet-Draft              Abbreviated Title              December 2013
    is expressed in seconds (decimal ascii) since 1st of January 1970
    (unix timestamp).  The time zone MUST be UTC.
 
-
 4.  Acknowledgements
 
    Thanks to the Passive DNS developers who contributed to the document.
 
-
 5.  IANA Considerations
 
    This memo includes no request to IANA.
-
 
 6.  Security Considerations
 
@@ -318,7 +303,6 @@ Internet-Draft              Abbreviated Title              December 2013
    information and its access might be restricted.  When an user is
    querying multiple Passive DNS and aggregating the data, the
    sensitivity of the data must be considered.
-
 
 7.  References
 
@@ -330,18 +314,14 @@ Internet-Draft              Abbreviated Title              December 2013
    [RFC1035]  Mockapetris, P., "Domain names - implementation and
               specification", STD 13, RFC 1035, November 1987.
 
-
-
-Dulaunoy, et al.          Expires June 20, 2014                 [Page 6]
-
-Internet-Draft              Abbreviated Title              December 2013
-
-
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119, March 1997.
 
    [RFC3597]  Gustafsson, A., "Handling of Unknown DNS Resource Record
               (RR) Types", RFC 3597, September 2003.
+
+   [RFC3912]  Daigle, L., "WHOIS Protocol Specification", RFC 3912,
+              September 2004.
 
    [RFC4627]  Crockford, D., "The application/json Media Type for
               JavaScript Object Notation (JSON)", RFC 4627, July 2006.
@@ -351,33 +331,54 @@ Internet-Draft              Abbreviated Title              December 2013
 
    [min_ref]  authSurName, authInitials., "Minimal Reference", 2006.
 
-7.2.  Informative References
+
+
+Dulaunoy, et al.          Expires June 28, 2014                 [Page 6]
+
+Internet-Draft              Abbreviated Title              December 2013
+
+
+7.2.  References
+
+   [CACHEPOISONING]
+              "Black ops 2008: It's the end of the cache as we know
+              it.", 2008, <http://kurser.lobner.dk/dDist/DMK_BO2K8.pdf>.
+
+7.3.  References
+
+   [BAILIWICK]
+              "Passive DNS Hardening", 2010, <https://
+              archive.farsightsecurity.com/Passive_DNS/
+              passive_dns_hardening_handout.pdf>.
+
+7.4.  Informative References
 
    [I-D.narten-iana-considerations-rfc2434bis]
               Narten, T. and H. Alvestrand, "Guidelines for Writing an
-              IANA Considerations Section in RFCs",
-              draft-narten-iana-considerations-rfc2434bis-09 (work in
-              progress), March 2008.
+              IANA Considerations Section in RFCs", draft-narten-iana-
+              considerations-rfc2434bis-09 (work in progress), March
+              2008.
 
    [RFC2629]  Rose, M., "Writing I-Ds and RFCs using XML", RFC 2629,
               June 1999.
 
    [RFC3552]  Rescorla, E. and B. Korver, "Guidelines for Writing RFC
-              Text on Security Considerations", BCP 72, RFC 3552,
-              July 2003.
+              Text on Security Considerations", BCP 72, RFC 3552, July
+              2003.
 
+   [RFC3912]  Daigle, L., "WHOIS Protocol Specification", RFC 3912,
+              September 2004.
 
 Appendix A.  Appendix
 
    This becomes an Appendix.
-
 
 Authors' Addresses
 
    Alexandre Dulaunoy
    CIRCL
    41, avenue de la gare
-   Luxembourg,   L-1611
+   Luxembourg  L-1611
    LU
 
    Phone: (+352) 247 88444
@@ -388,7 +389,7 @@ Authors' Addresses
 
 
 
-Dulaunoy, et al.          Expires June 20, 2014                 [Page 7]
+Dulaunoy, et al.          Expires June 28, 2014                 [Page 7]
 
 Internet-Draft              Abbreviated Title              December 2013
 
@@ -396,7 +397,7 @@ Internet-Draft              Abbreviated Title              December 2013
    Leon Aaron Kaplan
    CERT.at
    Karlsplatz 1/2/9
-   Vienna,   A-1010
+   Vienna  A-1010
    AT
 
    Phone: +43 1 5056416 78
@@ -407,8 +408,6 @@ Internet-Draft              Abbreviated Title              December 2013
    Paul Vixie
    Farsight Security, Inc.
 
-
-   Phone:
    Email: paul@redbarn.org
    URI:   /
 
@@ -444,61 +443,6 @@ Internet-Draft              Abbreviated Title              December 2013
 
 
 
-Dulaunoy, et al.          Expires June 20, 2014                 [Page 8]
-
-Internet-Draft              Abbreviated Title              December 2013
 
 
-Full Copyright Statement
-
-   Copyright (C) The IETF Trust (2013).
-
-   This document is subject to the rights, licenses and restrictions
-   contained in BCP 78, and except as set forth therein, the authors
-   retain all their rights.
-
-   This document and the information contained herein are provided on an
-   "AS IS" basis and THE CONTRIBUTOR, THE ORGANIZATION HE/SHE REPRESENTS
-   OR IS SPONSORED BY (IF ANY), THE INTERNET SOCIETY, THE IETF TRUST AND
-   THE INTERNET ENGINEERING TASK FORCE DISCLAIM ALL WARRANTIES, EXPRESS
-   OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF
-   THE INFORMATION HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED
-   WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
-
-
-Intellectual Property
-
-   The IETF takes no position regarding the validity or scope of any
-   Intellectual Property Rights or other rights that might be claimed to
-   pertain to the implementation or use of the technology described in
-   this document or the extent to which any license under such rights
-   might or might not be available; nor does it represent that it has
-   made any independent effort to identify any such rights.  Information
-   on the procedures with respect to rights in RFC documents can be
-   found in BCP 78 and BCP 79.
-
-   Copies of IPR disclosures made to the IETF Secretariat and any
-   assurances of licenses to be made available, or the result of an
-   attempt made to obtain a general license or permission for the use of
-   such proprietary rights by implementers or users of this
-   specification can be obtained from the IETF on-line IPR repository at
-   http://www.ietf.org/ipr.
-
-   The IETF invites any interested party to bring to its attention any
-   copyrights, patents or patent applications, or other proprietary
-   rights that may cover technology that may be required to implement
-   this standard.  Please address the information to the IETF at
-   ietf-ipr@ietf.org.
-
-
-
-
-
-
-
-
-
-
-
-Dulaunoy, et al.          Expires June 20, 2014                 [Page 9]
-
+Dulaunoy, et al.          Expires June 28, 2014                 [Page 8]
