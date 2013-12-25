@@ -1,25 +1,28 @@
 
 
 
-Internet Engineering Task Force                                 Dulaunoy
+Internet Engineering Task Force                              A. Dulaunoy
 Internet-Draft                                                     CIRCL
-Intended status: Informational                                    Kaplan
+Intended status: Informational                                 A. Kaplan
 Expires: June 28, 2014                                           CERT.at
-                                                                   Vixie
+                                                                P. Vixie
                                                  Farsight Security, Inc.
-                                                               hs. Stern
+                                                                H. Stern
                                                                    Cisco
                                                        December 25, 2013
 
 
                    Passive DNS - Common Output Format
-                 draft-ietf-dulaunoy-passive-dns-cof-00
+                 draft-ietf-dulaunoy-kaplan-pDNS-cof-00
 
 Abstract
 
-   This document describes the output format used between Passive DNS
-   query interfaces.  The output format description includes also a
-   common meaning per Passive DNS system.
+   This document describes a common output format of Passive DNS Servers
+   which clients can query.  The output format description includes also
+   in addition a common semantic for each Passive DNS system.  By having
+   multiple Passive DNS Systems adhere to the same output format for
+   queries, users of multiple Passive DNS servers will be able to
+   combine result sets easily.
 
 Status of this Memo
 
@@ -46,9 +49,6 @@ Copyright Notice
    This document is subject to BCP 78 and the IETF Trust's Legal
    Provisions Relating to IETF Documents
    (http://trustee.ietf.org/license-info) in effect on the date of
-   publication of this document.  Please review these documents
-   carefully, as they describe your rights and restrictions with respect
-   to this document.  Code Components extracted from this document must
 
 
 
@@ -57,6 +57,9 @@ Dulaunoy, et al.          Expires June 28, 2014                 [Page 1]
 Internet-Draft     Passive DNS - Common Output Format      December 2013
 
 
+   publication of this document.  Please review these documents
+   carefully, as they describe your rights and restrictions with respect
+   to this document.  Code Components extracted from this document must
    include Simplified BSD License text as described in Section 4.e of
    the Trust Legal Provisions and are provided without warranty as
    described in the Simplified BSD License.
@@ -105,9 +108,6 @@ Table of Contents
 
 
 
-
-
-
 Dulaunoy, et al.          Expires June 28, 2014                 [Page 2]
 
 Internet-Draft     Passive DNS - Common Output Format      December 2013
@@ -119,10 +119,10 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    Passive DNS replication, F Weimer - 17th Annual FIRST Conference on
    Computer Security [WEINERPDNS].  Since then multiple Passive DNS
    implementations evolved over time.  Users of these Passive DNS
-   servers query a server (often via WHOIS [RFC3912] or HTTP REST
+   servers may query a server (often via WHOIS [RFC3912] or HTTP REST
    [REST]), parse the results and process them in other applications.
 
-   There are multiple implementation of Passive DNS software.  Users of
+   There are multiple implementations of Passive DNS software.  Users of
    passive DNS query each implementation and aggregate the results for
    their search.  This document describes the output format of four
    Passive DNS Systems ([DNSDB],[PDNSCERTAT], [PDNSCIRCL] and [PDNSCOF])
@@ -130,8 +130,8 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    output format.  As the format and the meaning of output fields from
    each Passive DNS need to be consistent, we propose in this document a
    solution to commonly name each field along with their corresponding
-   interpretation.  The format is following a simple key-value structure
-   in JSON [RFC4627] format.  The benefit of having a consistent Passive
+   interpretation.  The format follows a simple key-value structure in
+   JSON [RFC4627] format.  The benefit of having a consistent Passive
    DNS output format is that multiple client implementations can query
    different servers without having to have a separate parser for each
    individual server. passivedns-client [PDNSCLIENT]currently implements
@@ -449,7 +449,7 @@ Dulaunoy, et al.          Expires June 28, 2014                 [Page 8]
 Internet-Draft     Passive DNS - Common Output Format      December 2013
 
 
-   Leon Aaron Kaplan
+   L. Aaron Kaplan
    CERT.at
    Karlsplatz 1/2/9
    Vienna,   A-1010

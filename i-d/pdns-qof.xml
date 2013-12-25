@@ -44,7 +44,7 @@
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="info" docName="draft-ietf-dulaunoy-passive-dns-cof-00" ipr="trust200902">
+<rfc category="info" docName="draft-ietf-dulaunoy-kaplan-pDNS-cof-00" ipr="trust200902">
   <!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
      you can add the attributes updates="NNNN" and obsoletes="NNNN" 
@@ -54,7 +54,7 @@
 
   <front>
     <title abbrev="Passive DNS - Common Output Format">Passive DNS - Common Output Format</title>
-    <author fullname="Alexandre Dulaunoy" initials=""
+    <author fullname="Alexandre Dulaunoy" initials="A."
             surname="Dulaunoy">
       <organization>CIRCL</organization>
       <address>
@@ -73,7 +73,7 @@
     </author>
 
 
-    <author fullname="Leon Aaron Kaplan" initials=""
+    <author fullname="L. Aaron Kaplan" initials="A."
             surname="Kaplan">
       <organization>CERT.at</organization>
       <address>
@@ -90,7 +90,7 @@
       </address>
     </author>
 
-    <author fullname="Paul Vixie" initials=""
+    <author fullname="Paul Vixie" initials="P."
             surname="Vixie">
       <organization>Farsight Security, Inc.</organization>
       <address>
@@ -107,7 +107,7 @@
        </address>
     </author>
 
-	<author fullname="Henry Stern" initials="hs" surname="Stern">
+	<author fullname="Henry Stern" initials="H." surname="Stern">
 		<organization>Cisco</organization>
 		<address>
 			<postal>
@@ -132,17 +132,17 @@
 
 
     <abstract>
-      <t>This document describes the output format used between Passive DNS query interfaces. The output format description includes also a common meaning per Passive DNS system.</t>
+	  <t>This document describes a common output format of Passive DNS Servers which clients can query. The output format description includes also in addition a common semantic for each Passive DNS system. By having multiple Passive DNS Systems adhere to the same output format for queries, users of multiple Passive DNS servers will be able to combine result sets easily.</t>
     </abstract>
   </front>
 
   <middle>
     <section title="Introduction">
-     <t>Passive DNS is a technique described by Florian Weimer in 2005 in <xref target="WEINERPDNS">Passive DNS replication, F Weimer - 17th Annual FIRST Conference on Computer Security</xref>. Since then multiple Passive DNS implementations evolved over time. Users of these Passive DNS servers query a server (often via <xref target="RFC3912">WHOIS</xref> or HTTP <xref target="REST">REST</xref>), parse the results and process them in other applications.</t>
+     <t>Passive DNS is a technique described by Florian Weimer in 2005 in <xref target="WEINERPDNS">Passive DNS replication, F Weimer - 17th Annual FIRST Conference on Computer Security</xref>. Since then multiple Passive DNS implementations evolved over time. Users of these Passive DNS servers may query a server (often via <xref target="RFC3912">WHOIS</xref> or HTTP <xref target="REST">REST</xref>), parse the results and process them in other applications.</t>
      <t>
-    There are multiple implementation of Passive DNS software. Users of passive DNS query each implementation and aggregate the results for their search. This document describes the output format of four Passive DNS Systems (<xref target="DNSDB"/>,<xref target="PDNSCERTAT"/>, <xref target="PDNSCIRCL"/> and <xref target="PDNSCOF"/>) which are in use today and which already share a nearly identical output format.
+    There are multiple implementations of Passive DNS software. Users of passive DNS query each implementation and aggregate the results for their search. This document describes the output format of four Passive DNS Systems (<xref target="DNSDB"/>,<xref target="PDNSCERTAT"/>, <xref target="PDNSCIRCL"/> and <xref target="PDNSCOF"/>) which are in use today and which already share a nearly identical output format.
 
-	As the format and the meaning of output fields from each Passive DNS need to be consistent, we propose in this document a solution to commonly name each field along with their corresponding interpretation. The format is following a simple key-value structure in <xref target="RFC4627">JSON</xref> format.
+	As the format and the meaning of output fields from each Passive DNS need to be consistent, we propose in this document a solution to commonly name each field along with their corresponding interpretation. The format follows a simple key-value structure in <xref target="RFC4627">JSON</xref> format.
 The benefit of having a consistent Passive DNS output format is that multiple client implementations can query different servers without having to have a separate parser for each
 individual server. <xref target="PDNSCLIENT">passivedns-client</xref>currently implements multiple parsers due to a lack of standardization.
 
