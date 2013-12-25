@@ -20,23 +20,22 @@ Idea: if you can add &show_progress=1 to ReST GET request, then we can add the f
 If a given implementation supports bookends, progress bars, then these have to be optional and they should be signalled via HTTP GET &parameter
 
 Extension to the record format must be x-* (for exaple x-query-id)
---> we decided against that because of http://tools.ietf.org/search/rfc6648
-Instead we created a registry in the github wiki
+  --> we decided against that because of http://tools.ietf.org/search/rfc6648
+  Instead we created a registry in the github wiki
 
 [ ] Samples are OK! But move them to a separate section!
 
 
 
 dnstap -> get mail from paul
-in google protocol bufs
-will tap any part of a nameserver. 
+  in google protocol bufs
+  will tap any part of a nameserver (code). 
 
 
 
 next steps:
   * private circulation with robert edmonds, bfk, auckland, cert.ee
-
-virustotal (?) -> later
+  * virustotal (?) -> later
 
 
 submission:
