@@ -270,7 +270,7 @@ CR              = %x0D
     </section>
 
 	<section anchor="Privacy" title="Privacy Considerations">
-		<t>Passive DNS Servers collect DNS answers from multiple collecting points ("sensors") which are located on the Internet-facing side of DNS recursors. In this process, they intentionally omit the source IP, source port, destination IP and destination port. Furthermore, since multiple sensors feed into a passive DNS server, the resulting data gets mixed together, reducing the likelyhood that Passive DNS Servers are able to find out much about the actual person querying the DNS records nor who actually sent the query. In this sense, passive DNS Servers are similar to keeping an archive of all previous phone books -- if public DNS records can be compared to phone numbers, as they often are.
+		<t>Passive DNS Servers collect DNS answers from multiple collecting points ("sensors") which are located on the Internet-facing side of DNS recursors. In this process, they intentionally omit the source IP, source port, destination IP and destination port. Furthermore, since multiple sensors feed into a passive DNS server, the resulting data gets mixed together, reducing the likelihood that Passive DNS Servers are able to find out much about the actual person querying the DNS records nor who actually sent the query. In this sense, passive DNS Servers are similar to keeping an archive of all previous phone books - if public DNS records can be compared to phone numbers - as they often are.
 
 		Nevertheless, the authors encourage Passive DNS implementors to take special care of privacy issues. <!-- FIXME: add reference / link --> draft-bortzmeyer-dnsop-dns-privacy-01.txt is an excellent starting point for this.
 		
