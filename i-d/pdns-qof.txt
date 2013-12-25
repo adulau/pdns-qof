@@ -431,7 +431,7 @@ Authors' Addresses
    CIRCL
    41, avenue de la gare
    Luxembourg,   L-1611
-   LU
+   Luxembourg
 
    Phone: (+352) 247 88444
    Email: alexandre.dulaunoy@circl.lu
@@ -453,7 +453,7 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    CERT.at
    Karlsplatz 1/2/9
    Vienna,   A-1010
-   AT
+   Austria
 
    Phone: +43 1 5056416 78
    Email: kaplan@cert.at
