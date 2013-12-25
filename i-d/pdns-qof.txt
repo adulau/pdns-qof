@@ -74,15 +74,14 @@ Table of Contents
      3.2.  Example . . . . . . . . . . . . . . . . . . . . . . . . . . 4
      3.3.  ABNF grammar  . . . . . . . . . . . . . . . . . . . . . . . 4
      3.4.  Mandatory Fields  . . . . . . . . . . . . . . . . . . . . . 4
-       3.4.1.  General remarks on mandatory fields . . . . . . . . . . 5
-       3.4.2.  rrname  . . . . . . . . . . . . . . . . . . . . . . . . 5
-       3.4.3.  rrtype  . . . . . . . . . . . . . . . . . . . . . . . . 5
-       3.4.4.  rdata . . . . . . . . . . . . . . . . . . . . . . . . . 5
-       3.4.5.  time_first  . . . . . . . . . . . . . . . . . . . . . . 5
-       3.4.6.  time_last . . . . . . . . . . . . . . . . . . . . . . . 5
+       3.4.1.  rrname  . . . . . . . . . . . . . . . . . . . . . . . . 5
+       3.4.2.  rrtype  . . . . . . . . . . . . . . . . . . . . . . . . 5
+       3.4.3.  rdata . . . . . . . . . . . . . . . . . . . . . . . . . 5
+       3.4.4.  time_first  . . . . . . . . . . . . . . . . . . . . . . 5
+       3.4.5.  time_last . . . . . . . . . . . . . . . . . . . . . . . 5
      3.5.  Optional Fields . . . . . . . . . . . . . . . . . . . . . . 6
        3.5.1.  count . . . . . . . . . . . . . . . . . . . . . . . . . 6
-       3.5.2.  Bailiwick . . . . . . . . . . . . . . . . . . . . . . . 6
+       3.5.2.  bailiwick . . . . . . . . . . . . . . . . . . . . . . . 6
      3.6.  Additional Fields . . . . . . . . . . . . . . . . . . . . . 6
        3.6.1.  sensor_id . . . . . . . . . . . . . . . . . . . . . . . 6
        3.6.2.  zone_time_first . . . . . . . . . . . . . . . . . . . . 6
@@ -96,6 +95,7 @@ Table of Contents
      7.2.  References  . . . . . . . . . . . . . . . . . . . . . . . . 8
      7.3.  Informative References  . . . . . . . . . . . . . . . . . . 9
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . . . 9
+
 
 
 
@@ -195,27 +195,27 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
 
 3.3.  ABNF grammar
 
-   ABNF:
+   Formal grammar as defined in ABNF [RFC2234]
 
-   answer          = elements
-   elements        = * ( element CR)
-   element         = "{" keyvallist "}"
-   keyvallist      = JSONobject
-   JSONobject      = [ member *( value-separator member ) ]
-   member          = string name-separator value
-   name-separator  = ws %x3A ws  ; : colon
-   value           = value ; as defined in the JSON RFC
+   answer          = entries
+   entries         = * ( entry CR)
+   entry           = "{" keyvallist "}"
+   keyvallist      = [ member *( value-separator member ) ]
+   member          = field name-separator value
+   name-separator  = ws %x3A ws            ; : colon
+   value           = value                 ; as defined in the JSON RFC
+   field           = "rrame" | "rrtype" | "rdata" | "time_first" |
+                     "time_last" | "count" | "bailiwick" | "sensor_id" |
+                     "zone_time_first" | "zone_time_last" | futureField
+   futureField     = string
    CR              = %x0D
 
    Note that value is defined in JSON [RFC4627] and has the exact same
-   specification as there.
+   specification as there.  The same goes for the definition of string.
 
 3.4.  Mandatory Fields
 
    Implementation MUST support all the mandatory fields.
-
-
-
 
 
 
@@ -225,18 +225,18 @@ Dulaunoy, et al.          Expires June 28, 2014                 [Page 4]
 Internet-Draft     Passive DNS - Common Output Format      December 2013
 
 
-3.4.1.  General remarks on mandatory fields
-
    Uniqueness property: the tuple (rrname,rrtype,rdata) will always be
    unique within one answer per server.  While rrname and rrtype are
    always individual JSON primitive types (strings, numbers, booleans or
-   null), rdata MAY be an array as defined in JSON [RFC4627]
+   null), rdata MAY be an array as defined in JSON [RFC4627].
+   Implementors of this draft MUST be able to deal with rdata being
+   returned as JSON array or alternatively as a JSON string.
 
-3.4.2.  rrname
+3.4.1.  rrname
 
    This field returns the name of the queried resource.
 
-3.4.3.  rrtype
+3.4.2.  rrtype
 
    This field returns the resource record type as seen by the passive
    DNS.  The key is rrtype and the value is in the interpreted record
@@ -251,7 +251,7 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    addition, a client MUST be able to handle a decimal value (as
    mentioned above) as answer.
 
-3.4.4.  rdata
+3.4.3.  rdata
 
    This field returns the data of the queried resource.  In general,
    this is to be interpreted as string.  Depending on the rtype, this
@@ -262,14 +262,14 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    unknown DNS resource records, the server must follow the transparency
    principle as described in RFC 3597 [RFC3597].
 
-3.4.5.  time_first
+3.4.4.  time_first
 
    This field returns the first time that the record / unique tuple
    (rrname, rrtype, rdata) has been seen by the passive DNS.  The date
    is expressed in seconds (decimal ASCII) since 1st of January 1970
    (Unix timestamp).  The time zone MUST be UTC.
 
-3.4.6.  time_last
+3.4.5.  time_last
 
    This field returns the last time that the unique tuple (rrname,
    rrtype, rdata) record has been seen by the passive DNS.  The date is
@@ -298,7 +298,7 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    other type fields has been seen in the given time interval (between
    time_last and time_first).  Decimal number.
 
-3.5.2.  Bailiwick
+3.5.2.  bailiwick
 
    The bailiwick is the best estimate of the apex of the zone where this
    data is authoritative.  String.
@@ -376,14 +376,14 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119, March 1997.
 
+   [RFC2234]  Crocker, D., Ed. and P. Overell, "Augmented BNF for Syntax
+              Specifications: ABNF", RFC 2234, November 1997.
+
    [RFC3597]  Gustafsson, A., "Handling of Unknown DNS Resource Record
               (RR) Types", RFC 3597, September 2003.
 
    [RFC3912]  Daigle, L., "WHOIS Protocol Specification", RFC 3912,
               September 2004.
-
-   [RFC4627]  Crockford, D., "The application/json Media Type for
-              JavaScript Object Notation (JSON)", RFC 4627, July 2006.
 
 
 
@@ -392,6 +392,9 @@ Dulaunoy, et al.          Expires June 28, 2014                 [Page 7]
 
 Internet-Draft     Passive DNS - Common Output Format      December 2013
 
+
+   [RFC4627]  Crockford, D., "The application/json Media Type for
+              JavaScript Object Notation (JSON)", RFC 4627, July 2006.
 
    [RFC5001]  Austein, R., "DNS Name Server Identifier (NSID) Option",
               RFC 5001, August 2007.
@@ -437,9 +440,6 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    [WEINERPDNS]
               "Passive DNS Replication", 2005, <http://www.enyo.de/fw/
               software/dnslogger/first2005-paper.pdf>.
-
-
-
 
 
 
