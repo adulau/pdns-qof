@@ -1,24 +1,29 @@
-https://dnsdb-api.isc.org
+old: https://dnsdb-api.isc.org
+new: https://api.dnsdb.info
 
-keep output format and query format separated in two different documents
-we should not specify which rtypes MUST be supported. It is only an output format spec
- rrtype should be mnemonic that is supported by IANA
- rfc 3597 unknown record type -> reference this rfc for arbitrary rrtypes
- same as for RDATA (if it can not format it correctly, it should be formated as in rfc3597
+[X] keep output format and query format separated in two different documents
+[X] we should not specify which rtypes MUST be supported. It is only an output format spec
+[X] rrtype should be mnemonic that is supported by IANA
+[X] rfc 3597 unknown record type -> reference this rfc for arbitrary rrtypes
+[X] same as for RDATA (if it can not format it correctly, it should be formated as in rfc3597
 
-optional: x-more-data-coming: 50   (for Cisco)
+[x] optional: x-more-data-coming: 50   (for Cisco) --> nope... Cisco has a different (pre-recursor ) system. Not part of this draft.
 
 
-we define the record format, any extensions should be specified in an RFC describing how the protocol works
---> specify the control packets in a separate RFC
---> Paul will ask Robert.
+[ ] we define the record format, any extensions should be specified in an RFC describing how the protocol works
+[ ] --> specify the control packets in a separate RFC
+[ ] --> Paul will ask Robert.
+
+Discussion about Cisco's "more data coming" extension:
 fearful of breaking existing programs by adding a bookend
 Idea: if you can add &show_progress=1 to ReST GET request, then we can add the fields
 If a given implementation supports bookends, progress bars, then these have to be optional and they should be signalled via HTTP GET &parameter
 
 Extension to the record format must be x-* (for exaple x-query-id)
+--> we decided against that because of http://tools.ietf.org/search/rfc6648
+Instead we created a registry in the github wiki
 
-Samples are OK! But move them to a separate section!
+[ ] Samples are OK! But move them to a separate section!
 
 
 
@@ -35,7 +40,7 @@ virustotal (?) -> later
 
 
 submission:
-  the dns-op still exists! So pdns-qof should be submitted to dns-op
+[ ]  the dns-op still exists! So pdns-qof should be submitted to dns-op
 
 
 
