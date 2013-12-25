@@ -2,6 +2,7 @@
 TODO
 =====
 
+  * get an updated address of Henry 
   * formal grammar (ABNF) for the output format
   * create query API RFC
   * move samples to a separate section
