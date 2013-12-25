@@ -136,7 +136,7 @@
 
   <middle>
     <section title="Introduction">
-     <t>Passive DNS is a technique described by Florian Weimer in 2005 in Passive DNS replication, F Weimer - 17th Annual FIRST Conference on Computer Security. Since then multiple Passive DNS implementations evolved over time. Users of these Passive DNS servers query a server (often via <xref target="RFC3912">WHOIS</xref> or HTTP <xref target="REST">REST</xref>), parse the results and process them in other applications.</t>
+     <t>Passive DNS is a technique described by Florian Weimer in 2005 in <xref target="WEINERPDNS">Passive DNS replication, F Weimer - 17th Annual FIRST Conference on Computer Security</xref>. Since then multiple Passive DNS implementations evolved over time. Users of these Passive DNS servers query a server (often via <xref target="RFC3912">WHOIS</xref> or HTTP <xref target="REST">REST</xref>), parse the results and process them in other applications.</t>
      <t>
     There are multiple implementation of Passive DNS software. Users of passive DNS query each implementation and aggregate the results for their search. This document describes the output format of three Passive DNS Systems (<xref target="DNSDB"/>,<xref target="PDNSCERTAT"/> and <xref target="PDNSCIRCL"/>) which are in use today and which already share a nearly identical output format.
 
@@ -275,6 +275,13 @@ The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</
       &RFC3597;
     </references>
     <references>
+         <reference anchor="WEINERPDNS" target="http://www.enyo.de/fw/software/dnslogger/first2005-paper.pdf">
+          <front>
+            <title>Passive DNS Replication</title>
+            <author fullname="Florian Weimer"/>
+            <date year="2005"/>
+          </front>
+        </reference>
         <reference anchor="CACHEPOISONING" target="http://kurser.lobner.dk/dDist/DMK_BO2K8.pdf">
           <front>
             <title>Black ops 2008: It&#8217;s the end of the cache as we know it.</title>
@@ -330,17 +337,12 @@ The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</
     <references title="Informative References">
       <!-- Here we use entities that we defined at the beginning. -->
 
-      &RFC2629;
 
       &RFC3552;
-
-      &RFC3912;
 
       &I-D.narten-iana-considerations-rfc2434bis;
 
     </references>
 
-    <section anchor="app-additional" title="Appendix">
-    </section>
   </back>
 </rfc>
