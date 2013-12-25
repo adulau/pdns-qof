@@ -1,7 +1,12 @@
 
 
 
+<<<<<<< HEAD
 Internet Engineering Task Force                              A. Dulaunoy
+=======
+
+Internet Engineering Task Force                                 Dulaunoy
+>>>>>>> 73452f098972e1de078bcb34facde9bdaf3ce686
 Internet-Draft                                                     CIRCL
 Intended status: Informational                                 A. Kaplan
 Expires: June 28, 2014                                           CERT.at
@@ -24,7 +29,7 @@ Abstract
    queries, users of multiple Passive DNS servers will be able to
    combine result sets easily.
 
-Status of this Memo
+Status of This Memo
 
    This Internet-Draft is submitted in full conformance with the
    provisions of BCP 78 and BCP 79.
@@ -64,9 +69,9 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    the Trust Legal Provisions and are provided without warranty as
    described in the Simplified BSD License.
 
-
 Table of Contents
 
+<<<<<<< HEAD
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . . . 3
      1.1.  Requirements Language . . . . . . . . . . . . . . . . . . . 3
    2.  Limitation  . . . . . . . . . . . . . . . . . . . . . . . . . . 3
@@ -112,6 +117,35 @@ Dulaunoy, et al.          Expires June 28, 2014                 [Page 2]
 
 Internet-Draft     Passive DNS - Common Output Format      December 2013
 
+=======
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+     1.1.  Requirements Language . . . . . . . . . . . . . . . . . .   3
+   2.  Limitation  . . . . . . . . . . . . . . . . . . . . . . . . .   3
+   3.  Common Output Format  . . . . . . . . . . . . . . . . . . . .   3
+     3.1.  Overview and Example  . . . . . . . . . . . . . . . . . .   3
+     3.2.  Mandatory Fields  . . . . . . . . . . . . . . . . . . . .   4
+       3.2.1.  rrname  . . . . . . . . . . . . . . . . . . . . . . .   4
+       3.2.2.  rrtype  . . . . . . . . . . . . . . . . . . . . . . .   4
+       3.2.3.  rdata . . . . . . . . . . . . . . . . . . . . . . . .   4
+       3.2.4.  time_first  . . . . . . . . . . . . . . . . . . . . .   4
+       3.2.5.  time_last . . . . . . . . . . . . . . . . . . . . . .   5
+     3.3.  Optional Fields . . . . . . . . . . . . . . . . . . . . .   5
+       3.3.1.  count . . . . . . . . . . . . . . . . . . . . . . . .   5
+       3.3.2.  bailiwick . . . . . . . . . . . . . . . . . . . . . .   5
+     3.4.  Additional Fields . . . . . . . . . . . . . . . . . . . .   5
+       3.4.1.  sensor_id . . . . . . . . . . . . . . . . . . . . . .   5
+       3.4.2.  zone_time_first . . . . . . . . . . . . . . . . . . .   5
+       3.4.3.  zone_time_last  . . . . . . . . . . . . . . . . . . .   6
+     3.5.  Additional Fields Registry  . . . . . . . . . . . . . . .   6
+   4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   6
+   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   6
+   6.  Security Considerations . . . . . . . . . . . . . . . . . . .   6
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   6
+     7.1.  Normative References  . . . . . . . . . . . . . . . . . .   6
+     7.2.  References  . . . . . . . . . . . . . . . . . . . . . . .   7
+     7.3.  Informative References  . . . . . . . . . . . . . . . . .   8
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   8
+>>>>>>> 73452f098972e1de078bcb34facde9bdaf3ce686
 
 1.  Introduction
 
@@ -127,6 +161,14 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    their search.  This document describes the output format of four
    Passive DNS Systems ([DNSDB],[PDNSCERTAT], [PDNSCIRCL] and [PDNSCOF])
    which are in use today and which already share a nearly identical
+
+
+
+Dulaunoy, et al.          Expires June 28, 2014                 [Page 2]
+
+Internet-Draft     Passive DNS - Common Output Format      December 2013
+
+
    output format.  As the format and the meaning of output fields from
    each Passive DNS need to be consistent, we propose in this document a
    solution to commonly name each field along with their corresponding
@@ -136,7 +178,7 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    different servers without having to have a separate parser for each
    individual server. passivedns-client [PDNSCLIENT]currently implements
    multiple parsers due to a lack of standardization.  The document does
-   not describe the protocol (e.g.  WHOIS [RFC3912], HTTP REST [REST])
+   not describe the protocol (e.g. WHOIS [RFC3912], HTTP REST [REST])
    nor the query format used to query the Passive DNS.  Neither does
    this document describe "pre-recursor" Passive DNS Systems.  Both of
    these are separate topics and deserve their own RFC document.
@@ -146,7 +188,6 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
    document are to be interpreted as described in RFC 2119 [RFC2119].
-
 
 2.  Limitation
 
@@ -161,14 +202,6 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    they assume that answers must be identical across multiple Passive
    DNS Servers.
 
-
-
-
-Dulaunoy, et al.          Expires June 28, 2014                 [Page 3]
-
-Internet-Draft     Passive DNS - Common Output Format      December 2013
-
-
 3.  Common Output Format
 
    The formatting of the answer follows the JSON [RFC4627] format.  The
@@ -182,6 +215,15 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    scripts.  Every implementation MUST support the JSON output format.
 
    A sample output using the JSON format:
+
+
+
+
+
+Dulaunoy, et al.          Expires June 28, 2014                 [Page 3]
+
+Internet-Draft     Passive DNS - Common Output Format      December 2013
+
 
    ... (list of )...
    { "count": 97167,
@@ -217,14 +259,6 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    addition, a client MUST be able to handle a decimal value (as
    mentioned above) as answer.
 
-
-
-
-Dulaunoy, et al.          Expires June 28, 2014                 [Page 4]
-
-Internet-Draft     Passive DNS - Common Output Format      December 2013
-
-
 3.2.3.  rdata
 
    This field returns the data of the queried resource.  In general,
@@ -237,6 +271,15 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    principle as described in RFC 3597 [RFC3597].
 
 3.2.4.  time_first
+
+
+
+
+
+Dulaunoy, et al.          Expires June 28, 2014                 [Page 4]
+
+Internet-Draft     Passive DNS - Common Output Format      December 2013
+
 
    This field returns the first time that the record / unique tuple
    (rrname, rrtype, rdata) has been seen by the passive DNS.  The date
@@ -273,14 +316,6 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
 
    Implementations MAY support the following fields:
 
-
-
-
-Dulaunoy, et al.          Expires June 28, 2014                 [Page 5]
-
-Internet-Draft     Passive DNS - Common Output Format      December 2013
-
-
 3.4.1.  sensor_id
 
    This field returns the sensor information where the record was seen.
@@ -294,6 +329,14 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    is expressed in seconds (decimal ascii) since 1st of January 1970
    (unix timestamp).  The time zone MUST be UTC.
 
+
+
+
+Dulaunoy, et al.          Expires June 28, 2014                 [Page 5]
+
+Internet-Draft     Passive DNS - Common Output Format      December 2013
+
+
 3.4.3.  zone_time_last
 
    This field returns the last time that the unique tuple (rrname,
@@ -305,19 +348,16 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
 
    In accordance with [RFC6648], designers of new passive DNS
    applications that would need additional fields can request and
-   register new field name at
-   https://github.com/adulau/pdns-qof/wiki/Additional-Fields.
-
+   register new field name at https://github.com/adulau/pdns-qof/wiki/
+   Additional-Fields.
 
 4.  Acknowledgements
 
    Thanks to the Passive DNS developers who contributed to the document.
 
-
 5.  IANA Considerations
 
    This memo includes no request to IANA.
-
 
 6.  Security Considerations
 
@@ -326,16 +366,7 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    querying multiple Passive DNS and aggregating the data, the
    sensitivity of the data must be considered.
 
-
 7.  References
-
-
-
-
-Dulaunoy, et al.          Expires June 28, 2014                 [Page 6]
-
-Internet-Draft     Passive DNS - Common Output Format      December 2013
-
 
 7.1.  Normative References
 
@@ -353,6 +384,14 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
 
    [RFC3912]  Daigle, L., "WHOIS Protocol Specification", RFC 3912,
               September 2004.
+
+
+
+
+Dulaunoy, et al.          Expires June 28, 2014                 [Page 6]
+
+Internet-Draft     Passive DNS - Common Output Format      December 2013
+
 
    [RFC4627]  Crockford, D., "The application/json Media Type for
               JavaScript Object Notation (JSON)", RFC 4627, July 2006.
@@ -379,11 +418,28 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
 
    [PDNSCERTAT]
               "pDNS presentation at 4th Centr R&D workshop Frankfurt Jun
-              5th 2012", 2012, <http://www.centr.org/system/files/
-              agenda/attachment/rd4-papst-passive_dns.pdf>.
+              5th 2012", 2012, <http://www.centr.org/system/files/agenda
+              /attachment/rd4-papst-passive_dns.pdf>.
 
    [PDNSCIRCL]
               "CIRCL Passive DNS", 2012, <http://pdns.circl.lu/>.
+
+   [PDNSCLIENT]
+              "Queries 5 major Passive DNS databases: BFK, CERTEE,
+              DNSParse, ISC, and VirusTotal.", 2013, <https://github.com
+              /chrislee35/passivedns-client>.
+
+   [PDNSCOF]  "Passive DNS server interface using the common output
+              format", 2013, <https://github.com/adulau/pdns-qof-server/
+              >.
+
+   [REST]     "Representational State Transfer (REST)", 2000,
+              <http://www.ics.uci.edu/~fielding/pubs/dissertation/
+              rest_arch_style.htm>.
+
+   [WEINERPDNS]
+              "Passive DNS Replication", 2005, <http://www.enyo.de/fw/
+              software/dnslogger/first2005-paper.pdf>.
 
 
 
@@ -393,42 +449,24 @@ Dulaunoy, et al.          Expires June 28, 2014                 [Page 7]
 Internet-Draft     Passive DNS - Common Output Format      December 2013
 
 
-   [PDNSCLIENT]
-              "Queries 5 major Passive DNS databases: BFK, CERTEE,
-              DNSParse, ISC, and VirusTotal.", 2013,
-              <https://github.com/chrislee35/passivedns-client>.
-
-   [PDNSCOF]  "Passive DNS server interface using the common output
-              format", 2013,
-              <https://github.com/adulau/pdns-qof-server/>.
-
-   [REST]     "Representational State Transfer (REST)", 2000, <http://
-              www.ics.uci.edu/~fielding/pubs/dissertation/
-              rest_arch_style.htm>.
-
-   [WEINERPDNS]
-              "Passive DNS Replication", 2005, <http://www.enyo.de/fw/
-              software/dnslogger/first2005-paper.pdf>.
-
 7.3.  Informative References
 
    [I-D.narten-iana-considerations-rfc2434bis]
               Narten, T. and H. Alvestrand, "Guidelines for Writing an
-              IANA Considerations Section in RFCs",
-              draft-narten-iana-considerations-rfc2434bis-09 (work in
-              progress), March 2008.
+              IANA Considerations Section in RFCs", draft-narten-iana-
+              considerations-rfc2434bis-09 (work in progress), March
+              2008.
 
    [RFC3552]  Rescorla, E. and B. Korver, "Guidelines for Writing RFC
-              Text on Security Considerations", BCP 72, RFC 3552,
-              July 2003.
-
+              Text on Security Considerations", BCP 72, RFC 3552, July
+              2003.
 
 Authors' Addresses
 
    Alexandre Dulaunoy
    CIRCL
    41, avenue de la gare
-   Luxembourg,   L-1611
+   Luxembourg  L-1611
    LU
 
    Phone: (+352) 247 88444
@@ -436,6 +474,7 @@ Authors' Addresses
    URI:   http://www.circl.lu/
 
 
+<<<<<<< HEAD
 
 
 
@@ -450,9 +489,12 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
 
 
    L. Aaron Kaplan
+=======
+   Leon Aaron Kaplan
+>>>>>>> 73452f098972e1de078bcb34facde9bdaf3ce686
    CERT.at
    Karlsplatz 1/2/9
-   Vienna,   A-1010
+   Vienna  A-1010
    AT
 
    Phone: +43 1 5056416 78
@@ -463,10 +505,21 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
    Paul Vixie
    Farsight Security, Inc.
 
-
-   Phone:
    Email: paul@redbarn.org
    URI:   /
+
+
+
+
+
+
+
+
+
+
+Dulaunoy, et al.          Expires June 28, 2014                 [Page 8]
+
+Internet-Draft     Passive DNS - Common Output Format      December 2013
 
 
    Henry Stern
@@ -500,5 +553,24 @@ Internet-Draft     Passive DNS - Common Output Format      December 2013
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Dulaunoy, et al.          Expires June 28, 2014                 [Page 9]
-
