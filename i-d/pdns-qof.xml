@@ -175,7 +175,7 @@ The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</
 		</section>
 		<section title="Example">
 		<figure><preamble>A sample output using the JSON format:</preamble><artwork><![CDATA[
-... (list of )...  
+... (list of )...
 { "count": 97167,
 "time_first": "1277353744",
 "rrtype": "A", "rrname": "google-public-dns-a.google.com.",
