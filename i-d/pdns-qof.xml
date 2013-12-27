@@ -116,14 +116,14 @@
 		<organization>Farsight Security, Inc.</organization>
 		<address>
 			<postal>
-				<street>1741 Brunswick Street, Suite 500</street>
-				<city>Halifax</city>
-				<region>Nova Scotia</region>
-				<code>B3J 3X8</code>
-				<country>Canada</country>
+			  <street>11400 La Honda Road</street>
+			  <city>Woodside</city>
+			  <region>California</region>
+			  <code>94062</code>
+			  <country>U.S.A.</country>
 			</postal>
-			<phone>+1 408 922 4555</phone>
-			<email>stern@fsi.io</email>
+			<phone>+1 650 542-7836</phone>
+			<email>henry@stern.ca</email>
 			<uri>https://www.farsightsecurity.com/</uri>
 		</address>
 	</author>
