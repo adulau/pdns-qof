@@ -145,11 +145,11 @@
     <section title="Introduction">
      <t>Passive DNS is a technique described by Florian Weimer in 2005 in <xref target="WEINERPDNS">Passive DNS replication, F Weimer - 17th Annual FIRST Conference on Computer Security</xref>. Since then multiple Passive DNS implementations evolved over time. Users of these Passive DNS servers may query a server (often via <xref target="RFC3912">WHOIS</xref> or HTTP <xref target="REST">REST</xref>), parse the results and process them in other applications.</t>
      <t>
-    There are multiple implementations of Passive DNS software. Users of passive DNS query each implementation and aggregate the results for their search. This document describes the output format of four Passive DNS Systems (<xref target="DNSDB"/>,<xref target="PDNSCERTAT"/>, <xref target="PDNSCIRCL"/> and <xref target="PDNSCOF"/>) which are in use today and which already share a nearly identical output format.
+    There are multiple implementations of Passive DNS software. Users of passive DNS query each implementation and aggregate the results for their search. This document describes the output format of four Passive DNS Systems (<xref target="DNSDB"/>, <xref target="PDNSCERTAT"/>, <xref target="PDNSCIRCL"/> and <xref target="PDNSCOF"/>) which are in use today and which already share a nearly identical output format.
 
 	As the format and the meaning of output fields from each Passive DNS need to be consistent, we propose in this document a solution to commonly name each field along with their corresponding interpretation. The format follows a simple key-value structure in <xref target="RFC4627">JSON</xref> format.
 The benefit of having a consistent Passive DNS output format is that multiple client implementations can query different servers without having to have a separate parser for each
-individual server. <xref target="PDNSCLIENT">passivedns-client</xref>currently implements multiple parsers due to a lack of standardization.
+individual server. <xref target="PDNSCLIENT">passivedns-client</xref> currently implements multiple parsers due to a lack of standardization.
 
 The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</xref>, HTTP <xref target="REST">REST</xref>) nor the query format used to query the Passive DNS. Neither does this document describe "pre-recursor" Passive DNS Systems. Both of these are separate topics and deserve their own RFC document.
      </t>
