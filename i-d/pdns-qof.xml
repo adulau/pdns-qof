@@ -143,7 +143,7 @@
 
   <middle>
     <section title="Introduction">
-     <t>Passive DNS is a technique described by Florian Weimer in 2005 in <xref target="WEINERPDNS">Passive DNS replication, F Weimer - 17th Annual FIRST Conference on Computer Security</xref>. Since then multiple Passive DNS implementations evolved over time. Users of these Passive DNS servers may query a server (often via <xref target="RFC3912">WHOIS</xref> or HTTP <xref target="REST">REST</xref>), parse the results and process them in other applications.</t>
+     <t>Passive DNS is a technique described by Florian Weimer in 2005 in <xref target="WEINERPDNS">Passive DNS replication, F Weimer - 17th Annual FIRST Conference on Computer Security</xref>. Since then multiple Passive DNS implementations were created and evolved over time. Users of these Passive DNS servers may query a server (often via <xref target="RFC3912">WHOIS</xref> or HTTP <xref target="REST">REST</xref>), parse the results and process them in other applications.</t>
      <t>
     There are multiple implementations of Passive DNS software. Users of passive DNS query each implementation and aggregate the results for their search. This document describes the output format of four Passive DNS Systems (<xref target="DNSDB"/>, <xref target="PDNSCERTAT"/>, <xref target="PDNSCIRCL"/> and <xref target="PDNSCOF"/>) which are in use today and which already share a nearly identical output format.
 
@@ -163,14 +163,14 @@ The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</
     </section>
 
     <section title="Limitation">
-    <t> As a Passive DNS can include protection mechanisms for their operation, results might be different due to those protection measures.  These mechanisms filter out DNS answers if they fail some criteria. The <xref target="BAILIWICK">bailiwick algorithm</xref> protects the Passive DNS Database from <xref target="CACHEPOISONING">cache poisoning attacks</xref>.
+    <t> As a Passive DNS servers can include protection mechanisms for their operation, results might be different due to those protection measures.  These mechanisms filter out DNS answers if they fail some criteria. The <xref target="BAILIWICK">bailiwick algorithm</xref> protects the Passive DNS Database from <xref target="CACHEPOISONING">cache poisoning attacks</xref>.
 
-        Another limitiation that clients querying the database need to be aware of is that each query simply gets an snapshot-answer of the time of querying. Clients MUST NOT rely on consistent answers. Nor must they assume that answers must be identical across multiple Passive DNS Servers.
+        Another limitation that clients querying the database need to be aware of is that each query simply gets a snapshot-answer of the time of querying. Clients MUST NOT rely on consistent answers. Nor must they assume that answers must be identical across multiple Passive DNS Servers.
     </t>
     </section>
     <section title="Common Output Format">
 		<section title="Overview">
-		<t>The formatting of the answer follows the <xref target="RFC4627">JSON</xref> format. The order of the fields is not significant for the same resource type. That means, the same name tuple plus timing information identifies a unique answer per server.</t>
+		<t>The formatting of the answer follows the <xref target="RFC4627">JSON</xref> format. The order of the fields is not significant for the same resource type. </t>
 		<t>The intent of this output format is to be easily parsable by scripts. Each JSON object is expressed on a single line to be processed by the client line-by-line. Every implementation MUST support the JSON output format.</t> <!-- note: it is "parsable" if you want to be really nit-picking. See: https://en.wiktionary.org/wiki/parsable -->
 		<t><xref target="app-additional">Examples of JSON</xref> output are in the appendix.</t>
         </section>
@@ -217,10 +217,9 @@ CR              = %x0D
 			</section>
 		</section>
 		<section title="Optional Fields">
-			<t>Implementations SHOULD support one or more field.</t>
+			<t>Implementations SHOULD support one or more fields.</t>
 			<section title="count">
-			<t>Specifies how many authoritative DNS answers were received at the Passive DNS Server's collectors with the set of answers (i.e. same data). The number of requests is expressed as a decimal value.</t>
-			<t>Specifies the number of times this particular event denoted by the other type fields has been seen in the given time interval (between time_last and time_first). Decimal number.</t>
+			<t>Specifies how many authoritative DNS answers were received at the Passive DNS Server's collectors with exactly the given set of values as answers (i.e. same data in the answer set - compare with the uniqueness property in "Mandatory Fields"). The number of requests is expressed as a decimal value.</t>
 			</section>
 			<section title="bailiwick">
 				<t>The bailiwick is the best estimate of the apex of the zone where this data is authoritative. String.</t>
@@ -263,9 +262,9 @@ CR              = %x0D
     </section>
 
 	<section anchor="Privacy" title="Privacy Considerations">
-		<t>Passive DNS Servers collect DNS answers from multiple collecting points ("sensors") which are located on the Internet-facing side of DNS recursors. In this process, they intentionally omit the source IP, source port, destination IP and destination port. Furthermore, since multiple sensors feed into a passive DNS server, the resulting data gets mixed together, reducing the likelihood that Passive DNS Servers are able to find out much about the actual person querying the DNS records nor who actually sent the query. In this sense, passive DNS Servers are similar to keeping an archive of all previous phone books - if public DNS records can be compared to phone numbers - as they often are.
+		<t>Passive DNS Servers capture DNS answers from multiple collecting points ("sensors") which are located on the Internet-facing side of DNS recursors ("post-recursor passive DNS"). In this process, they intentionally omit the source IP, source port, destination IP and destination port from the captured packets. Since the data is captured "post-recursor", the timing information (who queries what) is lost, since the recursor will cache the results. Furthermore, since multiple sensors feed into a passive DNS server, the resulting data gets mixed together, reducing the likelihood that Passive DNS Servers are able to find out much about the actual person querying the DNS records nor who actually sent the query. In this sense, passive DNS Servers are similar to keeping an archive of all previous phone books - if public DNS records can be compared to phone numbers - as they often are.
 
-		Nevertheless, the authors encourage Passive DNS implementors to take special care of privacy issues. [draft-bortzmeyer-dnsop-dns-privacy] is an excellent starting point for this.
+		Nevertheless, the authors strongly encourage Passive DNS implementors to take special care of privacy issues. [draft-bortzmeyer-dnsop-dns-privacy] is an excellent starting point for this.
 		Finally, the overall recommendations in <xref target="RFC6973">RFC6973</xref> should be taken into consideration when designing any application which uses Passive DNS data.</t>
 	</section>
     <section anchor="Security" title="Security Considerations">
