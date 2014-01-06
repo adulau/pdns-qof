@@ -382,10 +382,10 @@ CR              = %x0D
 <figure><artwork>
         <![CDATA[
 {"count": "37", "time_first": "1384865833", "rrtype": "A",\
-"rrname": "www.ietf.org", "rrdata": "4.31.198.44",\
+"rrname": "www.ietf.org", "rdata": "4.31.198.44",\
 "time_last": "1388132830"}
 {"count": "102", "time_first": "1298412391", "rrtype": "AAAA",\
-"rrname": "www.ietf.org", "rrdata": "2001:1890:1112:1::20",\
+"rrname": "www.ietf.org", "rdata": "2001:1890:1112:1::20",\
 "time_last": "1302506851"}
         ]]>
 </artwork></figure>
@@ -393,13 +393,13 @@ CR              = %x0D
 <figure><artwork>
         <![CDATA[
 {"count": "4", "time_first": "1298495035", "rrtype": "A",\
-"rrname": "ietf.org", "rrdata": "64.170.98.32",\
+"rrname": "ietf.org", "rdata": "64.170.98.32",\
 "time_last": "1298495035"}
 {"count": "109330", "time_first": "1298398002", "rrtype": "NS",\
-"rrname": "ietf.org", "rrdata": "ns1.yyz1.afilias-nst.info",\
+"rrname": "ietf.org", "rdata": "ns1.yyz1.afilias-nst.info",\
 "time_last": "1388134770"}
 {"count": "9", "time_first": "1317037550", "rrtype": "AAAA",\
-"rrname": "ietf.org", "rrdata": "2001:1890:123a::1:1e",\
+"rrname": "ietf.org", "rdata": "2001:1890:123a::1:1e",\
 "time_last": "1330209752"}
         ]]>
 </artwork></figure>
