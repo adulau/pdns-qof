@@ -227,7 +227,7 @@ CR              = %x0D
 		<section title="Additional Fields">
 			<t>Implementations MAY support the following fields:</t>
 			<section title="sensor_id">
-			<t>This field returns the sensor information where the record was seen. The sensor_id is an opaque byte string as defined by <xref target="RFC5001"> RFC 5001 in section 2.3</xref>.  The sensor_id MUST be escaped as defined in section 2.6 of <xref target="RFC4627">RFC4627</xref>. This field is represented as <xref target="RFC4627">JSON</xref> string.</t>
+			<t>This field returns the sensor information where the record was seen. The sensor_id is an opaque byte string as defined by <xref target="RFC5001"> RFC 5001 in section 2.3</xref>.  The sensor_id MUST be escaped as defined in section 2.6 of <xref target="RFC4627">RFC4627</xref>. This field is represented as a <xref target="RFC4627">JSON</xref> string.</t>
 		    </section>
             <section title="zone_time_first">
             <t>This field returns the first time that the unique tuple (rrname, rrtype, rdata) record has been seen via master file import. The date is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC. This field is represented as a <xref target="RFC4627">JSON</xref> number.</t>
