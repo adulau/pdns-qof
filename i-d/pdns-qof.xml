@@ -198,8 +198,7 @@ CR              = %x0D
 				<t>This field returns the name of the queried resource.</t>
 			</section>
 			<section title="rrtype">
-			 <t>This field returns the resource record type as seen by the passive DNS. The key is rrtype and the value is in the interpreted record type. If the value cannot be interpreted the
-			 decimal value is returned following the principle of transparency as described in <xref target="RFC3597">RFC 3597</xref>.
+			 <t>This field returns the resource record type as seen by the passive DNS. The key is rrtype and the value is in the interpreted record type represented as a <xref target="RFC4627">JSON</xref> string. If the value cannot be interpreted the decimal value is returned following the principle of transparency as described in <xref target="RFC3597">RFC 3597</xref>. Then the decimal value is represented as a <xref target="RFC4627">JSON</xref> number.
 
 			 The resource record type can be any values as described by IANA in the DNS parameters document in the section 'Resource Record (RR) TYPEs' (http://www.iana.org/assignments/dns-parameters).
 			 Currently known and supported textual descriptions of rrtypes are: A, AAAA, CNAME, PTR, SOA, TXT, DNAME, NS, SRV, RP, NAPTR, HINFO, A6.
@@ -219,7 +218,7 @@ CR              = %x0D
 		<section title="Optional Fields">
 			<t>Implementations SHOULD support one or more fields.</t>
 			<section title="count">
-			<t>Specifies how many authoritative DNS answers were received at the Passive DNS Server's collectors with exactly the given set of values as answers (i.e. same data in the answer set - compare with the uniqueness property in "Mandatory Fields"). The number of requests is expressed as a decimal value.</t>
+			<t>Specifies how many authoritative DNS answers were received at the Passive DNS Server's collectors with exactly the given set of values as answers (i.e. same data in the answer set - compare with the uniqueness property in "Mandatory Fields"). The number of requests is expressed as a decimal value. This field is represented as a <xref target="RFC4627">JSON</xref> number.</t>
 			</section>
 			<section title="bailiwick">
 				<t>The bailiwick is the best estimate of the apex of the zone where this data is authoritative.</t>
@@ -231,10 +230,10 @@ CR              = %x0D
 			<t>This field returns the sensor information where the record was seen. The sensor_id is an opaque byte string as defined by <xref target="RFC5001"> RFC 5001 in section 2.3</xref>.</t>
 		    </section>
             <section title="zone_time_first">
-            <t>This field returns the first time that the unique tuple (rrname, rrtype, rdata) record has been seen via master file import. The date is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC.</t>
+            <t>This field returns the first time that the unique tuple (rrname, rrtype, rdata) record has been seen via master file import. The date is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC. This field is represented as a <xref target="RFC4627">JSON</xref> number.</t>
             </section>
             <section title="zone_time_last">
-            <t>This field returns the last time that the unique tuple (rrname, rrtype, rdata) record has been seen via master file import. The date is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC.</t>
+            <t>This field returns the last time that the unique tuple (rrname, rrtype, rdata) record has been seen via master file import. The date is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC. This field is represented as a <xref target="RFC4627">JSON</xref> number.</t>
             </section>
               </section>
         <section title="Additional Fields Registry">
