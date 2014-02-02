@@ -203,7 +203,7 @@ CR              = %x0D
 
 			 The resource record type can be any values as described by IANA in the DNS parameters document in the section 'DNS Label types' (http://www.iana.org/assignments/dns-parameters).
 			 Currently known and supported textual descriptions of rrtypes are: A, AAAA, CNAME, PTR, SOA, TXT, DNAME, NS, SRV, RP, NAPTR, HINFO, A6.
-			 A client MUST be able to understand these textual rrtype values. In addition, a client MUST be able to handle a decimal value (as mentioned above) as answer.
+			 A client MUST be able to understand these textual rrtype values represented as a JSON string. In addition, a client MUST be able to handle a decimal value (as mentioned above) as answer represented as a JSON number.
 			</t>
 			</section>
 			<section title="rdata">
