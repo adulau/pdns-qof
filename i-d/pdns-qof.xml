@@ -193,7 +193,7 @@ CR              = %x0D
 		</section>
 		<section title="Mandatory Fields">
 			<t>Implementation MUST support all the mandatory fields.</t>
-			<t>Uniqueness property: the tuple (rrname,rrtype,rdata) will always be unique within one answer per server. While rrname and rrtype are always individual JSON primitive types (strings, numbers, booleans or null), rdata MAY be an array as defined in <xref target="RFC4627">JSON</xref>. Implementors of this draft MUST be able to deal with rdata being returned as JSON array or alternatively as a JSON string. <!-- MOTE: this is not good --></t>
+			<t>Uniqueness property: the tuple (rrname,rrtype,rdata) will always be unique within one answer per server. While rrname and rrtype are always individual JSON primitive types (strings, numbers, booleans or null), rdata MAY return multiple resource records or a single record. When multiple resource records are returned, rdata MUST be a JSON array. In the case of a single resource record is returned, rdata MUST be a JSON string.</t>
 			<section title="rrname">
 				<t>This field returns the name of the queried resource.</t>
 			</section>
