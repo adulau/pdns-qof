@@ -377,28 +377,29 @@ CR              = %x0D
       <!-- &I-D.draft-bortzmeyer-dnsop-dns-privacy; -->
     </references>
   <section anchor="app-additional" title="Examples">
+<t>The JSON output are represented on multiple lines for readability but each JSON object should on a single line.</t>
 <t>If you query a passive DNS for the rrname www.ietf.org, the passive dns common output format can be:</t>
 <figure><artwork>
         <![CDATA[
-{"count": 102, "time_first": 1298412391, "rrtype": "AAAA",\
-"rrname": "www.ietf.org", "rdata": "2001:1890:1112:1::20",\
+{"count": 102, "time_first": 1298412391, "rrtype": "AAAA",
+"rrname": "www.ietf.org", "rdata": "2001:1890:1112:1::20",
 "time_last": 1302506851}
-{"count": 59, "time_first": 1384865833, "rrtype": "A",\
-"rrname": "www.ietf.org", "rdata": "4.31.198.44",\
+{"count": 59, "time_first": 1384865833, "rrtype": "A",
+"rrname": "www.ietf.org", "rdata": "4.31.198.44",
 "time_last": 1389022219}
         ]]>
 </artwork></figure>
 <t>If you query a passive DNS for the rrname ietf.org, the passive dns common output format can be:</t>
 <figure><artwork>
         <![CDATA[
-{"count": 109877, "time_first": 1298398002, "rrtype": "NS",\
-"rrname": "ietf.org", "rdata": "ns1.yyz1.afilias-nst.info",\
+{"count": 109877, "time_first": 1298398002, "rrtype": "NS",
+"rrname": "ietf.org", "rdata": "ns1.yyz1.afilias-nst.info",
 "time_last": 1389095375}
-{"count": 4, "time_first": 1298495035, "rrtype": "A",\
-"rrname": "ietf.org", "rdata": "64.170.98.32",\
+{"count": 4, "time_first": 1298495035, "rrtype": "A",
+"rrname": "ietf.org", "rdata": "64.170.98.32",
 "time_last": 1298495035}
-{"count": 9, "time_first": 1317037550, "rrtype": "AAAA",\
-"rrname": "ietf.org", "rdata": "2001:1890:123a::1:1e",\
+{"count": 9, "time_first": 1317037550, "rrtype": "AAAA",
+"rrname": "ietf.org", "rdata": "2001:1890:123a::1:1e",
 "time_last": 1330209752}
         ]]>
 </artwork></figure>
