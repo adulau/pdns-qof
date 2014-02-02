@@ -210,10 +210,10 @@ CR              = %x0D
 				<t>This field returns the resource records of the queried resource. When multiple resource records are returned, rdata MUST be a JSON array. In the case of a single resource record is returned, rdata MUST be a JSON string. Each resource record is represented as a <xref target="RFC4627">JSON string</xref>. Depending on the rrtype, this can be an IPv4 or IPv6 address, a domain name (as in the case of CNAMEs), an SPF record, etc.  A client MUST be able to interpret any value which is legal as the right hand side in a DNS master file  <xref target="RFC1035">RFC 1035</xref> and <xref target="RFC1034">RFC 1034</xref>. If the rdata came from an unknown DNS resource records, the server must follow the transparency principle as described in <xref target="RFC3597">RFC 3597</xref>.</t>
 			</section>
 			<section title="time_first">
-				<t>This field returns the first time that the record / unique tuple (rrname, rrtype, rdata) has been seen by the passive DNS. The date is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC.</t>
+				<t>This field returns the first time that the record / unique tuple (rrname, rrtype, rdata) has been seen by the passive DNS. The date is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC. This field is represented as a <xref target="RFC4627">JSON</xref> number.</t>
 			</section>
 			<section title="time_last">
-			<t>This field returns the last time that the unique tuple (rrname, rrtype, rdata) record has been seen by the passive DNS. The date is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC.</t>
+			<t>This field returns the last time that the unique tuple (rrname, rrtype, rdata) record has been seen by the passive DNS. The date is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC. This field is represented as a <xref target="RFC4627">JSON</xref> number.</t>
 			</section>
 		</section>
 		<section title="Optional Fields">
