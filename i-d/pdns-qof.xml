@@ -170,7 +170,7 @@ The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</
     </section>
     <section title="Common Output Format">
 		<section title="Overview">
-		<t>The formatting of the answer follows the <xref target="RFC4627">JSON</xref> format. The order of the fields is not significant for the same resource type. </t>
+		<t>The formatting of the answer follows the <xref target="RFC4627">JSON</xref> format. In fact, it is a subset of the full JSON language. Notable differences are the modified definition of whitespace ("ws"). The order of the fields is not significant for the same resource type. </t>
 		<t>The intent of this output format is to be easily parsable by scripts. Each JSON object is expressed on a single line to be processed by the client line-by-line. Every implementation MUST support the JSON output format.</t> <!-- note: it is "parsable" if you want to be really nit-picking. See: https://en.wiktionary.org/wiki/parsable -->
 		<t><xref target="app-additional">Examples of JSON</xref> output are in the appendix.</t>
         </section>
@@ -180,14 +180,21 @@ answer          = entries
 entries         = * ( entry CR)
 entry           = "{" keyvallist "}" 
 keyvallist      = [ member *( value-separator member ) ]
-member          = field name-separator value
-name-separator  = ws %x3A ws            ; : colon
+member          = qm field qm name-separator value
+name-separator  = ws %x3A ws            ; a ":" colon
 value           = value                 ; as defined in the JSON RFC
+value-separator = ws %x2C ws            ; , comma. As defined in JSON
 field           = "rrname" | "rrtype" | "rdata" | "time_first" | 
                   "time_last" | "count" | "bailiwick" | "sensor_id" |
                   "zone_time_first" | "zone_time_last" | futureField 
 futureField     = string
 CR              = %x0D
+qm              = %x22                  ; " a quotation mark
+ws              = *(
+                    %x20 |              ; Space
+                    %x09                ; Horizontal tab
+                   )
+
 					]]></artwork></figure>
 			<t>Note that value is defined in <xref target="RFC4627">JSON</xref> and has the exact same specification as there. The same goes for the definition of string.</t>
 		</section>
@@ -403,6 +410,7 @@ CR              = %x0D
 "time_last": 1330209752}
         ]]>
 </artwork></figure>
+	<t>Please note that in the examples above, any backslashes "\" can be ignored and are an artefact of the tools which produced this document.</t>
           </section>
 
   </back>
