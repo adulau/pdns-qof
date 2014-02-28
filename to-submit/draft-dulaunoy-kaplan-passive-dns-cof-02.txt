@@ -5,11 +5,11 @@
 Internet Engineering Task Force                              A. Dulaunoy
 Internet-Draft                                                     CIRCL
 Intended status: Informational                                 A. Kaplan
-Expires: August 31, 2014                                         CERT.at
+Expires: September 1, 2014                                       CERT.at
                                                                 P. Vixie
                                                                 H. Stern
                                                  Farsight Security, Inc.
-                                                       February 27, 2014
+                                                       February 28, 2014
 
 
                    Passive DNS - Common Output Format
@@ -39,7 +39,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on August 31, 2014.
+   This Internet-Draft will expire on September 1, 2014.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Dulaunoy, et al.         Expires August 31, 2014                [Page 1]
+Dulaunoy, et al.        Expires September 1, 2014               [Page 1]
 
 Internet-Draft     Passive DNS - Common Output Format      February 2014
 
@@ -84,12 +84,12 @@ Table of Contents
      3.5.  Additional Fields . . . . . . . . . . . . . . . . . . . .   6
        3.5.1.  sensor_id . . . . . . . . . . . . . . . . . . . . . .   6
        3.5.2.  zone_time_first . . . . . . . . . . . . . . . . . . .   6
-       3.5.3.  zone_time_last  . . . . . . . . . . . . . . . . . . .   6
+       3.5.3.  zone_time_last  . . . . . . . . . . . . . . . . . . .   7
      3.6.  Additional Fields Registry  . . . . . . . . . . . . . . .   7
    4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   7
    5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   7
    6.  Privacy Considerations  . . . . . . . . . . . . . . . . . . .   7
-   7.  Security Considerations . . . . . . . . . . . . . . . . . . .   8
+   7.  Security Considerations . . . . . . . . . . . . . . . . . . .   7
    8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   8
      8.1.  Normative References  . . . . . . . . . . . . . . . . . .   8
      8.2.  References  . . . . . . . . . . . . . . . . . . . . . . .   8
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Dulaunoy, et al.         Expires August 31, 2014                [Page 2]
+Dulaunoy, et al.        Expires September 1, 2014               [Page 2]
 
 Internet-Draft     Passive DNS - Common Output Format      February 2014
 
@@ -165,7 +165,7 @@ Internet-Draft     Passive DNS - Common Output Format      February 2014
 
 
 
-Dulaunoy, et al.         Expires August 31, 2014                [Page 3]
+Dulaunoy, et al.        Expires September 1, 2014               [Page 3]
 
 Internet-Draft     Passive DNS - Common Output Format      February 2014
 
@@ -221,7 +221,7 @@ Internet-Draft     Passive DNS - Common Output Format      February 2014
 
 
 
-Dulaunoy, et al.         Expires August 31, 2014                [Page 4]
+Dulaunoy, et al.        Expires September 1, 2014               [Page 4]
 
 Internet-Draft     Passive DNS - Common Output Format      February 2014
 
@@ -277,7 +277,7 @@ Internet-Draft     Passive DNS - Common Output Format      February 2014
 
 
 
-Dulaunoy, et al.         Expires August 31, 2014                [Page 5]
+Dulaunoy, et al.        Expires September 1, 2014               [Page 5]
 
 Internet-Draft     Passive DNS - Common Output Format      February 2014
 
@@ -315,10 +315,7 @@ Internet-Draft     Passive DNS - Common Output Format      February 2014
 3.5.1.  sensor_id
 
    This field returns the sensor information where the record was seen.
-   The sensor_id is an opaque byte string as defined by RFC 5001 in
-   section 2.3 [RFC5001].  The sensor_id MUST be escaped as defined in
-   section 2.6 of RFC4627 [RFC4627].  This field is represented as a
-   JSON [RFC4627] string.
+   It is represented as a JSON [RFC4627] string.
 
 3.5.2.  zone_time_first
 
@@ -328,15 +325,20 @@ Internet-Draft     Passive DNS - Common Output Format      February 2014
    timestamp).  The time zone MUST be UTC.  This field is represented as
    a JSON [RFC4627] number.
 
-3.5.3.  zone_time_last
 
 
 
 
-Dulaunoy, et al.         Expires August 31, 2014                [Page 6]
+
+
+
+
+Dulaunoy, et al.        Expires September 1, 2014               [Page 6]
 
 Internet-Draft     Passive DNS - Common Output Format      February 2014
 
+
+3.5.3.  zone_time_last
 
    This field returns the last time that the unique tuple (rrname,
    rrtype, rdata) record has been seen via master file import.  The date
@@ -376,25 +378,21 @@ Internet-Draft     Passive DNS - Common Output Format      February 2014
    phone books - if public DNS records can be compared to phone numbers
    - as they often are.  Nevertheless, the authors strongly encourage
    Passive DNS implementors to take special care of privacy issues.
-   [draft-bortzmeyer-dnsop-dns-privacy] is an excellent starting point
-   for this.  Finally, the overall recommendations in RFC6973 [RFC6973]
-   should be taken into consideration when designing any application
-   which uses Passive DNS data.
+   bortzmeyer-dnsop-dns-privacy is an excellent starting point for this.
+   Finally, the overall recommendations in RFC6973 [RFC6973] should be
+   taken into consideration when designing any application which uses
+   Passive DNS data.
+
+7.  Security Considerations
 
 
 
 
 
-
-
-
-
-Dulaunoy, et al.         Expires August 31, 2014                [Page 7]
+Dulaunoy, et al.        Expires September 1, 2014               [Page 7]
 
 Internet-Draft     Passive DNS - Common Output Format      February 2014
 
-
-7.  Security Considerations
 
    In some cases, Passive DNS output might contain confidential
    information and its access might be restricted.  When a user is
@@ -441,18 +439,16 @@ Internet-Draft     Passive DNS - Common Output Format      February 2014
 8.2.  References
 
    [BAILIWICK]
-
-
-
-
-Dulaunoy, et al.         Expires August 31, 2014                [Page 8]
-
-Internet-Draft     Passive DNS - Common Output Format      February 2014
-
-
               "Passive DNS Hardening", 2010, <https://
               archive.farsightsecurity.com/Passive_DNS/
               passive_dns_hardening_handout.pdf>.
+
+
+
+Dulaunoy, et al.        Expires September 1, 2014               [Page 8]
+
+Internet-Draft     Passive DNS - Common Output Format      February 2014
+
 
    [CACHEPOISONING]
               "Black ops 2008: It's the end of the cache as we know
@@ -501,7 +497,11 @@ Internet-Draft     Passive DNS - Common Output Format      February 2014
 
 
 
-Dulaunoy, et al.         Expires August 31, 2014                [Page 9]
+
+
+
+
+Dulaunoy, et al.        Expires September 1, 2014               [Page 9]
 
 Internet-Draft     Passive DNS - Common Output Format      February 2014
 
@@ -557,7 +557,7 @@ Authors' Addresses
 
 
 
-Dulaunoy, et al.         Expires August 31, 2014               [Page 10]
+Dulaunoy, et al.        Expires September 1, 2014              [Page 10]
 
 Internet-Draft     Passive DNS - Common Output Format      February 2014
 
@@ -613,4 +613,4 @@ Internet-Draft     Passive DNS - Common Output Format      February 2014
 
 
 
-Dulaunoy, et al.         Expires August 31, 2014               [Page 11]
+Dulaunoy, et al.        Expires September 1, 2014              [Page 11]
