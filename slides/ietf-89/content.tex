@@ -18,10 +18,10 @@
 \end{frame}
 
 
-\begin{frame}[t]{pre-recursor passive DNS: store-everything-that-you-can approach (Cisco implementation)}
+\begin{frame}[t]{pre-recursor passive DNS: store-everything-that-you-can approach (potential privacy problem)}
 \begin{centering}
   \vbox{}\vfill
-  \includegraphics[scale=0.25]{pre-recursor.png}
+  \includegraphics[scale=0.3]{pre-recursor.png}
   \vfill
 \end{centering}
 \end{frame}
@@ -32,15 +32,17 @@
 \end{itemize}
 \begin{centering}
   \vbox{}\vfill
-  \includegraphics[scale=0.24]{post-recursor.png}
+  \includegraphics[scale=0.3]{post-recursor.png}
   \vfill
 \end{centering}
 \end{frame}
 
-\begin{frame}[t]{Why pDNS? Answer which Questions?}
+\begin{frame}[t]{Why pDNS? Answers which questions?}
 \begin{itemize}
+\item For example:
 \item Historic data: ,,What was the A record for a certain FQDN last year?''
 \item Inverse Lookups: ,,Which domains have A records that are in a given address range?''
+\item Egypt goes offline: ,,Which domains are offline because all their nameservers are in egyptian IP space?''
 \item Generic reseach on bulk DNS data: T. Frosch, T. Holz: ,,Predentifier: Detecting Botnet C\&C Domains From Passive DNS Data''
 \item The first time, we can get a sampled subset of \emph{the DNS} per se. I.e.: what is actually out there?
 \end{itemize}
@@ -50,7 +52,7 @@
 \begin{itemize}
 \item Nowadays Passive DNS servers are created\footnote{To our knowledge, there are more than 15 software implementations} and used worldwide
 \item DNS data is very \emph{localized}. It makes sense to have multiple, local DBs (different legal environments, access rights, restrictions to data,...)
-\item ... but that means we need a way to query multiple DBs.
+\item ... but that means we need a way to \emph{query multiple DBs}.
 \item In 2011, we started to work on a \emph{common output format} for Passive DNS systems at the FIRST annual conference
 \item After discussions with many authors of passive DNS, version 02 of the internet-draft is published
 \end{itemize}
