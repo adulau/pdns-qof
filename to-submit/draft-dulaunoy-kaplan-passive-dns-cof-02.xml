@@ -21,7 +21,7 @@
 
 <!ENTITY I-D.narten-iana-considerations-rfc2434bis SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.narten-iana-considerations-rfc2434bis.xml">
 
-<!-- <!ENTITY I-D.draft-bortzmeyer-dnsop-dns-privacy SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-bortzmeyer-dnsop-dns-privacy"> TO ENABLE when bibxml3 is back to normal -->
+<!-- <!ENTITY I-D.draft-bortzmeyer-dnsop-dns-privacy SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-bortzmeyer-dnsop-dns-privacy"> -->
 
 ]>
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
@@ -270,7 +270,7 @@ ws              = *(
 	<section anchor="Privacy" title="Privacy Considerations">
 		<t>Passive DNS Servers capture DNS answers from multiple collecting points ("sensors") which are located on the Internet-facing side of DNS recursors ("post-recursor passive DNS"). In this process, they intentionally omit the source IP, source port, destination IP and destination port from the captured packets. Since the data is captured "post-recursor", the timing information (who queries what) is lost, since the recursor will cache the results. Furthermore, since multiple sensors feed into a passive DNS server, the resulting data gets mixed together, reducing the likelihood that Passive DNS Servers are able to find out much about the actual person querying the DNS records nor who actually sent the query. In this sense, passive DNS Servers are similar to keeping an archive of all previous phone books - if public DNS records can be compared to phone numbers - as they often are.
 
-		Nevertheless, the authors strongly encourage Passive DNS implementors to take special care of privacy issues. [draft-bortzmeyer-dnsop-dns-privacy] is an excellent starting point for this.
+		Nevertheless, the authors strongly encourage Passive DNS implementors to take special care of privacy issues. bortzmeyer-dnsop-dns-privacy is an excellent starting point for this.
 		Finally, the overall recommendations in <xref target="RFC6973">RFC6973</xref> should be taken into consideration when designing any application which uses Passive DNS data.</t>
 	</section>
     <section anchor="Security" title="Security Considerations">
