@@ -37,7 +37,16 @@
 \end{centering}
 \end{frame}
 
-\begin{frame}[t]{Motivation}
+\begin{frame}[t]{Why pDNS? Answer which Questions?}
+\begin{itemize}
+\item Historic data: ,,What was the A record for a certain FQDN last year?''
+\item Inverse Lookups: ,,Which domains have A records that are in a given address range?''
+\item Generic reseach on bulk DNS data: T. Frosch, T. Holz: ,,Predentifier: Detecting Botnet C\&C Domains From Passive DNS Data''
+\item The first time, we can get a sampled subset of \emph{the DNS} per se. I.e.: what is actually out there?
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Motivation for the I-D}
 \begin{itemize}
 \item Nowadays Passive DNS servers are created\footnote{To our knowledge, there are more than 15 software implementations} and used worldwide
 \item DNS data is very \emph{localized}. It makes sense to have multiple, local DBs (different legal environments, access rights, restrictions to data,...)
