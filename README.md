@@ -9,4 +9,3 @@ How to Contribute to the Document
 
 You can make pull request to the xml document. We are looking for comments from passive DNS developers in order to improve the document.
 
-~~
