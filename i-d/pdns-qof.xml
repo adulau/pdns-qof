@@ -363,7 +363,7 @@ ws              = *(
            <date year="2012"/>
           </front>
         </reference>
-        <reference anchor="PDNSCIRCL" target="http://pdns.circl.lu/">
+        <reference anchor="PDNSCIRCL" target="https://www.circl.lu/services/passive-dns/">
           <front>
           <title>CIRCL Passive DNS</title>
           <author fullname="CIRCL -Computer Incident Response Center Luxembourg"/>
