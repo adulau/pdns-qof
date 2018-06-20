@@ -151,7 +151,7 @@
 The benefit of having a consistent Passive DNS output format is that multiple client implementations can query different servers without having to have a separate parser for each
 individual server. <xref target="PDNSCLIENT">passivedns-client</xref> currently implements multiple parsers due to a lack of standardization.
 
-The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</xref>, HTTP <xref target="REST">REST</xref>) nor the query format used to query the Passive DNS. Neither does this document describe "pre-recursor" Passive DNS Systems. Both of these are separate topics and deserve their own RFC document.
+The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</xref>, HTTP <xref target="REST">REST</xref>) nor the query format used to query the Passive DNS. Neither does this document describe "pre-recursor" Passive DNS Systems. Both of these are separate topics and deserve their own RFC document. The document describes the current best practices implemented in various Passive DNS server implementations.
      </t>
 
       <section title="Requirements Language">
@@ -277,7 +277,8 @@ ws              = *(
 		<t>Passive DNS Servers capture DNS answers from multiple collecting points ("sensors") which are located on the Internet-facing side of DNS recursors ("post-recursor passive DNS"). In this process, they intentionally omit the source IP, source port, destination IP and destination port from the captured packets. Since the data is captured "post-recursor", the timing information (who queries what) is lost, since the recursor will cache the results. Furthermore, since multiple sensors feed into a passive DNS server, the resulting data gets mixed together, reducing the likelihood that Passive DNS Servers are able to find out much about the actual person querying the DNS records nor who actually sent the query. In this sense, passive DNS Servers are similar to keeping an archive of all previous phone books - if public DNS records can be compared to phone numbers - as they often are.
 
 		Nevertheless, the authors strongly encourage Passive DNS implementors to take special care of privacy issues. bortzmeyer-dnsop-dns-privacy is an excellent starting point for this.
-		Finally, the overall recommendations in <xref target="RFC6973">RFC6973</xref> should be taken into consideration when designing any application which uses Passive DNS data.</t>
+        Finally, the overall recommendations in <xref target="RFC6973">RFC6973</xref> should be taken into consideration when designing any application which uses Passive DNS data.</t>
+        <t>In the scope of the General Data Protection Regulation (GDPR - Directive 95/46/EC), operators of Passive DNS Server needs to ensure the legal ground and lawfulness of its operation.</t>
 	</section>
     <section anchor="Security" title="Security Considerations">
       <t>In some cases, Passive DNS output might contain confidential information and its access might be restricted. When a user is querying multiple Passive DNS and aggregating the data, the sensitivity of the data must be considered.</t>
