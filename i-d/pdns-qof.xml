@@ -145,7 +145,7 @@
     <section title="Introduction">
      <t>Passive DNS is a technique described by Florian Weimer in 2005 in <xref target="WEIMERPDNS">Passive DNS replication, F Weimer - 17th Annual FIRST Conference on Computer Security</xref>. Since then multiple Passive DNS implementations were created and evolved over time. Users of these Passive DNS servers may query a server (often via <xref target="RFC3912">WHOIS</xref> or HTTP <xref target="REST">REST</xref>), parse the results and process them in other applications.</t>
      <t>
-    There are multiple implementations of Passive DNS software. Users of passive DNS query each implementation and aggregate the results for their search. This document describes the output format of four Passive DNS Systems (<xref target="DNSDB"/>, <xref target="PDNSCERTAT"/>, <xref target="PDNSCIRCL"/> and <xref target="PDNSCOF"/>) which are in use today and which already share a nearly identical output format.
+             There are multiple implementations of Passive DNS software. Users of passive DNS query each implementation and aggregate the results for their search. This document describes the output format of four Passive DNS Systems (<xref target="DNSDB"/>, <xref target="DNSDBQ"/>, <xref target="PDNSCERTAT"/>, <xref target="PDNSCIRCL"/> and <xref target="PDNSCOF"/>) which are in use today and which already share a nearly identical output format.
 
 	As the format and the meaning of output fields from each Passive DNS need to be consistent, we propose in this document a solution to commonly name each field along with their corresponding interpretation. The format follows a simple key-value structure in <xref target="RFC4627">JSON</xref> format.
 The benefit of having a consistent Passive DNS output format is that multiple client implementations can query different servers without having to have a separate parser for each
@@ -372,11 +372,18 @@ ws              = *(
           <date year="2012"/>
           </front>
         </reference>
-        <reference anchor="PDNSCOF" target="https://github.com/adulau/pdns-qof-server/">
+        <reference anchor="PDNSCOF" target="https://github.com/D4-project/analyzer-d4-passivedns/">
           <front>
           <title>Passive DNS server interface using the common output format</title>
-          <author fullname="Alexandre Dulaunoy"/>
+          <author fullname="D4 Project, Alexandre Dulaunoy"/>
           <date year="2013"/>
+          </front>
+        </reference>
+        <reference anchor="DNSDBQ" target="https://github.com/dnsdb/dnsdbq">
+          <front>
+          <title>DNSDB API Client, C Version</title>
+          <author fullname="Paul Vixie"/>
+          <date year="2018"/>
           </front>
         </reference>
     </references>
