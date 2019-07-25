@@ -245,7 +245,7 @@ ws              = *(
             <t>This field returns the last time that the unique tuple (rrname, rrtype, rdata) record has been seen via master file import. The date is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC. This field is represented as a <xref target="RFC4627">JSON</xref> number.</t>
             </section>
             <section title="origin">
-                    <t>Specifies the resource origin of the Passive DNS response. This field is represented as a <xref target="RFC3986">Uniform Resource Identifier</xref> (URI).
+                    <t>Specifies the resource origin of the Passive DNS response. This field is represented as a <xref target="RFC1035">Domain Name</xref> (URI).
             </t>
             </section>
 
