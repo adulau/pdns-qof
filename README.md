@@ -25,3 +25,15 @@ IETF Internet-Draft
 
 - [Version 6 published as Internet-Draft](https://datatracker.ietf.org/doc/draft-dulaunoy-dnsop-passive-dns-cof/) - April 8, 2019
 
+
+Users and Use-cases
+--------------------
+
+  * [CERT.at](https://pdns.cert.at)
+  * [Farsight](https://farsightsecurity.com)
+  * [CIRCL](https://www.circl.lu/services/passive-dns/)
+  * 360CN?
+  * ...
+
+
+
