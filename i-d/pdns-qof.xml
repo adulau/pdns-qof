@@ -245,10 +245,17 @@ ws              = *(
             <t>This field returns the last time that the unique tuple (rrname, rrtype, rdata) record has been seen via master file import. The date is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC. This field is represented as a <xref target="RFC4627">JSON</xref> number.</t>
             </section>
             <section title="origin">
-                    <t>Specifies the resource origin of the Passive DNS response. This field is represented as a <xref target="RFC1035">Domain Name</xref> (DNS).
-            </t>
+                    <t>Specifies the resource origin of the Passive DNS response. This field is represented as a <xref target="RFC3986">Uniform Resource Identifier</xref> (URI).
+                    </t>
             </section>
-
+            <section title="time_first_ms">
+                    <t>Same meaning as the field "time_first", with the only difference, that the resolution is in milliseconds since 1st of January 1970 (UTC).
+                    </t>
+            </section>
+            <section title="time_last_ms">
+                    <t>Same meaning as the field "time_last", with the only difference, that the resolution is in milliseconds since 1st of January 1970 (UTC).
+                    </t>
+            </section>
               </section>
         <section title="Additional Fields Registry">
            <t>In accordance with <xref target="RFC6648"/>, designers of new passive DNS applications that would need additional fields can request and register new field name at https://github.com/adulau/pdns-qof/wiki/Additional-Fields.</t>
