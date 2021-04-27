@@ -81,18 +81,19 @@
 
     <author fullname="L. Aaron Kaplan" initials="A."
             surname="Kaplan">
-      <organization>CERT.at</organization>
+      <organization></organization>
       <address>
         <postal>
-          <street>Karlsplatz 1/2/9</street>
+          <street>
+	  </street>
           <city>Vienna</city>
           <region></region>
-          <code>A-1010</code>
+          <code>A-1170</code>
           <country>Austria</country>
         </postal>
-        <phone>+43 1 5056416 78</phone>
-        <email>kaplan@cert.at</email>
-        <uri>http://www.cert.at/</uri>
+        <phone></phone>
+        <email>aaron@lo-res.org</email>
+        <uri></uri>
       </address>
     </author>
 
