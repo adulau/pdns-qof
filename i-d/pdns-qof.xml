@@ -203,7 +203,7 @@ ws              = *(
 			<t>Implementation MUST support all the mandatory fields.</t>
 			<t>Uniqueness property: the tuple (rrname,rrtype,rdata) will always be unique within one answer per server. While rrname and rrtype are always individual JSON primitive types (strings, numbers, booleans or null), rdata MAY return multiple resource records or a single record. When multiple resource records are returned, rdata MUST be a JSON array. In the case of a single resource record is returned, rdata MUST be a JSON string or a JSON array containing one JSON string.  Senders SHOULD send an array for rdata, but receivers MUST be able to accept a single-string result for rdata.</t>
 			<section title="rrname">
-				<t>This field returns the name of the queried resource.</t>
+				<t>This field returns the name of the queried resource. <xref target="RFC4627">JSON</xref> string.</t>
 			</section>
 			<section title="rrtype">
 			 <t>This field returns the resource record type as seen by the passive DNS. The key is rrtype and the value is in the interpreted record type represented as a <xref target="RFC4627">JSON</xref> string. If the value cannot be interpreted, the decimal value is returned following the principle of transparency as described in <xref target="RFC3597">RFC 3597</xref>. Then the decimal value is represented as a <xref target="RFC4627">JSON</xref> number.
