@@ -50,7 +50,7 @@
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="info" docName="draft-dulaunoy-dnsop-passive-dns-cof-07" ipr="trust200902">
+<rfc category="info" docName="draft-dulaunoy-dnsop-passive-dns-cof-08" ipr="trust200902">
   <!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
      you can add the attributes updates="NNNN" and obsoletes="NNNN"
@@ -261,6 +261,9 @@ ws              = *(
         <section title="Additional Fields Registry">
            <t>In accordance with <xref target="RFC6648"/>, designers of new passive DNS applications that would need additional fields can request and register new field name at https://github.com/adulau/pdns-qof/wiki/Additional-Fields.</t>
         </section>
+		<section title="Additional notes">
+				<t>An implementer of a passive DNS Server MAY chose to either return time_first and time_last OR return zone_time_first and zone_time_last. In pseudocode: (time_first AND time_last) OR (zone_time_first AND zone_time_last). In this case, zone_time_{first,last} replace the time_{first,last} fields. However, this is not encouraged since it might be confusing for parsers who will expect the mandatory fields time_{first,last}. See: <xref target="github_issue_17"/></t>
+        </section>
     </section>
 
 
@@ -393,6 +396,13 @@ ws              = *(
           <title>DNSDB API Client, C Version</title>
           <author fullname="Paul Vixie"/>
           <date year="2018"/>
+          </front>
+        </reference>
+        <reference anchor="github_issue_17" target="https://github.com/adulau/pdns-qof/issues/17">
+          <front>
+		  <title>Discussion on the existing implementations of returning either zone_time{first,last} OR time_{first,last}</title>
+          <author fullname="Paul Vixie, Weizman, April, Kaplan, et.al"/>
+		  <date year="2020"/>
           </front>
         </reference>
     </references>
