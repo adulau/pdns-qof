@@ -50,7 +50,7 @@
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="info" docName="draft-dulaunoy-dnsop-passive-dns-cof-07" ipr="trust200902">
+<rfc category="info" docName="draft-dulaunoy-dnsop-passive-dns-cof-08" ipr="trust200902">
   <!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
      you can add the attributes updates="NNNN" and obsoletes="NNNN"
@@ -81,18 +81,19 @@
 
     <author fullname="L. Aaron Kaplan" initials="A."
             surname="Kaplan">
-      <organization>CERT.at</organization>
+      <organization></organization>
       <address>
         <postal>
-          <street>Karlsplatz 1/2/9</street>
+          <street>
+	  </street>
           <city>Vienna</city>
           <region></region>
-          <code>A-1010</code>
+          <code>A-1170</code>
           <country>Austria</country>
         </postal>
-        <phone>+43 1 5056416 78</phone>
-        <email>kaplan@cert.at</email>
-        <uri>http://www.cert.at/</uri>
+        <phone></phone>
+        <email>aaron@lo-res.org</email>
+        <uri></uri>
       </address>
     </author>
 
@@ -203,7 +204,7 @@ ws              = *(
 			<t>Implementation MUST support all the mandatory fields.</t>
 			<t>Uniqueness property: the tuple (rrname,rrtype,rdata) will always be unique within one answer per server. While rrname and rrtype are always individual JSON primitive types (strings, numbers, booleans or null), rdata MAY return multiple resource records or a single record. When multiple resource records are returned, rdata MUST be a JSON array. In the case of a single resource record is returned, rdata MUST be a JSON string or a JSON array containing one JSON string.  Senders SHOULD send an array for rdata, but receivers MUST be able to accept a single-string result for rdata.</t>
 			<section title="rrname">
-				<t>This field returns the name of the queried resource.</t>
+				<t>This field returns the name of the queried resource. <xref target="RFC4627">JSON</xref> string.</t>
 			</section>
 			<section title="rrtype">
 			 <t>This field returns the resource record type as seen by the passive DNS. The key is rrtype and the value is in the interpreted record type represented as a <xref target="RFC4627">JSON</xref> string. If the value cannot be interpreted, the decimal value is returned following the principle of transparency as described in <xref target="RFC3597">RFC 3597</xref>. Then the decimal value is represented as a <xref target="RFC4627">JSON</xref> number.
@@ -259,6 +260,9 @@ ws              = *(
               </section>
         <section title="Additional Fields Registry">
            <t>In accordance with <xref target="RFC6648"/>, designers of new passive DNS applications that would need additional fields can request and register new field name at https://github.com/adulau/pdns-qof/wiki/Additional-Fields.</t>
+        </section>
+		<section title="Additional notes">
+				<t>An implementer of a passive DNS Server MAY chose to either return time_first and time_last OR return zone_time_first and zone_time_last. In pseudocode: (time_first AND time_last) OR (zone_time_first AND zone_time_last). In this case, zone_time_{first,last} replace the time_{first,last} fields. However, this is not encouraged since it might be confusing for parsers who will expect the mandatory fields time_{first,last}. See: <xref target="github_issue_17"/></t>
         </section>
     </section>
 
@@ -392,6 +396,13 @@ ws              = *(
           <title>DNSDB API Client, C Version</title>
           <author fullname="Paul Vixie"/>
           <date year="2018"/>
+          </front>
+        </reference>
+        <reference anchor="github_issue_17" target="https://github.com/adulau/pdns-qof/issues/17">
+          <front>
+		  <title>Discussion on the existing implementations of returning either zone_time{first,last} OR time_{first,last}</title>
+          <author fullname="Paul Vixie, Weizman, April, Kaplan, et.al"/>
+		  <date year="2020"/>
           </front>
         </reference>
     </references>
