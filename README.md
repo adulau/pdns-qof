@@ -12,8 +12,6 @@ This allows the person issuing the query to combined and/or compare results.
 
 The output format is in JSON.
 
-
-
 How to Contribute to the Document
 ---------------------------------
 
@@ -23,7 +21,7 @@ You can make pull request to the xml document. We are looking for comments from 
 IETF Internet-Draft
 -------------------
 
-- [Version 6 published as Internet-Draft](https://datatracker.ietf.org/doc/draft-dulaunoy-dnsop-passive-dns-cof/) - April 8, 2019
+- [Version 7 published as Internet-Draft](https://datatracker.ietf.org/doc/draft-dulaunoy-dnsop-passive-dns-cof/) - June 25, 2020
 
 
 Users and Use-cases
@@ -32,6 +30,8 @@ Users and Use-cases
   * [CERT.at](https://pdns.cert.at)
   * [Farsight](https://farsightsecurity.com)
   * [CIRCL](https://www.circl.lu/services/passive-dns/)
+  * [D4 Project Passive DNS](https://www.d4-project.org/2019/05/28/passive-dns-tutorial.html)
+  * [balboa](https://github.com/DCSO/balboa)
   * 360CN?
   * ...
 
