@@ -1,0 +1,182 @@
+{
+    "$id": "https://github.com/adulau/pdns-qof/blob/master/schema/schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "default": {},
+    "description": "This schema helps to validate JSON documents against the passive DNS Common Output Format. See https://www.first.org/global/sigs/passive-dns/",
+    "examples": [
+        {
+            "count": 962,
+            "time_first": 1522998917,
+            "time_last": 1619613241,
+            "rrname": "westernunion.com.ph.",
+            "rrtype": "A",
+            "bailiwick": "westernunion.com.ph.",
+            "rdata": [
+                "66.218.161.27",
+                "66.218.170.77"
+            ]
+        }
+    ],
+    "required": [
+        "time_first",
+        "time_last",
+        "rrname",
+        "rrtype",
+        "rdata"
+    ],
+    "title": "The passive DNS Common Output Format (COF) schema",
+    "type": "object",
+    "properties": {
+        "count": {
+            "$id": "#/properties/count",
+            "default": 0,
+            "description": "Specifies how many authoritative DNS answers were received at the Passive DNS Server's collectors with exactly the given set of values as answers (i.e. same data in the answer set). The number of requests is expressed as a decimal value.  This field is represented as a JSON [RFC4627] number.",
+            "examples": [
+                962
+            ],
+            "title": "count of authoritative answers",
+            "type": "number"
+        },
+        "time_first": {
+            "$id": "#/properties/time_first",
+            "default": 0,
+            "description": "This field returns the first time that the record / unique tuple (rrname, rrtype, rdata) has been seen by the passive DNS.  The date is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp).  The time zone MUST be UTC. This field is represented as a JSON [RFC4627] number.",
+            "examples": [
+                1522998917
+            ],
+            "title": "first seen",
+            "type": "number"
+        },
+        "time_last": {
+            "$id": "#/properties/time_last",
+            "default": 0,
+            "description": "This field returns the last time that the unique tuple (rrname, rrtype, rdata) record has been seen by the passive DNS.  The date is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp).  The time zone MUST be UTC.  This field is represented as a JSON [RFC4627] number.",
+            "examples": [
+                1619613241
+            ],
+            "title": "last seen",
+            "type": "number"
+        },
+        "rrname": {
+            "$id": "#/properties/rrname",
+            "default": "",
+            "description": "This field returns the name of the queried resource.",
+            "examples": [
+                "westernunion.com.ph."
+            ],
+            "title": "rrname",
+            "type": "string"
+        },
+        "rrtype": {
+            "$id": "#/properties/rrtype",
+            "default": "",
+            "description": "This field returns the resource record type as seen by the passive DNS.  The key is rrtype and the value is in the interpreted record type represented as a JSON [RFC4627] string. If the value cannot be interpreted the decimal value is returned following the principle of transparency as described in RFC 3597 [RFC3597].  Then the decimal value is represented as a JSON [RFC4627] number. Currently known and supported textual descriptions of rrtypes are: A, AAAA, CNAME, PTR, SOA, TXT, DNAME, NS, SRV, RP, NAPTR, HINFO, A6.",
+            "examples": [
+                "A"
+            ],
+            "title": "rrtype",
+            "type": "string"
+        },
+        "bailiwick": {
+            "$id": "#/properties/bailiwick",
+            "default": "",
+            "description": "The bailiwick is the best estimate of the apex of the zone where this data is authoritative.",
+            "examples": [
+                "google.com."
+            ],
+            "title": "bailiwick",
+            "type": "string"
+        },
+        "rdata": {
+            "$id": "#/properties/rdata",
+            "default": [],
+            "description": "This field returns the resource records of the queried resource. When multiple resource records are returned, rdata MUST be a JSON array containing JSON strings. In the case of a single resource record is returned, rdata MUST be a JSON string or a JSON array containing one JSON string. Each resource record is represented as a JSON string",
+            "examples": [
+                [
+                    "8.8.8.8",
+                    "9.9.9.9"
+                ]
+            ],
+            "title": "The rdata schema",
+            "type": "array",
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/rdata/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/rdata/items/anyOf/0",
+                        "type": "string",
+                        "title": "The first anyOf schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "66.218.161.27",
+                            "66.218.170.77"
+                        ]
+                    }
+                ]
+            }
+        },
+        "sensor_id": {
+            "$id": "#/properties/sensor_id",
+            "default": 0,
+            "description": "This field returns the sensor information where the record was seen.  It is represented as a JSON [RFC4627] string.",
+            "examples": [
+                "42"
+            ],
+            "title": "sensor_id",
+            "type": "string"
+        },
+        "zone_time_first": {
+            "$id": "#/properties/zone_time_first",
+            "default": 0,
+            "description": "This field returns the first time that the unique tuple (rrname, rrtype, rdata) record has been seen via master file import.  The date is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp).  The time zone MUST be UTC.  This field is represented as a JSON [RFC4627] number.",
+            "examples": [
+                1522998917
+            ],
+            "title": "zone time first seen",
+            "type": "number"
+        },
+        "zone_time_last": {
+            "$id": "#/properties/zone_time_last",
+            "default": 0,
+            "description": "This field returns the last time that the unique tuple (rrname, rrtype, rdata) record has been seen via master file import.  The date is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp).  The time zone MUST be UTC.  This field is represented as a JSON [RFC4627] number.",
+            "examples": [
+                1619613241
+            ],
+            "title": "zone time last seen",
+            "type": "number"
+        },
+        "time_first_ms": {
+            "$id": "#/properties/time_first_ms",
+            "default": 0,
+            "description": "Same meaning as the field 'time_first', with the only difference, that the resolution is in milliseconds since 1st of January 1970 (UTC).",
+            "examples": [
+                1619690051001
+            ],
+            "title": "time first seen (millisec)",
+            "type": "number"
+        },
+        "time_last_ms": {
+            "$id": "#/properties/time_last_ms",
+            "default": 0,
+            "description": "Same meaning as the field 'time_last', with the only difference, that the resolution is in milliseconds since 1st of January 1970 (UTC).",
+            "examples": [
+                1619690211002
+            ],
+            "title": "time last seen (millisec)",
+            "type": "number"
+        },
+        "origin": {
+            "$id": "#/properties/origin",
+            "default": "",
+            "description": "Specifies the resource origin of the Passive DNS response.  This field is represented as a Uniform Resource Identifier [RFC3986] (URI).",
+            "examples": [
+                "http://circl.lu"
+            ],
+            "title": "sensor_id",
+            "type": "string"
+        }
+    },
+    "additionalProperties": true
+}
