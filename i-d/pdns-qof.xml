@@ -373,7 +373,7 @@ ws              = *(
            <date year="2013"/>
           </front>
         </reference>
-        <reference anchor="PDNSCERTAT" target="http://www.centr.org/system/files/agenda/attachment/rd4-papst-passive_dns.pdf">
+        <reference anchor="PDNSCERTAT" target="http://www.centr.org/system/files/agenda/attachment/d4-papst-passive_dns.pdf">
           <front>
            <title>pDNS presentation at 4th Centr R&amp;D workshop Frankfurt Jun 5th 2012</title>
            <author fullname="CERT.at"/>
@@ -391,7 +391,7 @@ ws              = *(
           <front>
           <title>Passive DNS server interface using the common output format</title>
           <author fullname="D4 Project, Alexandre Dulaunoy"/>
-          <date year="2013"/>
+          <date year="2019"/>
           </front>
         </reference>
         <reference anchor="DNSDBQ" target="https://github.com/dnsdb/dnsdbq">
