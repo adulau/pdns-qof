@@ -130,7 +130,7 @@
 		</address>
 	</author>
 
-    <date month="June" year="2020" />
+    <date month="May" year="2021" />
     <area>General</area>
     <workgroup>Domain Name System Operations</workgroup>
 
@@ -373,7 +373,7 @@ ws              = *(
            <date year="2013"/>
           </front>
         </reference>
-        <reference anchor="PDNSCERTAT" target="http://www.centr.org/system/files/agenda/attachment/d4-papst-passive_dns.pdf">
+        <reference anchor="PDNSCERTAT" target="http://www.centr.org/system/files/agenda/attachment/rd4-papst-passive_dns.pdf">
           <front>
            <title>pDNS presentation at 4th Centr R&amp;D workshop Frankfurt Jun 5th 2012</title>
            <author fullname="CERT.at"/>

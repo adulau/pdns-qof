@@ -1,5 +1,12 @@
 # Version 0.8
 
+##  Content changes
+  * added time_first_ms, time_last_ms
+  * clarified that time_{first,last} OR zone_time_{first,last} can be specified.
+  * Added MIME type SHOULD be "application/x-ndjson". As discussed in #9.
+
+## Other changes
+  * Added JSON schema
   * Started tracking in a CHANGELOG file
   * Change Aaron's Address
   * Address and find a compromise for issue #17
