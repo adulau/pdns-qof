@@ -188,7 +188,7 @@ value-separator = ws %x2C ws            ; , comma. As defined in JSON
 field           = "rrname" | "rrtype" | "rdata" | "time_first" |
                   "time_last" | "count" | "bailiwick" | "sensor_id" |
                   "zone_time_first" | "zone_time_last" | "origin" |
-                  futureField
+                  "time_first_ms" | "time_last_ms" | futureField
 futureField     = string
 CR              = %x0D
 qm              = %x22                  ; " a quotation mark
