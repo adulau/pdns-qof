@@ -188,7 +188,7 @@ value-separator = ws %x2C ws            ; , comma. As defined in JSON
 field           = "rrname" | "rrtype" | "rdata" | "time_first" |
                   "time_last" | "count" | "bailiwick" | "sensor_id" |
                   "zone_time_first" | "zone_time_last" | "origin" |
-                  futureField
+                  "time_first_ms" | "time_last_ms" | futureField
 futureField     = string
 CR              = %x0D
 qm              = %x22                  ; " a quotation mark
@@ -265,7 +265,7 @@ ws              = *(
 				<t>An implementer of a passive DNS Server MAY chose to either return time_first and time_last OR return zone_time_first and zone_time_last. In pseudocode: (time_first AND time_last) OR (zone_time_first AND zone_time_last). In this case, zone_time_{first,last} replace the time_{first,last} fields. However, this is not encouraged since it might be confusing for parsers who will expect the mandatory fields time_{first,last}. See: <xref target="github_issue_17"/></t>
         </section>
 		<section title="Suggested MIME Types">
-				<t>An implementer of a passive DNS Server SHOULD server a document in this Common Output Format with a MIME header of "application/x-ndjson".</t>
+				<t>An implementer of a passive DNS Server SHOULD serve a document in this Common Output Format with a MIME header of "application/x-ndjson".</t>
         </section>
     </section>
 
