@@ -4,8 +4,8 @@ Passive DNS - Common Output Format
 This document describes the output format used between Passive DNS query interface. The output format description
  includes also a common meaning per Passive DNS system.
 
-This format originated as a discussion between Aaron Kaplan, Paul Vixie, Henry Stern and Alexandre (Adulau) in ~ 2011.
-It was submitted to the IETF in 2014 and since then had a few minor updates.
+This format originated as a discussion between Aaron Kaplan, Paul Vixie, Henry Stern and Alexandre Dulaunoy (Adulau) in ~ 2011.
+It was submitted to the IETF in 2014 and since then had a few minor updates. The last revision was publish the 11th February 2022.
 
 It is being used by multiple operators of passive DNS services to offer an identical output format for queries to a passive DNS database.
 This allows the person issuing the query to combined and/or compare results.
