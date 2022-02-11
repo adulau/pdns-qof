@@ -5,11 +5,11 @@
 Domain Name System Operations                                A. Dulaunoy
 Internet-Draft                                                     CIRCL
 Intended status: Informational                                 A. Kaplan
-Expires: December 3, 2020
+Expires: 1 January 2021                                                 
                                                                 P. Vixie
                                                                 H. Stern
                                                  Farsight Security, Inc.
-                                                            June 1, 2020
+                                                               June 2020
 
 
                    Passive DNS - Common Output Format
@@ -39,7 +39,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on December 3, 2020.
+   This Internet-Draft will expire on 3 December 2020.
 
 Copyright Notice
 
@@ -47,22 +47,21 @@ Copyright Notice
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
-   Provisions Relating to IETF Documents
-   (https://trustee.ietf.org/license-info) in effect on the date of
-   publication of this document.  Please review these documents
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
 
 
 
-Dulaunoy, et al.        Expires December 3, 2020                [Page 1]
+Dulaunoy, et al.         Expires 1 January 2021                 [Page 1]
 
 Internet-Draft     Passive DNS - Common Output Format          June 2020
 
 
-   carefully, as they describe your rights and restrictions with respect
-   to this document.  Code Components extracted from this document must
-   include Simplified BSD License text as described in Section 4.e of
-   the Trust Legal Provisions and are provided without warranty as
-   described in the Simplified BSD License.
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
 
 Table of Contents
 
@@ -109,7 +108,8 @@ Table of Contents
 
 
 
-Dulaunoy, et al.        Expires December 3, 2020                [Page 2]
+
+Dulaunoy, et al.         Expires 1 January 2021                 [Page 2]
 
 Internet-Draft     Passive DNS - Common Output Format          June 2020
 
@@ -161,16 +161,15 @@ Internet-Draft     Passive DNS - Common Output Format          June 2020
    limitation that clients querying the database need to be aware of is
    that each query simply gets a snapshot-answer of the time of
    querying.  Clients MUST NOT rely on consistent answers.  Nor must
+   they assume that answers must be identical across multiple Passive
 
 
 
-
-Dulaunoy, et al.        Expires December 3, 2020                [Page 3]
+Dulaunoy, et al.         Expires 1 January 2021                 [Page 3]
 
 Internet-Draft     Passive DNS - Common Output Format          June 2020
 
 
-   they assume that answers must be identical across multiple Passive
    DNS Servers.
 
 3.  Common Output Format
@@ -204,7 +203,7 @@ Internet-Draft     Passive DNS - Common Output Format          June 2020
    field           = "rrname" | "rrtype" | "rdata" | "time_first" |
                      "time_last" | "count" | "bailiwick" | "sensor_id" |
                      "zone_time_first" | "zone_time_last" | "origin" |
-                     futureField
+                     "time_first_ms" | "time_last_ms" | futureField
    futureField     = string
    CR              = %x0D
    qm              = %x22                  ; " a quotation mark
@@ -221,7 +220,8 @@ Internet-Draft     Passive DNS - Common Output Format          June 2020
 
 
 
-Dulaunoy, et al.        Expires December 3, 2020                [Page 4]
+
+Dulaunoy, et al.         Expires 1 January 2021                 [Page 4]
 
 Internet-Draft     Passive DNS - Common Output Format          June 2020
 
@@ -277,7 +277,7 @@ Internet-Draft     Passive DNS - Common Output Format          June 2020
 
 
 
-Dulaunoy, et al.        Expires December 3, 2020                [Page 5]
+Dulaunoy, et al.         Expires 1 January 2021                 [Page 5]
 
 Internet-Draft     Passive DNS - Common Output Format          June 2020
 
@@ -333,7 +333,7 @@ Internet-Draft     Passive DNS - Common Output Format          June 2020
 
 
 
-Dulaunoy, et al.        Expires December 3, 2020                [Page 6]
+Dulaunoy, et al.         Expires 1 January 2021                 [Page 6]
 
 Internet-Draft     Passive DNS - Common Output Format          June 2020
 
@@ -389,7 +389,7 @@ Internet-Draft     Passive DNS - Common Output Format          June 2020
 
 
 
-Dulaunoy, et al.        Expires December 3, 2020                [Page 7]
+Dulaunoy, et al.         Expires 1 January 2021                 [Page 7]
 
 Internet-Draft     Passive DNS - Common Output Format          June 2020
 
@@ -407,7 +407,7 @@ Internet-Draft     Passive DNS - Common Output Format          June 2020
 
 3.8.  Suggested MIME Types
 
-   An implementer of a passive DNS Server SHOULD server a document in
+   An implementer of a passive DNS Server SHOULD serve a document in
    this Common Output Format with a MIME header of "application/
    x-ndjson".
 
@@ -445,7 +445,7 @@ Internet-Draft     Passive DNS - Common Output Format          June 2020
 
 
 
-Dulaunoy, et al.        Expires December 3, 2020                [Page 8]
+Dulaunoy, et al.         Expires 1 January 2021                 [Page 8]
 
 Internet-Draft     Passive DNS - Common Output Format          June 2020
 
@@ -501,7 +501,7 @@ Internet-Draft     Passive DNS - Common Output Format          June 2020
 
 
 
-Dulaunoy, et al.        Expires December 3, 2020                [Page 9]
+Dulaunoy, et al.         Expires 1 January 2021                 [Page 9]
 
 Internet-Draft     Passive DNS - Common Output Format          June 2020
 
@@ -530,57 +530,63 @@ Internet-Draft     Passive DNS - Common Output Format          June 2020
 8.2.  References
 
    [BAILIWICK]
-              "Passive DNS Hardening", 2010,
+              Edmonds, R., "Passive DNS Hardening", 2010,
               <https://archive.farsightsecurity.com/Passive_DNS/
               passive_dns_hardening_handout.pdf>.
 
    [CACHEPOISONING]
-              "Black ops 2008: It's the end of the cache as we know
-              it.", 2008, <http://kurser.lobner.dk/dDist/DMK_BO2K8.pdf>.
+              Kaminsky, D., "Black ops 2008: It's the end of the cache
+              as we know it.", 2008,
+              <http://kurser.lobner.dk/dDist/DMK_BO2K8.pdf>.
 
-   [DNSDB]    "DNSDB API", 2013, <https://api.dnsdb.info/>.
+   [DNSDB]    Security, F., "DNSDB API", 2013,
+              <https://api.dnsdb.info/>.
 
-   [DNSDBQ]   "DNSDB API Client, C Version", 2018,
+   [DNSDBQ]   Vixie, P., "DNSDB API Client, C Version", 2018,
               <https://github.com/dnsdb/dnsdbq>.
 
    [github_issue_17]
-              "Discussion on the existing implementations of returning
-              either zone_time{first,last} OR time_{first,last}", 2020,
+              et.al, P. V. W. A. K., "Discussion on the existing
+              implementations of returning either zone_time{first,last}
+              OR time_{first,last}", 2020,
               <https://github.com/adulau/pdns-qof/issues/17>.
 
-   [PDNSCERTAT]
-              "pDNS presentation at 4th Centr R&D workshop Frankfurt Jun
-              5th 2012", 2012,
-              <http://www.centr.org/system/files/agenda/attachment/
-              rd4-papst-passive_dns.pdf>.
 
 
 
 
-Dulaunoy, et al.        Expires December 3, 2020               [Page 10]
+
+
+Dulaunoy, et al.         Expires 1 January 2021                [Page 10]
 
 Internet-Draft     Passive DNS - Common Output Format          June 2020
 
 
+   [PDNSCERTAT]
+              CERT.at, "pDNS presentation at 4th Centr R&D workshop
+              Frankfurt Jun 5th 2012", 2012,
+              <http://www.centr.org/system/files/agenda/attachment/d4-
+              papst-passive_dns.pdf>.
+
    [PDNSCIRCL]
-              "CIRCL Passive DNS", 2012,
+              Luxembourg, C. -. I. R. C., "CIRCL Passive DNS", 2012,
               <https://www.circl.lu/services/passive-dns/>.
 
    [PDNSCLIENT]
-              "Queries 5 major Passive DNS databases: BFK, CERTEE,
-              DNSParse, ISC, and VirusTotal.", 2013,
+              Lee, C., "Queries 5 major Passive DNS databases: BFK,
+              CERTEE, DNSParse, ISC, and VirusTotal.", 2013,
               <https://github.com/chrislee35/passivedns-client>.
 
-   [PDNSCOF]  "Passive DNS server interface using the common output
-              format", 2013,
+   [PDNSCOF]  Dulaunoy, D. P. A., "Passive DNS server interface using
+              the common output format", 2019,
               <https://github.com/D4-project/analyzer-d4-passivedns/>.
 
-   [REST]     "Representational State Transfer (REST)", 2000,
-              <http://www.ics.uci.edu/~fielding/pubs/dissertation/
+   [REST]     Fielding, R. T., "Representational State Transfer (REST)",
+              2000, <http://www.ics.uci.edu/~fielding/pubs/dissertation/
               rest_arch_style.htm>.
 
    [WEIMERPDNS]
-              "Passive DNS Replication", 2005,
+              Weimer, F., "Passive DNS Replication", 2005,
               <http://www.enyo.de/fw/software/dnslogger/
               first2005-paper.pdf>.
 
@@ -588,9 +594,11 @@ Internet-Draft     Passive DNS - Common Output Format          June 2020
 
    [I-D.narten-iana-considerations-rfc2434bis]
               Narten, T. and H. Alvestrand, "Guidelines for Writing an
-              IANA Considerations Section in RFCs", draft-narten-iana-
-              considerations-rfc2434bis-09 (work in progress), March
-              2008.
+              IANA Considerations Section in RFCs", Work in Progress,
+              Internet-Draft, draft-narten-iana-considerations-
+              rfc2434bis-09, 26 March 2008,
+              <https://www.ietf.org/archive/id/draft-narten-iana-
+              considerations-rfc2434bis-09.txt>.
 
    [RFC3552]  Rescorla, E. and B. Korver, "Guidelines for Writing RFC
               Text on Security Considerations", BCP 72, RFC 3552,
@@ -602,20 +610,16 @@ Appendix A.  Examples
    The JSON output are represented on multiple lines for readability but
    each JSON object should be on a single line.
 
-   If you query a passive DNS for the rrname www.ietf.org, the passive
-   dns common output format can be:
 
 
 
-
-
-
-
-
-
-Dulaunoy, et al.        Expires December 3, 2020               [Page 11]
+Dulaunoy, et al.         Expires 1 January 2021                [Page 11]
 
 Internet-Draft     Passive DNS - Common Output Format          June 2020
+
+
+   If you query a passive DNS for the rrname www.ietf.org, the passive
+   dns common output format can be:
 
 
    {"count": 102, "time_first": 1298412391, "rrtype": "AAAA",
@@ -624,7 +628,6 @@ Internet-Draft     Passive DNS - Common Output Format          June 2020
    {"count": 59, "time_first": 1384865833, "rrtype": "A",
    "rrname": "www.ietf.org", "rdata": "4.31.198.44",
    "time_last": 1389022219}
-
 
    If you query a passive DNS for the rrname ietf.org, the passive dns
    common output format can be:
@@ -639,7 +642,6 @@ Internet-Draft     Passive DNS - Common Output Format          June 2020
    {"count": 9, "time_first": 1317037550, "rrtype": "AAAA",
    "rrname": "ietf.org", "rdata": "2001:1890:123a::1:1e",
    "time_last": 1330209752}
-
 
    Please note that the examples imply that a single query returns a
    single set of JSON objects.  For example, two queries were made; one
@@ -658,7 +660,7 @@ Authors' Addresses
    Alexandre Dulaunoy
    CIRCL
    16, bd d'Avranches
-   Luxembourg  L-1160
+   L-1160 Luxembourg
    Luxembourg
 
    Phone: (+352) 247 88444
@@ -667,15 +669,13 @@ Authors' Addresses
 
 
 
-
-
-Dulaunoy, et al.        Expires December 3, 2020               [Page 12]
+Dulaunoy, et al.         Expires 1 January 2021                [Page 12]
 
 Internet-Draft     Passive DNS - Common Output Format          June 2020
 
 
    L. Aaron Kaplan
-   Vienna  A-1170
+   A-1170 Vienna
    Austria
 
    Email: aaron@lo-res.org
@@ -684,8 +684,8 @@ Internet-Draft     Passive DNS - Common Output Format          June 2020
    Paul Vixie
    Farsight Security, Inc.
    11400 La Honda Road
-   Woodside, California  94062
-   U.S.A.
+   Woodside, California 94062
+   United States of America
 
    Email: paul@redbarn.org
    URI:   https://www.farsightsecurity.com/
@@ -694,8 +694,8 @@ Internet-Draft     Passive DNS - Common Output Format          June 2020
    Henry Stern
    Farsight Security, Inc.
    11400 La Honda Road
-   Woodside, California  94062
-   U.S.A.
+   Woodside, California 94062
+   United States of America
 
    Phone: +1 650 542-7836
    Email: henry@stern.ca
@@ -725,4 +725,4 @@ Internet-Draft     Passive DNS - Common Output Format          June 2020
 
 
 
-Dulaunoy, et al.        Expires December 3, 2020               [Page 13]
+Dulaunoy, et al.         Expires 1 January 2021                [Page 13]
