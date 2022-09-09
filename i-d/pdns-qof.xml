@@ -178,27 +178,29 @@ The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</
         <section title="ABNF grammar">
 			<figure><preamble>Formal grammar as defined in <xref target="RFC2234">ABNF</xref></preamble><artwork><![CDATA[
 answer          = entries
-entries         = * ( entry CR)
-entry           = "{" keyvallist "}"
+entries         = * ( entry newline )
+entry           = ws "{" ws keyvallist ws "}" ws
 keyvallist      = [ member *( value-separator member ) ]
-member          = qm field qm name-separator value
-name-separator  = ws %x3A ws            ; a ":" colon
-value           = value                 ; as defined in the JSON RFC
-value-separator = ws %x2C ws            ; , comma. As defined in JSON
-field           = "rrname" | "rrtype" | "rdata" | "time_first" |
+member          = field name-separator value
+name-separator  = ws %x3A ws            ; : colon
+value-separator = ws %x2C ws            ; , comma
+field           = field-name | futureField
+field-name      = "rrname" | "rrtype" | "rdata" | "time_first" |
                   "time_last" | "count" | "bailiwick" | "sensor_id" |
                   "zone_time_first" | "zone_time_last" | "origin" |
-                  "time_first_ms" | "time_last_ms" | futureField
+                  "time_first_ms" | "time_last_ms"
 futureField     = string
-CR              = %x0D
-qm              = %x22                  ; " a quotation mark
+newline         = [ CR ] LF
+CR              = %x0D                  ; Carrige return
+LF              = %x0A                  ; Line feed or New line
+qm              = %x22                  ; " Quotation mark
 ws              = *(
                     %x20 |              ; Space
                     %x09                ; Horizontal tab
                    )
 
 					]]></artwork></figure>
-			<t>Note that value is defined in <xref target="RFC4627">JSON</xref> and has the exact same specification as there. The same goes for the definition of string.</t>
+			<t>Note that value is defined in <xref target="RFC4627">JSON</xref> and has the exact same specification as there. The same goes for the definition of string. Note the changed definition of ws dows not include CR or LF as those are NOT allowed in NDJSON, and thus the definition here MUST be used for other ABNF defitions in <xref target="RFC4627">JSON</xref>.</t>
 		</section>
 		<section title="Mandatory Fields">
 			<t>Implementation MUST support all the mandatory fields.</t>
