@@ -21,7 +21,7 @@ You can make pull request to the xml document. We are looking for comments from 
 IETF Internet-Draft
 -------------------
 
-- [Latest Version published as Internet-Draft](https://datatracker.ietf.org/doc/draft-dulaunoy-dnsop-passive-dns-cof/) - 11 February 2022
+- [Latest Version published as Internet-Draft](https://datatracker.ietf.org/doc/draft-dulaunoy-dnsop-passive-dns-cof/) - 27 April 2024 
 
 
 Users and Use-cases
