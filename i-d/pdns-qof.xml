@@ -8,11 +8,9 @@
 
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
 <!ENTITY RFC2629 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2629.xml">
-<!ENTITY RFC3552 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3552.xml">
 <!ENTITY RFC1035 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1035.xml">
 <!ENTITY RFC1034 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1034.xml">
 <!ENTITY RFC4627 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4627.xml">
-<!ENTITY RFC5001 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5001.xml">
 <!ENTITY RFC3597 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3597.xml">
 <!ENTITY RFC3912 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3912.xml">
 <!ENTITY RFC6648 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6648.xml">
@@ -50,7 +48,7 @@
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="info" docName="draft-dulaunoy-dnsop-passive-dns-cof-08" ipr="trust200902">
+<rfc category="info" docName="draft-dulaunoy-dnsop-passive-dns-cof-09" ipr="trust200902">
   <!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
      you can add the attributes updates="NNNN" and obsoletes="NNNN"
@@ -65,10 +63,10 @@
       <organization>CIRCL</organization>
       <address>
         <postal>
-          <street>16, bd d'Avranches</street>
+          <street>122, rue Adolphe Fischer</street>
           <city>Luxembourg</city>
           <region></region>
-          <code>L-1160</code>
+          <code>L-1521</code>
           <country>Luxembourg</country>
         </postal>
         <phone>(+352) 247 88444</phone>
@@ -130,7 +128,15 @@
 		</address>
 	</author>
 
-    <date month="June" year="2020" />
+    <author initials="W." surname="Kumari" fullname="Warren Kumari">
+      <organization>Google</organization>
+      <address>
+        <email>warren@kumari.net</email>
+      </address>
+    </author>
+
+
+    <date day="27" month="April" year="2024" />
     <area>General</area>
     <workgroup>Domain Name System Operations</workgroup>
 
@@ -325,7 +331,6 @@ ws              = *(
 	  &RFC1034;
       &RFC3912;
       &RFC4627;
-      &RFC5001;
       &RFC3597;
       &RFC6648;
       &RFC2234;
@@ -416,11 +421,9 @@ ws              = *(
       <!-- Here we use entities that we defined at the beginning. -->
 
 
-      &RFC3552;
-
-      &I-D.narten-iana-considerations-rfc2434bis;
-
+      <!-- &I-D.narten-iana-considerations-rfc2434bis; -->
       <!-- &I-D.draft-bortzmeyer-dnsop-dns-privacy; -->
+
     </references>
   <section anchor="app-additional" title="Examples">
 <t>The JSON output are represented on multiple lines for readability but each JSON object should be on a single line.</t>
