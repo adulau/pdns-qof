@@ -15,7 +15,7 @@ Expires: 29 October 2024
 
 
                    Passive DNS - Common Output Format
-                draft-dulaunoy-dnsop-passive-dns-cof-09
+                draft-dulaunoy-dnsop-passive-dns-cof-11
 
 Abstract
 
@@ -102,7 +102,7 @@ Table of Contents
      8.1.  Normative References  . . . . . . . . . . . . . . . . . .   9
      8.2.  References  . . . . . . . . . . . . . . . . . . . . . . .  10
      8.3.  Informative References  . . . . . . . . . . . . . . . . .  11
-   Appendix A.  Examples . . . . . . . . . . . . . . . . . . . . . .  12
+   Appendix A.  Examples . . . . . . . . . . . . . . . . . . . . . .  11
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  12
 
 
@@ -598,26 +598,6 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
 
 8.3.  Informative References
 
-   [I-D.narten-iana-considerations-rfc2434bis]
-              Alvestrand, H. T. and T. Narten, "Guidelines for Writing
-              an IANA Considerations Section in RFCs", Work in Progress,
-              Internet-Draft, draft-narten-iana-considerations-
-              rfc2434bis-09, 26 March 2008,
-              <https://datatracker.ietf.org/doc/html/draft-narten-iana-
-              considerations-rfc2434bis-09>.
-
-   [RFC3552]  Rescorla, E. and B. Korver, "Guidelines for Writing RFC
-              Text on Security Considerations", BCP 72, RFC 3552,
-              DOI 10.17487/RFC3552, July 2003,
-              <https://www.rfc-editor.org/info/rfc3552>.
-
-
-
-Dulaunoy, et al.         Expires 29 October 2024               [Page 11]
-
-Internet-Draft     Passive DNS - Common Output Format         April 2024
-
-
 Appendix A.  Examples
 
    The JSON output are represented on multiple lines for readability but
@@ -625,6 +605,17 @@ Appendix A.  Examples
 
    If you query a passive DNS for the rrname www.ietf.org, the passive
    dns common output format can be:
+
+
+
+
+
+
+
+
+Dulaunoy, et al.         Expires 29 October 2024               [Page 11]
+
+Internet-Draft     Passive DNS - Common Output Format         April 2024
 
 
    {"count": 102, "time_first": 1298412391, "rrtype": "AAAA",
@@ -662,18 +653,6 @@ Appendix A.  Examples
 
 Authors' Addresses
 
-
-
-
-
-
-
-
-Dulaunoy, et al.         Expires 29 October 2024               [Page 12]
-
-Internet-Draft     Passive DNS - Common Output Format         April 2024
-
-
    Alexandre Dulaunoy
    CIRCL
    122, rue Adolphe Fischer
@@ -687,6 +666,14 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
    L. Aaron Kaplan
    A-1170 Vienna
    Austria
+
+
+
+Dulaunoy, et al.         Expires 29 October 2024               [Page 12]
+
+Internet-Draft     Passive DNS - Common Output Format         April 2024
+
+
    Email: aaron@lo-res.org
 
 
@@ -712,6 +699,19 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
    Warren Kumari
    Google
    Email: warren@kumari.net
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
