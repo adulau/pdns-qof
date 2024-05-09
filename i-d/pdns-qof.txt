@@ -160,8 +160,8 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
    DNS Database from cache poisoning attacks [CACHEPOISONING].  Another
    limitation that clients querying the database need to be aware of is
    that each query simply gets a snapshot-in-time answer at the time of
-   querying.  Clients MUST NOT rely on consistent [what does
-   "consistent" mean in this context?  Coherent?] answers.  Nor should
+   querying.  Clients MUST NOT rely on existing answers from different
+   Passive DNS database.  Nor should they assume that answers will be
 
 
 
@@ -170,8 +170,7 @@ Dulaunoy, et al.         Expires 29 October 2024                [Page 3]
 Internet-Draft     Passive DNS - Common Output Format         April 2024
 
 
-   they assume that answers will be identical across multiple Passive
-   DNS Servers.
+   identical across multiple Passive DNS Servers.
 
 3.  Common Output Format
 
@@ -214,6 +213,7 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
                        %x20 |              ; Space
                        %x09                ; Horizontal tab
                       )
+
 
 
 
@@ -451,16 +451,15 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
 
 
    Servers are able to find out much about the actual person querying
-   the DNS records nor who actually sent the query [is the "person"
-   querying the DNS records not the same as the "who" actually sent the
-   query?].  In this sense, passive DNS Servers are similar to keeping
-   an archive of all previous phone books - if public DNS records can be
-   compared to phone numbers - as they often are.  Nevertheless, the
-   authors strongly encourage Passive DNS implementors to take special
-   care of privacy issues. bortzmeyer-dnsop-dns-privacy is an excellent
-   starting point for this.  Finally, the overall recommendations in
-   RFC6973 [RFC6973] should be taken into consideration when designing
-   any application which uses Passive DNS data.
+   the DNS records.  In this sense, passive DNS Servers are similar to
+   keeping an archive of all previous phone books - if public DNS
+   records can be compared to phone numbers - as they often are.
+   Nevertheless, the authors strongly encourage Passive DNS implementors
+   to take special care of privacy issues. bortzmeyer-dnsop-dns-privacy
+   is an excellent starting point for this.  Finally, the overall
+   recommendations in RFC6973 [RFC6973] should be taken into
+   consideration when designing any application which uses Passive DNS
+   data.
 
    In the scope of the General Data Protection Regulation (GDPR -
    Directive 95/46/EC), operators of Passive DNS Server needs to ensure
@@ -497,6 +496,7 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
    [RFC3597]  Gustafsson, A., "Handling of Unknown DNS Resource Record
               (RR) Types", RFC 3597, DOI 10.17487/RFC3597, September
               2003, <https://www.rfc-editor.org/info/rfc3597>.
+
 
 
 
