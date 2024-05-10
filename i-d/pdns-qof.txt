@@ -127,8 +127,8 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
    There are multiple implementations of Passive DNS software.  Users of
    Passive DNS query each implementation and aggregate the results for
    their search.  This document describes the output format of four
-   Passive DNS Systems ([DNSDB], [DNSDBQ], [PDNSCERTAT], [PDNSCIRCL] and
-   [PDNSCOF]) that are in use today and that already share a nearly
+   Passive DNS Systems ([DNSDB], [DNSDBQ] , [PDNSCERTAT], [PDNSCIRCL]
+   and [PDNSCOF]) that are in use today and that already share a nearly
    identical output format.  As the format and the meaning of output
    fields from each Passive DNS need to be consistent, this document
    proposes a solution to commonly name each field along with its
@@ -212,7 +212,7 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
    ws              = *(
                        %x20 |              ; Space
                        %x09                ; Horizontal tab
-                      )
+                       )
 
 
 
@@ -230,7 +230,7 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
    specification as there.  The same goes for the definition of string.
    Note the changed definition of ws does not include CR or LF as those
    are NOT allowed in NDJSON, and thus the definition here MUST be used
-   for other ABNF defitions in JSON [RFC4627].
+   for other ABNF defitions in JSON [RFC4627] .
 
 3.3.  Mandatory Fields
 
@@ -296,7 +296,7 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
    interpret any value which is legal as the right hand side in a DNS
    master file RFC 1035 [RFC1035] and RFC 1034 [RFC1034].  If the rdata
    came from an unknown DNS resource records, the server must follow the
-   transparency principle as described in RFC 3597 [RFC3597].
+   transparency principle as described in RFC 3597 [RFC3597] .
 
 3.3.4.  time_first
 
@@ -455,7 +455,7 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
    keeping an archive of all previous phone books - if public DNS
    records can be compared to phone numbers - as they often are.
    Nevertheless, the authors strongly encourage Passive DNS implementors
-   to take special care of privacy issues. bortzmeyer-dnsop-dns-privacy
+   to take special care of privacy issues.  bortzmeyer-dnsop-dns-privacy
    is an excellent starting point for this.  Finally, the overall
    recommendations in RFC6973 [RFC6973] should be taken into
    consideration when designing any application which uses Passive DNS
@@ -628,7 +628,6 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
    If you query a passive DNS for the rrname ietf.org, the passive dns
    common output format can be:
 
-
    {"count": 109877, "time_first": 1298398002, "rrtype": "NS",
    "rrname": "ietf.org", "rdata": "ns1.yyz1.afilias-nst.info",
    "time_last": 1389095375}
@@ -666,15 +665,13 @@ Authors' Addresses
    L. Aaron Kaplan
    A-1170 Vienna
    Austria
+   Email: aaron@lo-res.org
 
 
 
 Dulaunoy, et al.         Expires 29 October 2024               [Page 12]
 
 Internet-Draft     Passive DNS - Common Output Format         April 2024
-
-
-   Email: aaron@lo-res.org
 
 
    Paul Vixie
@@ -699,6 +696,9 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
    Warren Kumari
    Google
    Email: warren@kumari.net
+
+
+
 
 
 
