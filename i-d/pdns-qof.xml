@@ -1,71 +1,40 @@
 <?xml version="1.0" encoding="US-ASCII"?>
-<!-- This template is for creating an Internet Draft using xml2rfc,
-     which is available here: http://xml.resource.org. -->
+
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
-<!-- One method to get references from the online citation libraries.
-     There has to be one entity for each item to be referenced.
-     An alternate method (rfc include) is described in the references. -->
 
-<!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
-<!ENTITY RFC2629 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2629.xml">
-<!ENTITY RFC1035 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1035.xml">
-<!ENTITY RFC1034 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1034.xml">
-<!ENTITY RFC4627 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4627.xml">
-<!ENTITY RFC3597 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3597.xml">
-<!ENTITY RFC3912 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3912.xml">
-<!ENTITY RFC6648 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6648.xml">
-<!ENTITY RFC2234 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2234.xml">
-<!ENTITY RFC6973 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6973.xml">
-<!ENTITY RFC3986 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3986.xml">
-
-<!ENTITY I-D.narten-iana-considerations-rfc2434bis SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.narten-iana-considerations-rfc2434bis.xml">
-
-<!ENTITY I-D.draft-bortzmeyer-dnsop-dns-privacy SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-bortzmeyer-dnsop-dns-privacy">
-
+  <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
+  <!ENTITY RFC2629 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2629.xml">
+  <!ENTITY RFC1035 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1035.xml">
+  <!ENTITY RFC1034 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1034.xml">
+  <!ENTITY RFC4627 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4627.xml">
+  <!ENTITY RFC3597 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3597.xml">
+  <!ENTITY RFC3912 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3912.xml">
+  <!ENTITY RFC6648 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6648.xml">
+  <!ENTITY RFC2234 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2234.xml">
+  <!ENTITY RFC6973 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6973.xml">
+  <!ENTITY RFC3986 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3986.xml">
+  <!ENTITY I-D.narten-iana-considerations-rfc2434bis SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.narten-iana-considerations-rfc2434bis.xml">
+  <!ENTITY I-D.draft-bortzmeyer-dnsop-dns-privacy SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-bortzmeyer-dnsop-dns-privacy">
 ]>
-<?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
-<!-- used by XSLT processors -->
-<!-- For a complete list and description of processing instructions (PIs),
-     please see http://xml.resource.org/authoring/README.html. -->
-<!-- Below are generally applicable Processing Instructions (PIs) that most I-Ds might want to use.
-     (Here they are set differently than their defaults in xml2rfc v1.32) -->
-<?rfc strict="yes" ?>
-<!-- give errors regarding ID-nits and DTD validation -->
-<!-- control the table of contents (ToC) -->
+<?xml-stylesheet type='text/xsl' href='rfc2629.xslt'?>
+<?rfc strict="yes"?>
 <?rfc toc="yes"?>
-<!-- generate a ToC -->
 <?rfc tocdepth="4"?>
-<!-- the number of levels of subsections in ToC. default: 3 -->
-<!-- control references -->
 <?rfc symrefs="yes"?>
-<!-- use symbolic references tags, i.e, [RFC2119] instead of [1] -->
-<?rfc sortrefs="yes" ?>
-<!-- sort the reference entries alphabetically -->
-<!-- control vertical white space
-     (using these PIs as follows is recommended by the RFC Editor) -->
-<?rfc compact="yes" ?>
-<!-- do not start each main section on a new page -->
-<?rfc subcompact="no" ?>
-<!-- keep one blank line between list items -->
-<!-- end of list of popular I-D processing instructions -->
+<?rfc sortrefs="yes"?>
+<?rfc compact="yes"?>
+<?rfc subcompact="no"?>
 <rfc category="info" docName="draft-dulaunoy-dnsop-passive-dns-cof-11" ipr="trust200902">
-  <!-- category values: std, bcp, info, exp, and historic
-     ipr values: full3667, noModification3667, noDerivatives3667
-     you can add the attributes updates="NNNN" and obsoletes="NNNN"
-     they will automatically be output with "(if approved)" -->
-
   <!-- ***** FRONT MATTER ***** -->
-
   <front>
     <title abbrev="Passive DNS - Common Output Format">Passive DNS - Common Output Format</title>
-    <author fullname="Alexandre Dulaunoy" initials="A."
-            surname="Dulaunoy">
+    <author fullname="Alexandre Dulaunoy" initials="A." surname="Dulaunoy">
       <organization>CIRCL</organization>
       <address>
         <postal>
           <street>122, rue Adolphe Fischer</street>
           <city>Luxembourg</city>
-          <region></region>
+          <region />
           <code>L-1521</code>
           <country>Luxembourg</country>
         </postal>
@@ -75,28 +44,23 @@
         <!-- uri and facsimile elements may also be added -->
       </address>
     </author>
-
-
-    <author fullname="L. Aaron Kaplan" initials="A."
-            surname="Kaplan">
-      <organization></organization>
+    <author fullname="L. Aaron Kaplan" initials="A." surname="Kaplan">
+      <organization />
       <address>
         <postal>
           <street>
-	  </street>
+          </street>
           <city>Vienna</city>
-          <region></region>
+          <region />
           <code>A-1170</code>
           <country>Austria</country>
         </postal>
-        <phone></phone>
+        <phone />
         <email>aaron@lo-res.org</email>
-        <uri></uri>
+        <uri />
       </address>
     </author>
-
-    <author fullname="Paul Vixie" initials="P."
-            surname="Vixie">
+    <author fullname="Paul Vixie" initials="P." surname="Vixie">
       <organization>Farsight Security, Inc.</organization>
       <address>
         <postal>
@@ -106,28 +70,26 @@
           <code>94062</code>
           <country>USA</country>
         </postal>
-        <phone></phone>
-		<email>paul@redbarn.org</email>
+        <phone />
+        <email>paul@redbarn.org</email>
         <uri>https://www.farsightsecurity.com/</uri>
-       </address>
+      </address>
     </author>
-
-	<author fullname="Henry Stern" initials="H." surname="Stern">
-		<organization>Farsight Security, Inc.</organization>
-		<address>
-			<postal>
-			  <street>11400 La Honda Road</street>
-			  <city>Woodside</city>
-			  <region>California</region>
-			  <code>94062</code>
-			  <country>USA</country>
-			</postal>
-			<phone>+1 650 542-7836</phone>
-			<email>henry@stern.ca</email>
-			<uri>https://www.farsightsecurity.com/</uri>
-		</address>
-	</author>
-
+    <author fullname="Henry Stern" initials="H." surname="Stern">
+      <organization>Farsight Security, Inc.</organization>
+      <address>
+        <postal>
+          <street>11400 La Honda Road</street>
+          <city>Woodside</city>
+          <region>California</region>
+          <code>94062</code>
+          <country>USA</country>
+        </postal>
+        <phone>+1 650 542-7836</phone>
+        <email>henry@stern.ca</email>
+        <uri>https://www.farsightsecurity.com/</uri>
+      </address>
+    </author>
     <author initials="W." surname="Kumari" fullname="Warren Kumari">
       <organization>Google</organization>
       <address>
@@ -135,54 +97,80 @@
       </address>
     </author>
 
-
     <date day="27" month="April" year="2024" />
     <area>General</area>
     <workgroup>Domain Name System Operations</workgroup>
-
     <keyword>dns</keyword>
-
-
     <abstract>
-	  <t>This document describes a common output format of Passive DNS Servers that clients can query. The output format description also includes a common semantic for each Passive DNS system. By having multiple Passive DNS Systems adhere to the same output format for queries, users of multiple Passive DNS servers will be able to combine result sets easily.</t>
+      <t>This document describes a common output format of Passive DNS Servers that clients can
+        query. The output format description also includes a common semantic for each Passive DNS
+        system. By having multiple Passive DNS Systems adhere to the same output format for queries,
+        users of multiple Passive DNS servers will be able to combine result sets easily.</t>
     </abstract>
   </front>
-
   <middle>
     <section title="Introduction">
-     <t>Passive DNS is a technique described by Florian Weimer in 2005 in <xref target="WEIMERPDNS">Passive DNS replication, F Weimer - 17th Annual FIRST Conference on Computer Security</xref>. Since then, multiple Passive DNS implementations were created and have evolved over time. Users of these Passive DNS servers may query a server (often via <xref target="RFC3912">WHOIS</xref> or HTTP <xref target="REST">REST</xref>), parse the results, and process them in other applications.</t>
-     <t>
-      There are multiple implementations of Passive DNS software. Users of Passive DNS query each implementation and aggregate the results for their search. This document describes the output format of four Passive DNS Systems (<xref target="DNSDB"/>, <xref target="DNSDBQ"/>, <xref target="PDNSCERTAT"/>, <xref target="PDNSCIRCL"/> and <xref target="PDNSCOF"/>) that are in use today and that already share a nearly identical output format.
+      <t>Passive DNS is a technique described by Florian Weimer in 2005 in <xref target="WEIMERPDNS">Passive
+        DNS replication, F Weimer - 17th Annual FIRST Conference on Computer Security</xref>. Since
+        then, multiple Passive DNS implementations were created and have evolved over time. Users of
+        these Passive DNS servers may query a server (often via <xref target="RFC3912">WHOIS</xref>
+        or HTTP <xref target="REST">REST</xref>), parse the results, and process them in other
+        applications.</t>
 
-	As the format and the meaning of output fields from each Passive DNS need to be consistent, this document proposes a solution to commonly name each field along with its corresponding interpretation. The format follows a simple key-value structure in <xref target="RFC4627">JSON</xref> format.
-The benefit of having a consistent Passive DNS output format is that multiple client implementations can query different servers without having to have a separate parser for each
-individual server. <xref target="PDNSCLIENT">passivedns-client</xref> currently implements multiple parsers due to a lack of standardization.
-
-The document does not describe the protocol (e.g. <xref target="RFC3912">WHOIS</xref>, HTTP <xref target="REST">REST</xref>) nor the query format used to query the Passive DNS. Neither does this document describe "pre-recursor" Passive DNS Systems. Each of these are separate topics and deserve their own RFC documents. This document describes the current best practices implemented in various Passive DNS server implementations.
-     </t>
+      <t> There are multiple implementations of Passive DNS software. Users of Passive DNS query
+        each implementation and aggregate the results for their search. This document describes the
+        output format of four Passive DNS Systems (<xref target="DNSDB" />, <xref target="DNSDBQ" />
+        , <xref target="PDNSCERTAT" />, <xref target="PDNSCIRCL" /> and <xref target="PDNSCOF" />)
+        that are in use today and that already share a nearly identical output format. As the format
+        and the meaning of output fields from each Passive DNS need to be consistent, this document
+        proposes a solution to commonly name each field along with its corresponding interpretation.
+        The format follows a simple key-value structure in <xref target="RFC4627">JSON</xref>
+        format. The benefit of having a consistent Passive DNS output format is that multiple client
+        implementations can query different servers without having to have a separate parser for
+        each individual server. <xref target="PDNSCLIENT">passivedns-client</xref> currently
+        implements multiple parsers due to a lack of standardization. The document does not describe
+        the protocol (e.g. <xref target="RFC3912">WHOIS</xref>, HTTP <xref target="REST">REST</xref>)
+        nor the query format used to query the Passive DNS. Neither does this document describe
+        "pre-recursor" Passive DNS Systems. Each of these are separate topics and deserve their own
+        RFC documents. This document describes the current best practices implemented in various
+        Passive DNS server implementations. </t>
 
       <section title="Requirements Language">
-        <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-        "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
-        document are to be interpreted as described in <xref
-        target="RFC2119">RFC 2119</xref>.</t>
+        <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD
+          NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as
+          described in <xref target="RFC2119">RFC 2119</xref>.</t>
       </section>
     </section>
 
     <section title="Limitation">
-    <t> As Passive DNS servers can include protection mechanisms for their operation, results might be different due to those protection measures. These mechanisms filter out DNS answers if they fail some criteria. The <xref target="BAILIWICK">bailiwick algorithm</xref> protects the Passive DNS Database from <xref target="CACHEPOISONING">cache poisoning attacks</xref>.
-
-    Another limitation that clients querying the database need to be aware of is that each query simply gets a snapshot-in-time answer at the time of querying. Clients MUST NOT rely on existing answers from different Passive DNS database. Nor should they assume that answers will be identical across multiple Passive DNS Servers.
-    </t>
+      <t> As Passive DNS servers can include protection mechanisms for their operation, results
+        might be different due to those protection measures. These mechanisms filter out DNS answers
+        if they fail some criteria. The <xref target="BAILIWICK">bailiwick algorithm</xref> protects
+        the Passive DNS Database from <xref target="CACHEPOISONING">cache poisoning attacks</xref>.
+        Another limitation that clients querying the database need to be aware of is that each query
+        simply gets a snapshot-in-time answer at the time of querying. Clients MUST NOT rely on
+        existing answers from different Passive DNS database. Nor should they assume that answers
+        will be identical across multiple Passive DNS Servers. </t>
     </section>
+
     <section title="Common Output Format">
-		<section title="Overview">
-		<t>The formatting of the answer follows the <xref target="RFC4627">JSON</xref> format. In fact, it is a subset of the full JSON language. Notable differences are the modified definition of whitespace ("ws"). The order of the fields is not significant for the same resource type. </t>
-		<t>The intent of this output format is to be easily parsable by scripts. Each JSON object is expressed on a single line to be processed by the client line-by-line. Every implementation MUST support the JSON output format.</t> <!-- note: it is "parsable" if you want to be really nit-picking. See: https://en.wiktionary.org/wiki/parsable -->
-		<t><xref target="app-additional">Examples of JSON</xref> output are in the appendix.</t>
-        </section>
-        <section title="ABNF grammar">
-			<figure><preamble>Formal grammar as defined in <xref target="RFC2234">ABNF</xref></preamble><artwork><![CDATA[
+      <section title="Overview">
+        <t>The formatting of the answer follows the <xref target="RFC4627">JSON</xref> format. In
+          fact, it is a subset of the full JSON language. Notable differences are the modified
+          definition of whitespace ("ws"). The order of the fields is not significant for the same
+          resource type. </t>
+        <t>The intent of this output format is to be easily parsable by scripts. Each JSON object is
+          expressed on a single line to be processed by the client line-by-line. Every
+          implementation MUST support the JSON output format.</t>
+        <!-- note: it is "parsable" if you want to be really nit-picking. See:
+        https://en.wiktionary.org/wiki/parsable -->
+        <t><xref target="app-additional">Examples of JSON</xref> output are in the appendix.</t>
+      </section>
+
+      <section title="ABNF grammar">
+        <figure>
+          <preamble>Formal grammar as defined in <xref target="RFC2234">ABNF</xref></preamble>
+          <artwork><![CDATA[
 answer          = entries
 entries         = * ( entry newline )
 entry           = ws "{" ws keyvallist ws "}" ws
@@ -203,244 +191,323 @@ qm              = %x22                  ; " Quotation mark
 ws              = *(
                     %x20 |              ; Space
                     %x09                ; Horizontal tab
-                   )
+                    )
 
-					]]></artwork></figure>
-			<t>Note that value is defined in <xref target="RFC4627">JSON</xref> and has the same specification as there. The same goes for the definition of string. Note the changed definition of ws does not include CR or LF as those are NOT allowed in NDJSON, and thus the definition here MUST be used for other ABNF defitions in <xref target="RFC4627">JSON</xref>.</t>
-		</section>
-		<section title="Mandatory Fields">
-			<t>Implementation MUST support all the mandatory fields.</t>
-			<t>Uniqueness property: the tuple (rrname,rrtype,rdata) will always be unique within one answer per server. While rrname and rrtype are always individual JSON primitive types (strings, numbers, booleans or null), rdata MAY return multiple resource records or a single record. When multiple resource records are returned, rdata MUST be a JSON array. In the case of a single resource record is returned, rdata MUST be a JSON string or a JSON array containing one JSON string.  Senders SHOULD send an array for rdata, but receivers MUST be able to accept a single-string result for rdata.</t>
-			<section title="rrname">
-				<t>This field returns the name of the queried resource. Represented as a <xref target="RFC4627">JSON</xref> string.</t>
-			</section>
-			<section title="rrtype">
-			 <t>This field returns the resource record type as seen by the passive DNS. The key is rrtype and the value is in the interpreted record type represented as a <xref target="RFC4627">JSON</xref> string. If the value cannot be interpreted, the decimal value is returned following the principle of transparency as described in <xref target="RFC3597">RFC 3597</xref>. Then the decimal value is represented as a <xref target="RFC4627">JSON</xref> number.
+					]]></artwork>
+        </figure>
 
-			 The resource record type can be any values as described by IANA in the DNS parameters document in the section 'Resource Record (RR) TYPEs' (http://www.iana.org/assignments/dns-parameters).
-                         Supported textual descriptions of rrtypes include: A, AAAA, CNAME, etc.
-			 A client MUST be able to understand these textual rrtype values represented as a  <xref target="RFC4627">JSON</xref> string. In addition, a client MUST be able to handle a decimal value (as mentioned above) answer represented as a <xref target="RFC4627">JSON</xref> number.
-			</t>
-			</section>
-			<section title="rdata">
-				<t>This field returns the resource records of the queried resource. When multiple resource records are returned, rdata MUST be a JSON array containing JSON strings. In the case of a single resource record is returned, rdata MUST be a JSON string or a JSON array containing one JSON string. Each resource record is represented as a <xref target="RFC4627">JSON</xref> string. Each resource record MUST be escaped as defined in section 2.6 of <xref target="RFC4627">RFC4627</xref>. Depending on the rrtype, this can be an IPv4 or IPv6 address, a domain name (as in the case of CNAMEs), an SPF record, etc.  A client MUST be able to interpret any value which is legal as the right hand side in a DNS master file  <xref target="RFC1035">RFC 1035</xref> and <xref target="RFC1034">RFC 1034</xref>. If the rdata came from an unknown DNS resource records, the server must follow the transparency principle as described in <xref target="RFC3597">RFC 3597</xref>.</t>
-			</section>
-			<section title="time_first">
-				<t>This field returns the first time that the record / unique tuple (rrname, rrtype, rdata) has been seen by the passive DNS. The date is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC. This field is represented as a <xref target="RFC4627">JSON</xref> number.</t>
-			</section>
-			<section title="time_last">
-			<t>This field returns the last time that the unique tuple (rrname, rrtype, rdata) record has been seen by the passive DNS. The date is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC. This field is represented as a <xref target="RFC4627">JSON</xref> number.</t>
-			</section>
-		</section>
-		<section title="Optional Fields">
-			<t>Implementations SHOULD support one or more fields.</t>
-			<section title="count">
-			<t>Specifies how many authoritative DNS answers were received at the Passive DNS Server's collectors with exactly the given set of values as answers (i.e. same data in the answer set - compare with the uniqueness property in "Mandatory Fields"). The number of requests is expressed as a decimal value. This field is represented as a <xref target="RFC4627">JSON</xref> number.</t>
-			</section>
-			<section title="bailiwick">
-				<t>The bailiwick is the best estimate of the apex of the zone where this data is authoritative. This field is represented as a <xref target="RFC4627">JSON</xref> string.</t>
-			</section>
-		</section>
-		<section title="Additional Fields">
-			<t>Implementations MAY support the following fields:</t>
-			<section title="sensor_id">
-                    <t>This field returns the sensor information where the record was seen. It is represented as a <xref target="RFC4627">JSON</xref> string.</t>
-                    <t>If the data originate from sensors or probes which are part of a publicly-known gathering or measurement system (e.g. RIPE Atlas), a <xref target="RFC4627">JSON</xref> string SHOULD be prefixed.</t>
-		    </section>
-            <section title="zone_time_first">
-            <t>This field returns the first time that the unique tuple (rrname, rrtype, rdata) record has been seen via master file import. The date is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC. This field is represented as a <xref target="RFC4627">JSON</xref> number.</t>
-            </section>
-            <section title="zone_time_last">
-            <t>This field returns the last time that the unique tuple (rrname, rrtype, rdata) record has been seen via master file import. The date is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC. This field is represented as a <xref target="RFC4627">JSON</xref> number.</t>
-            </section>
-            <section title="origin">
-                    <t>Specifies the resource origin of the Passive DNS response. This field is represented as a <xref target="RFC3986">Uniform Resource Identifier</xref> (URI) in the form of a <xref target="RFC4627">JSON</xref> string.
-                    </t>
-            </section>
-            <section title="time_first_ms">
-                    <t>Same meaning as the field "time_first", with the only difference, that the resolution is in milliseconds since 1st of January 1970 (UTC).
-                    </t>
-            </section>
-            <section title="time_last_ms">
-                    <t>Same meaning as the field "time_last", with the only difference, that the resolution is in milliseconds since 1st of January 1970 (UTC).
-                    </t>
-            </section>
-              </section>
-        <section title="Additional Fields Registry">
-           <t>In accordance with <xref target="RFC6648"/>, designers of new passive DNS applications that would need additional fields can request and register new field name at https://github.com/adulau/pdns-qof/wiki/Additional-Fields.</t>
+        <t>Note that value is defined in <xref target="RFC4627">JSON</xref> and has the same
+          specification as there. The same goes for the definition of string. Note the changed
+          definition of ws does not include CR or LF as those are NOT allowed in NDJSON, and thus
+          the definition here MUST be used for other ABNF defitions in <xref target="RFC4627">JSON</xref>
+          .</t>
+      </section>
+
+      <section title="Mandatory Fields">
+        <t>Implementation MUST support all the mandatory fields.</t>
+        <t>Uniqueness property: the tuple (rrname,rrtype,rdata) will always be unique within one
+          answer per server. While rrname and rrtype are always individual JSON primitive types
+          (strings, numbers, booleans or null), rdata MAY return multiple resource records or a
+          single record. When multiple resource records are returned, rdata MUST be a JSON array. In
+          the case of a single resource record is returned, rdata MUST be a JSON string or a JSON
+          array containing one JSON string. Senders SHOULD send an array for rdata, but receivers
+          MUST be able to accept a single-string result for rdata.</t>
+
+        <section title="rrname">
+          <t>This field returns the name of the queried resource. Represented as a <xref
+              target="RFC4627">JSON</xref> string.</t>
         </section>
-		<section title="Additional notes">
-				<t>An implementer of a passive DNS Server MAY chose to either return time_first and time_last OR return zone_time_first and zone_time_last. In pseudocode: (time_first AND time_last) OR (zone_time_first AND zone_time_last). In this case, zone_time_{first,last} replace the time_{first,last} fields. However, this is not encouraged since it might be confusing for parsers who will expect the mandatory fields time_{first,last}. See: <xref target="github_issue_17"/></t>
+
+        <section title="rrtype">
+          <t>This field returns the resource record type as seen by the passive DNS. The key is
+            rrtype and the value is in the interpreted record type represented as a <xref
+              target="RFC4627">JSON</xref> string. If the value cannot be interpreted, the decimal
+            value is returned following the principle of transparency as described in <xref
+              target="RFC3597">RFC 3597</xref>. Then the decimal value is represented as a <xref
+              target="RFC4627">JSON</xref> number. The resource record type can be any values as
+            described by IANA in the DNS parameters document in the section 'Resource Record (RR)
+            TYPEs' (http://www.iana.org/assignments/dns-parameters). Supported textual descriptions
+            of rrtypes include: A, AAAA, CNAME, etc. A client MUST be able to understand these
+            textual rrtype values represented as a <xref target="RFC4627">JSON</xref> string. In
+            addition, a client MUST be able to handle a decimal value (as mentioned above) answer
+            represented as a <xref target="RFC4627">JSON</xref> number. </t>
         </section>
-		<section title="Suggested MIME Types">
-				<t>An implementer of a passive DNS Server SHOULD serve a document in this Common Output Format with a MIME header of "application/x-ndjson".</t>
+
+        <section title="rdata">
+          <t>This field returns the resource records of the queried resource. When multiple resource
+            records are returned, rdata MUST be a JSON array containing JSON strings. In the case of
+            a single resource record is returned, rdata MUST be a JSON string or a JSON array
+            containing one JSON string. Each resource record is represented as a <xref
+              target="RFC4627">JSON</xref> string. Each resource record MUST be escaped as defined
+            in section 2.6 of <xref target="RFC4627">RFC4627</xref>. Depending on the rrtype, this
+            can be an IPv4 or IPv6 address, a domain name (as in the case of CNAMEs), an SPF record,
+            etc. A client MUST be able to interpret any value which is legal as the right hand side
+            in a DNS master file <xref target="RFC1035">RFC 1035</xref> and <xref target="RFC1034">RFC
+            1034</xref>. If the rdata came from an unknown DNS resource records, the server must
+            follow the transparency principle as described in <xref target="RFC3597">RFC 3597</xref>
+            .</t>
         </section>
+
+        <section title="time_first">
+          <t>This field returns the first time that the record / unique tuple (rrname, rrtype,
+            rdata) has been seen by the passive DNS. The date is expressed in seconds (decimal)
+            since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC. This field is
+            represented as a <xref target="RFC4627">JSON</xref> number.</t>
+        </section>
+
+        <section title="time_last">
+          <t>This field returns the last time that the unique tuple (rrname, rrtype, rdata) record
+            has been seen by the passive DNS. The date is expressed in seconds (decimal) since 1st
+            of January 1970 (Unix timestamp). The time zone MUST be UTC. This field is represented
+            as a <xref target="RFC4627">JSON</xref> number.</t>
+        </section>
+      </section>
+
+      <section title="Optional Fields">
+        <t>Implementations SHOULD support one or more fields.</t>
+        <section title="count">
+          <t>Specifies how many authoritative DNS answers were received at the Passive DNS Server's
+            collectors with exactly the given set of values as answers (i.e. same data in the answer
+            set - compare with the uniqueness property in "Mandatory Fields"). The number of
+            requests is expressed as a decimal value. This field is represented as a <xref
+              target="RFC4627">JSON</xref> number.</t>
+        </section>
+        <section title="bailiwick">
+          <t>The bailiwick is the best estimate of the apex of the zone where this data is
+            authoritative. This field is represented as a <xref target="RFC4627">JSON</xref> string.</t>
+        </section>
+      </section>
+
+      <section title="Additional Fields">
+        <t>Implementations MAY support the following fields:</t>
+        <section title="sensor_id">
+          <t>This field returns the sensor information where the record was seen. It is represented
+            as a <xref target="RFC4627">JSON</xref> string.</t>
+          <t>If the data originate from sensors or probes which are part of a publicly-known
+            gathering or measurement system (e.g. RIPE Atlas), a <xref target="RFC4627">JSON</xref>
+            string SHOULD be prefixed.</t>
+        </section>
+
+        <section title="zone_time_first">
+          <t>This field returns the first time that the unique tuple (rrname, rrtype, rdata) record
+            has been seen via master file import. The date is expressed in seconds (decimal) since
+            1st of January 1970 (Unix timestamp). The time zone MUST be UTC. This field is
+            represented as a <xref target="RFC4627">JSON</xref> number.</t>
+        </section>
+
+        <section title="zone_time_last">
+          <t>This field returns the last time that the unique tuple (rrname, rrtype, rdata) record
+            has been seen via master file import. The date is expressed in seconds (decimal) since
+            1st of January 1970 (Unix timestamp). The time zone MUST be UTC. This field is
+            represented as a <xref target="RFC4627">JSON</xref> number.</t>
+        </section>
+
+        <section title="origin">
+          <t>Specifies the resource origin of the Passive DNS response. This field is represented as
+            a <xref target="RFC3986">Uniform Resource Identifier</xref> (URI) in the form of a <xref
+              target="RFC4627">JSON</xref> string. </t>
+        </section>
+
+        <section title="time_first_ms">
+          <t>Same meaning as the field "time_first", with the only difference, that the resolution
+            is in milliseconds since 1st of January 1970 (UTC).
+          </t>
+        </section>
+
+        <section title="time_last_ms">
+          <t>Same meaning as the field "time_last", with the only difference, that the resolution is
+            in milliseconds since 1st of January 1970 (UTC).
+          </t>
+        </section>
+      </section>
+
+      <section title="Additional Fields Registry">
+        <t>In accordance with <xref target="RFC6648" />, designers of new passive DNS applications
+          that would need additional fields can request and register new field name at
+          https://github.com/adulau/pdns-qof/wiki/Additional-Fields.</t>
+      </section>
+
+      <section title="Additional notes">
+        <t>An implementer of a passive DNS Server MAY chose to either return time_first and
+          time_last OR return zone_time_first and zone_time_last. In pseudocode: (time_first AND
+          time_last) OR (zone_time_first AND zone_time_last). In this case, zone_time_{first,last}
+          replace the time_{first,last} fields. However, this is not encouraged since it might be
+          confusing for parsers who will expect the mandatory fields time_{first,last}. See: <xref
+            target="github_issue_17" /></t>
+      </section>
+
+      <section title="Suggested MIME Types">
+        <t>An implementer of a passive DNS Server SHOULD serve a document in this Common Output
+          Format with a MIME header of "application/x-ndjson".</t>
+      </section>
     </section>
+
 
 
     <!-- This PI places the pagebreak correctly (before the section title) in the text output. -->
-
-    <?rfc needLines="8" ?>
-
-
-
-
+    <?rfc needLines="8"?>
     <section anchor="Acknowledgements" title="Acknowledgements">
       <t>Thanks to the Passive DNS developers who contributed to the document.</t>
-
     </section>
-
     <!-- Possibly a 'Contributors' section ... -->
-
     <section anchor="IANA" title="IANA Considerations">
       <t>This memo includes no request to IANA.</t>
     </section>
 
-	<section anchor="Privacy" title="Privacy Considerations">
-		<t>Passive DNS Servers capture DNS answers from multiple collection points ("sensors") which are located on the Internet-facing side of DNS recursors ("post-recursor passive DNS"). In this process, they intentionally omit the source IP, source port, destination IP and destination port from the captured packets. Since the data is captured "post-recursor", the timing information (who queries what) is lost, since the recursor will cache the results. Furthermore, since multiple sensors feed into a passive DNS server, the resulting data gets mixed together, reducing the likelihood that Passive DNS Servers are able to find out much about the actual person querying the DNS records. In this sense, passive DNS Servers are similar to keeping an archive of all previous phone books - if public DNS records can be compared to phone numbers - as they often are.
+    <section anchor="Privacy" title="Privacy Considerations">
+      <t>Passive DNS Servers capture DNS answers from multiple collection points ("sensors") which
+        are located on the Internet-facing side of DNS recursors ("post-recursor passive DNS"). In
+        this process, they intentionally omit the source IP, source port, destination IP and
+        destination port from the captured packets. Since the data is captured "post-recursor", the
+        timing information (who queries what) is lost, since the recursor will cache the results.
+        Furthermore, since multiple sensors feed into a passive DNS server, the resulting data gets
+        mixed together, reducing the likelihood that Passive DNS Servers are able to find out much
+        about the actual person querying the DNS records. In this sense, passive DNS Servers are
+        similar to keeping an archive of all previous phone books - if public DNS records can be
+        compared to phone numbers - as they often are. Nevertheless, the authors strongly encourage
+        Passive DNS implementors to take special care of privacy issues.
+        bortzmeyer-dnsop-dns-privacy is an excellent starting point for this. Finally, the overall
+        recommendations in <xref target="RFC6973">RFC6973</xref> should be taken into consideration
+        when designing any application which uses Passive DNS data.</t>
+      <t>In the scope of the General Data Protection Regulation (GDPR - Directive 95/46/EC),
+        operators of Passive DNS Server needs to ensure the legal ground and lawfulness of its
+        operation.</t>
+    </section>
 
-		Nevertheless, the authors strongly encourage Passive DNS implementors to take special care of privacy issues. bortzmeyer-dnsop-dns-privacy is an excellent starting point for this.
-        Finally, the overall recommendations in <xref target="RFC6973">RFC6973</xref> should be taken into consideration when designing any application which uses Passive DNS data.</t>
-        <t>In the scope of the General Data Protection Regulation (GDPR - Directive 95/46/EC), operators of Passive DNS Server needs to ensure the legal ground and lawfulness of its operation.</t>
-	</section>
     <section anchor="Security" title="Security Considerations">
-      <t>In some cases, Passive DNS output might contain confidential information and its access might be restricted. When a user is querying multiple Passive DNS and aggregating the data, the sensitivity of the data must be considered.</t>
+      <t>In some cases, Passive DNS output might contain confidential information and its access
+        might be restricted. When a user is querying multiple Passive DNS and aggregating the data,
+        the sensitivity of the data must be considered.</t>
     </section>
   </middle>
-
- <!--  *****BACK MATTER ***** -->
-
+  <!--  *****BACK MATTER ***** -->
   <back>
-    <!-- References split into informative and normative -->
 
-    <!-- There are 2 ways to insert reference entries from the citation libraries:
-     1. define an ENTITY at the top, and use "ampersand character"RFC2629; here (as shown)
-     2. simply use a PI "less than character"?rfc include="reference.RFC.2119.xml"?> here
-        (for I-Ds: include="reference.I-D.narten-iana-considerations-rfc2434bis.xml")
+    <references title="Normative References"><!--?rfc
+      include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml"?--> &RFC2119; &RFC1035; &RFC1034; &RFC3912; &RFC4627;
+      &RFC3597; &RFC6648; &RFC2234; &RFC6973; &RFC3986; </references>
 
-     Both are cited textually in the same manner: by using xref elements.
-     If you use the PI option, xml2rfc will, by default, try to find included files in the same
-     directory as the including file. You can also define the XML_LIBRARY environment variable
-     with a value containing a set of directories to search.  These can be either in the local
-     filing system or remote ones accessed by http (http://domain/dir/... ).-->
-
-    <references title="Normative References">
-      <!--?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml"?-->
-      &RFC2119;
-	  &RFC1035;
-	  &RFC1034;
-      &RFC3912;
-      &RFC4627;
-      &RFC3597;
-      &RFC6648;
-      &RFC2234;
-      &RFC6973;
-      &RFC3986;
-    </references>
     <references>
-         <reference anchor="WEIMERPDNS" target="http://www.enyo.de/fw/software/dnslogger/first2005-paper.pdf">
-          <front>
-            <title>Passive DNS Replication</title>
-            <author fullname="Florian Weimer"/>
-            <date year="2005"/>
-          </front>
-        </reference>
-        <reference anchor="CACHEPOISONING" target="http://kurser.lobner.dk/dDist/DMK_BO2K8.pdf">
-          <front>
-            <title>Black ops 2008: It's the end of the cache as we know it.</title>
-            <author fullname="Dan Kaminsky"/>
-            <date year="2008"/>
-          </front>
-        </reference>
-        <reference anchor="BAILIWICK" target="https://archive.farsightsecurity.com/Passive_DNS/passive_dns_hardening_handout.pdf">
-          <front>
-            <title>Passive DNS Hardening</title>
-            <author fullname="Robert Edmonds"/>
-            <date year="2010"/>
-          </front>
-        </reference>
-        <reference anchor="PDNSCLIENT" target="https://github.com/chrislee35/passivedns-client">
-          <front>
-            <title>Queries 5 major Passive DNS databases: BFK, CERTEE, DNSParse, ISC, and VirusTotal.</title>
-            <author fullname="Chris Lee"/>
-            <date year="2013"/>
-          </front>
-        </reference>
-        <reference anchor="REST" target="http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">
-          <front>
-            <title>Representational State Transfer (REST)</title>
-            <author fullname="Roy Thomas Fielding"/>
-            <date year="2000"/>
-          </front>
-        </reference>
-        <reference anchor="DNSDB" target="https://api.dnsdb.info/">
-          <front>
-           <title>DNSDB API</title>
-           <author fullname="Farsight Security"/>
-           <date year="2013"/>
-          </front>
-        </reference>
-        <reference anchor="PDNSCERTAT" target="http://www.centr.org/system/files/agenda/attachment/d4-papst-passive_dns.pdf">
-          <front>
-           <title>pDNS presentation at 4th Centr R&amp;D workshop Frankfurt Jun 5th 2012</title>
-           <author fullname="CERT.at"/>
-           <date year="2012"/>
-          </front>
-        </reference>
-        <reference anchor="PDNSCIRCL" target="https://www.circl.lu/services/passive-dns/">
-          <front>
+      <reference anchor="WEIMERPDNS"
+        target="http://www.enyo.de/fw/software/dnslogger/first2005-paper.pdf">
+        <front>
+          <title>Passive DNS Replication</title>
+          <author fullname="Florian Weimer" />
+          <date year="2005" />
+        </front>
+      </reference>
+
+      <reference anchor="CACHEPOISONING" target="http://kurser.lobner.dk/dDist/DMK_BO2K8.pdf">
+        <front>
+          <title>Black ops 2008: It's the end of the cache as we know it.</title>
+          <author fullname="Dan Kaminsky" />
+          <date year="2008" />
+        </front>
+      </reference>
+
+      <reference anchor="BAILIWICK"
+        target="https://archive.farsightsecurity.com/Passive_DNS/passive_dns_hardening_handout.pdf">
+        <front>
+          <title>Passive DNS Hardening</title>
+          <author fullname="Robert Edmonds" />
+          <date year="2010" />
+        </front>
+      </reference>
+
+      <reference anchor="PDNSCLIENT" target="https://github.com/chrislee35/passivedns-client">
+        <front>
+          <title>Queries 5 major Passive DNS databases: BFK, CERTEE, DNSParse, ISC, and VirusTotal.</title>
+          <author fullname="Chris Lee" />
+          <date year="2013" />
+        </front>
+      </reference>
+
+      <reference anchor="REST"
+        target="http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">
+        <front>
+          <title>Representational State Transfer (REST)</title>
+          <author fullname="Roy Thomas Fielding" />
+          <date year="2000" />
+        </front>
+      </reference>
+
+      <reference anchor="DNSDB" target="https://api.dnsdb.info/">
+        <front>
+          <title>DNSDB API</title>
+          <author fullname="Farsight Security" />
+          <date year="2013" />
+        </front>
+      </reference>
+
+      <reference anchor="PDNSCERTAT"
+        target="http://www.centr.org/system/files/agenda/attachment/d4-papst-passive_dns.pdf">
+        <front>
+          <title>pDNS presentation at 4th Centr R&amp;D workshop Frankfurt Jun 5th 2012</title>
+          <author fullname="CERT.at" />
+          <date year="2012" />
+        </front>
+      </reference>
+
+      <reference anchor="PDNSCIRCL" target="https://www.circl.lu/services/passive-dns/">
+        <front>
           <title>CIRCL Passive DNS</title>
-          <author fullname="CIRCL -Computer Incident Response Center Luxembourg"/>
-          <date year="2012"/>
-          </front>
-        </reference>
-        <reference anchor="PDNSCOF" target="https://github.com/D4-project/analyzer-d4-passivedns/">
-          <front>
+          <author fullname="CIRCL -Computer Incident Response Center Luxembourg" />
+          <date year="2012" />
+        </front>
+      </reference>
+
+      <reference anchor="PDNSCOF" target="https://github.com/D4-project/analyzer-d4-passivedns/">
+        <front>
           <title>Passive DNS server interface using the common output format</title>
-          <author fullname="D4 Project, Alexandre Dulaunoy"/>
-          <date year="2019"/>
-          </front>
-        </reference>
-        <reference anchor="DNSDBQ" target="https://github.com/dnsdb/dnsdbq">
-          <front>
+          <author fullname="D4 Project, Alexandre Dulaunoy" />
+          <date year="2019" />
+        </front>
+      </reference>
+
+      <reference anchor="DNSDBQ" target="https://github.com/dnsdb/dnsdbq">
+        <front>
           <title>DNSDB API Client, C Version</title>
-          <author fullname="Paul Vixie"/>
-          <date year="2018"/>
-          </front>
-        </reference>
-        <reference anchor="github_issue_17" target="https://github.com/adulau/pdns-qof/issues/17">
-          <front>
-		  <title>Discussion on the existing implementations of returning either zone_time{first,last} OR time_{first,last}</title>
-          <author fullname="Paul Vixie, Weizman, April, Kaplan, et.al"/>
-		  <date year="2020"/>
-          </front>
-        </reference>
+          <author fullname="Paul Vixie" />
+          <date year="2018" />
+        </front>
+      </reference>
+
+      <reference anchor="github_issue_17" target="https://github.com/adulau/pdns-qof/issues/17">
+        <front>
+          <title>Discussion on the existing implementations of returning either
+            zone_time{first,last} OR time_{first,last}</title>
+          <author fullname="Paul Vixie, Weizman, April, Kaplan, et.al" />
+          <date year="2020" />
+        </front>
+      </reference>
     </references>
+
 
     <references title="Informative References">
       <!-- Here we use entities that we defined at the beginning. -->
-
-
       <!-- &I-D.narten-iana-considerations-rfc2434bis; -->
       <!-- &I-D.draft-bortzmeyer-dnsop-dns-privacy; -->
-
     </references>
-  <section anchor="app-additional" title="Examples">
-<t>The JSON output are represented on multiple lines for readability but each JSON object should be on a single line.</t>
-<t>If you query a passive DNS for the rrname www.ietf.org, the passive dns common output format can be:</t>
-<figure><artwork>
-        <![CDATA[
+
+    <section anchor="app-additional" title="Examples">
+      <t>The JSON output are represented on multiple lines for readability but each JSON object
+        should be on a single line.</t>
+      <t>If you query a passive DNS for the rrname www.ietf.org, the passive dns common output
+        format can be:</t>
+      <figure>
+        <artwork><![CDATA[
 {"count": 102, "time_first": 1298412391, "rrtype": "AAAA",
 "rrname": "www.ietf.org", "rdata": "2001:1890:1112:1::20",
 "time_last": 1302506851}
 {"count": 59, "time_first": 1384865833, "rrtype": "A",
 "rrname": "www.ietf.org", "rdata": "4.31.198.44",
 "time_last": 1389022219}
-        ]]>
-</artwork></figure>
-<t>If you query a passive DNS for the rrname ietf.org, the passive dns common output format can be:</t>
-<figure><artwork>
-        <![CDATA[
+        ]]></artwork>
+      </figure>
+      <t>If you query a passive DNS for the rrname ietf.org, the passive dns common output format
+        can be:</t>
+      <figure>
+        <artwork><![CDATA[
 {"count": 109877, "time_first": 1298398002, "rrtype": "NS",
 "rrname": "ietf.org", "rdata": "ns1.yyz1.afilias-nst.info",
 "time_last": 1389095375}
@@ -450,13 +517,15 @@ ws              = *(
 {"count": 9, "time_first": 1317037550, "rrtype": "AAAA",
 "rrname": "ietf.org", "rdata": "2001:1890:123a::1:1e",
 "time_last": 1330209752}
-        ]]>
-</artwork></figure>
-	<t>Please note that the examples imply that a single query returns a single set of JSON objects. For example, two queries were made; one query returned a set of two JSON objects and the other query returned a set of three JSON objects. This specification requires each JSON object individually MUST conform to the common output format, but this specification does not require that a query will return a set of JSON objects.</t>
-	<t>Please note that in the examples above, any backslashes "\" can be ignored and are an artifact of the tools which produced this document.</t>
-          </section>
-
+        ]]></artwork>
+      </figure>
+      <t>Please note that the examples imply that a single query returns a single set of JSON
+        objects. For example, two queries were made; one query returned a set of two JSON objects
+        and the other query returned a set of three JSON objects. This specification requires each
+        JSON object individually MUST conform to the common output format, but this specification
+        does not require that a query will return a set of JSON objects.</t>
+      <t>Please note that in the examples above, any backslashes "\" can be ignored and are an
+        artifact of the tools which produced this document.</t>
+    </section>
   </back>
-
-
 </rfc>
