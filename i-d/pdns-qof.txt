@@ -256,8 +256,8 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
    This field returns the resource record type as seen by the passive
    DNS.  The key is rrtype and the value is in the interpreted record
    type represented as a JSON [RFC4627] string.  If the value cannot be
-   interpreted, the decimal value is returned following the principle of
-   transparency as described in RFC 3597 [RFC3597].  Then the decimal
+   interpreted, the decimal value is returned, following the principle
+   of transparency as described in RFC 3597 [RFC3597].  Then the decimal
    value is represented as a JSON [RFC4627] number.  The resource record
    type can be any values as described by IANA in the DNS parameters
    document in the section 'Resource Record (RR) TYPEs'
@@ -287,7 +287,7 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
    This field returns the resource records of the queried resource.
    When multiple resource records are returned, rdata MUST be a JSON
    array containing JSON strings.  In the case of a single resource
-   record is returned, rdata MUST be a JSON string or a JSON array
+   record being returned, rdata MUST be a JSON string or a JSON array
    containing one JSON string.  Each resource record is represented as a
    JSON [RFC4627] string.  Each resource record MUST be escaped as
    defined in section 2.6 of RFC4627 [RFC4627].  Depending on the
