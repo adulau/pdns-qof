@@ -24,7 +24,7 @@
 <?rfc sortrefs="yes"?>
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
-<rfc category="info" docName="draft-dulaunoy-dnsop-passive-dns-cof-11" ipr="trust200902">
+<rfc category="info" docName="draft-dulaunoy-dnsop-passive-dns-cof-12" ipr="trust200902">
   <!-- ***** FRONT MATTER ***** -->
   <front>
     <title abbrev="Passive DNS - Common Output Format">Passive DNS - Common Output Format</title>
@@ -97,7 +97,7 @@
       </address>
     </author>
 
-    <date day="27" month="April" year="2024" />
+    <date day="5" month="June" year="2024" />
     <area>General</area>
     <workgroup>Domain Name System Operations</workgroup>
     <keyword>dns</keyword>
