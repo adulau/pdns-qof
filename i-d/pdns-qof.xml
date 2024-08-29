@@ -1,30 +1,38 @@
-<?xml version="1.0" encoding="US-ASCII"?>
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-model href="rfc7991bis.rnc"?>  <!-- Required for schema validation and schema-aware editing -->
+<?xml-stylesheet type="text/xsl" href="rfc2629.xslt" ?>
 
-<!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
+<!DOCTYPE rfc [
 
-  <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
-  <!ENTITY RFC2629 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2629.xml">
-  <!ENTITY RFC1035 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1035.xml">
   <!ENTITY RFC1034 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1034.xml">
-  <!ENTITY RFC4627 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4627.xml">
+  <!ENTITY RFC1035 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1035.xml">
+  <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
+  <!ENTITY RFC2234 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2234.xml">
+  <!ENTITY RFC2629 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2629.xml">
   <!ENTITY RFC3597 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3597.xml">
   <!ENTITY RFC3912 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3912.xml">
-  <!ENTITY RFC6648 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6648.xml">
-  <!ENTITY RFC2234 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2234.xml">
-  <!ENTITY RFC6973 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6973.xml">
   <!ENTITY RFC3986 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3986.xml">
+  <!ENTITY RFC4627 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4627.xml">
+  <!ENTITY RFC6648 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6648.xml">
+  <!ENTITY RFC6973 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6973.xml">
+  <!ENTITY RFC7258 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7258.xml">
+  <!ENTITY RFC7871 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7871.xml">
   <!ENTITY I-D.narten-iana-considerations-rfc2434bis SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.narten-iana-considerations-rfc2434bis.xml">
   <!ENTITY I-D.draft-bortzmeyer-dnsop-dns-privacy SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-bortzmeyer-dnsop-dns-privacy">
 ]>
-<?xml-stylesheet type='text/xsl' href='rfc2629.xslt'?>
-<?rfc strict="yes"?>
-<?rfc toc="yes"?>
-<?rfc tocdepth="4"?>
-<?rfc symrefs="yes"?>
-<?rfc sortrefs="yes"?>
-<?rfc compact="yes"?>
-<?rfc subcompact="no"?>
-<rfc category="info" docName="draft-dulaunoy-dnsop-passive-dns-cof-12" ipr="trust200902">
+
+
+<rfc
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  category="info"
+  docName="draft-dulaunoy-dnsop-passive-dns-cof-12"
+  ipr="trust200902"
+  obsoletes=""
+  updates=""
+  submissionType="IETF"
+  xml:lang="en"
+  version="3">
+
   <!-- ***** FRONT MATTER ***** -->
   <front>
     <title abbrev="Passive DNS - Common Output Format">Passive DNS - Common Output Format</title>
@@ -97,12 +105,12 @@
       </address>
     </author>
 
-    <date day="5" month="June" year="2024" />
+    <date day="27" month="August" year="2024" />
     <area>General</area>
     <workgroup>Domain Name System Operations</workgroup>
     <keyword>dns</keyword>
     <abstract>
-      <t>This document describes a common output format of Passive DNS Servers that clients can
+      <t>This document describes a common output format of Passive DNS servers that clients can
         query. The output format description also includes a common semantic for each Passive DNS
         system. By having multiple Passive DNS Systems adhere to the same output format for queries,
         users of multiple Passive DNS servers will be able to combine result sets easily.</t>
@@ -111,29 +119,63 @@
   <middle>
     <section title="Introduction">
       <t>Passive DNS is a technique described by Florian Weimer in 2005 in <xref target="WEIMERPDNS">Passive
-        DNS replication, F Weimer - 17th Annual FIRST Conference on Computer Security</xref>. Since
-        then, multiple Passive DNS implementations were created and have evolved over time. Users of
-        these Passive DNS servers may query a server (often via <xref target="RFC3912">WHOIS</xref>
-        or HTTP <xref target="REST">REST</xref>), parse the results, and process them in other
-        applications.</t>
+        DNS replication, F Weimer - 17th Annual FIRST Conference on Computer Security</xref>.
+        It is a mechanism for
+      logging DNS answers in a manner intended to minimize the privacy
+      implications to users, and is widely by security researchers to investigate
+      malware (for example to discover command and control servers), and other
+      security threats. By capturing only the "cache fill" DNS responses
+      (responses from authoritative servers in response to queries performed by a
+      recursive resolver when iteratively resolving a name), Passive DNS does
+      not have access to the client (users) source IP, source port, destination
+      IP, or destination port.</t>
 
-      <t> There are multiple implementations of Passive DNS software. Users of Passive DNS query
-        each implementation and aggregate the results for their search. This document describes the
-        output format of four Passive DNS Systems (<xref target="DNSDB" />, <xref target="DNSDBQ" />
-        , <xref target="PDNSCERTAT" />, <xref target="PDNSCIRCL" /> and <xref target="PDNSCOF" />)
-        that are in use today and that already share a nearly identical output format. As the format
-        and the meaning of output fields from each Passive DNS need to be consistent, this document
-        proposes a solution to commonly name each field along with its corresponding interpretation.
-        The format follows a simple key-value structure in <xref target="RFC4627">JSON</xref>
-        format. The benefit of having a consistent Passive DNS output format is that multiple client
-        implementations can query different servers without having to have a separate parser for
-        each individual server. <xref target="PDNSCLIENT">passivedns-client</xref> currently
-        implements multiple parsers due to a lack of standardization. The document does not describe
-        the protocol (e.g. <xref target="RFC3912">WHOIS</xref>, HTTP <xref target="REST">REST</xref>)
-        nor the query format used to query the Passive DNS. Neither does this document describe
-        "pre-recursor" Passive DNS Systems. Each of these are separate topics and deserve their own
-        RFC documents. This document describes the current best practices implemented in various
-        Passive DNS server implementations. </t>
+      <t>As these answers are served in response to queries originally
+      initiated by user devices, the Passive DNS data can be used to detect if
+      devices using the resolver are connecting to known malicious domains,
+      without identifying the individual users / devices. In addition, as
+      answers are responses to queries made by the recursive server itself,
+      Passive DNS records the answers which are ultimately served to users.
+      This is important as authoritative servers may serve different answers to
+      different query addresses, for example to increase performance (e.g <xref
+      target="RFC7871">Client Subnet in DNS Queries</xref>) or to hide
+      malicious behavior when queried from addresses known to be associated
+      with security researchers.</t>
+
+      <t>Passive DNS is usually implemented either by capturing DNS response
+        packets themselves (i.e packets with a destination address of the
+        recursive resolver, a source port of 53, and the QR bit set to 1) or
+        by having the DNS software itself log these responses. The latter method
+        is likely to become more common as recursive to authoritative DNS
+        communication becomes encrypted.
+      </t>
+
+      <t>Multiple Passive DNS implementations and services exist. Users of
+      these Passive DNS services may query a server (often via <xref
+      target="RFC3912">WHOIS</xref>
+      or HTTP <xref target="REST">REST</xref>), parse the results, and process
+      them in other applications. Users of Passive DNS query each
+      implementation and aggregate the results for their search. This document
+      describes the output format of four Passive DNS Systems (<xref
+      target="DNSDB" />, <xref target="DNSDBQ" /> , <xref target="PDNSCERTAT"
+      />, <xref target="PDNSCIRCL" /> and <xref target="PDNSCOF" />) that are
+      in use today and that already share a nearly identical output format. As
+      the format and the meaning of output fields from each Passive DNS need to
+      be consistent, this document proposes a solution to commonly name each
+      field along with its corresponding interpretation. The format follows a
+      simple key-value structure in <xref target="RFC4627">JSON</xref>
+        format. The benefit of having a consistent Passive DNS output format is
+        that multiple client implementations can query different servers
+        without having to have a separate parser for each individual server.
+        <xref target="PDNSCLIENT">passivedns-client</xref> currently implements
+        multiple parsers due to a lack of standardization. The document does
+        not describe the protocol (e.g. <xref target="RFC3912">WHOIS</xref>,
+        HTTP <xref target="REST">REST</xref>) nor the query format used to
+        query the Passive DNS. Neither does this document describe
+        "pre-recursor" Passive DNS Systems. Each of these are separate topics
+        and deserve their own RFC documents. This document describes the
+        current best practices implemented in various Passive DNS server
+        implementations. </t>
 
       <section title="Requirements Language">
         <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD
@@ -142,15 +184,15 @@
       </section>
     </section>
 
-    <section title="Limitation">
+    <section title="Limitations">
       <t> As Passive DNS servers can include protection mechanisms for their operation, results
         might be different due to those protection measures. These mechanisms filter out DNS answers
         if they fail some criteria. The <xref target="BAILIWICK">bailiwick algorithm</xref> protects
-        the Passive DNS Database from <xref target="CACHEPOISONING">cache poisoning attacks</xref>.
+        the Passive DNS Database from cache poisoning attacks.
         Another limitation that clients querying the database need to be aware of is that each query
         simply gets a snapshot-in-time answer at the time of querying. Clients MUST NOT rely on
         existing answers from different Passive DNS database. Nor should they assume that answers
-        will be identical across multiple Passive DNS Servers. </t>
+        will be identical across multiple Passive DNS servers. </t>
     </section>
 
     <section title="Common Output Format">
@@ -168,8 +210,9 @@
       </section>
 
       <section title="ABNF grammar">
+        <!-- "preamble" is deprecated in V3 -->
+        <t>Formal grammar as defined in <xref target="RFC2234">ABNF</xref></t>
         <figure>
-          <preamble>Formal grammar as defined in <xref target="RFC2234">ABNF</xref></preamble>
           <artwork><![CDATA[
 answer          = entries
 entries         = * ( entry newline )
@@ -266,7 +309,7 @@ ws              = *(
       <section title="Optional Fields">
         <t>Implementations SHOULD support one or more fields.</t>
         <section title="count">
-          <t>Specifies how many authoritative DNS answers were received at the Passive DNS Server's
+          <t>Specifies how many authoritative DNS answers were received at the Passive DNS server's
             collectors with exactly the given set of values as answers (i.e. same data in the answer
             set - compare with the uniqueness property in "Mandatory Fields"). The number of
             requests is expressed as a decimal value. This field is represented as a <xref
@@ -328,7 +371,7 @@ ws              = *(
       </section>
 
       <section title="Additional notes">
-        <t>An implementer of a passive DNS Server MAY chose to either return time_first and
+        <t>An implementer of a passive DNS server MAY chose to either return time_first and
           time_last OR return zone_time_first and zone_time_last. In pseudocode: (time_first AND
           time_last) OR (zone_time_first AND zone_time_last). In this case, zone_time_{first,last}
           replace the time_{first,last} fields. However, this is not encouraged since it might be
@@ -337,11 +380,10 @@ ws              = *(
       </section>
 
       <section title="Suggested MIME Types">
-        <t>An implementer of a passive DNS Server SHOULD serve a document in this Common Output
+        <t>An implementer of a passive DNS server SHOULD serve a document in this Common Output
           Format with a MIME header of "application/x-ndjson".</t>
       </section>
     </section>
-
 
 
     <!-- This PI places the pagebreak correctly (before the section title) in the text output. -->
@@ -355,39 +397,53 @@ ws              = *(
     </section>
 
     <section anchor="Privacy" title="Privacy Considerations">
-      <t>Passive DNS Servers capture DNS answers from multiple collection points ("sensors") which
+      <t>Passive DNS servers capture DNS answers from multiple collection points ("sensors") which
         are located on the Internet-facing side of DNS recursors ("post-recursor passive DNS"). In
         this process, they intentionally omit the source IP, source port, destination IP and
         destination port from the captured packets. Since the data is captured "post-recursor", the
         timing information (who queries what) is lost, since the recursor will cache the results.
-        Furthermore, since multiple sensors feed into a passive DNS server, the resulting data gets
-        mixed together, reducing the likelihood that Passive DNS Servers are able to find out much
-        about the actual person querying the DNS records. In this sense, passive DNS Servers are
+        Furthermore, since multiple sensors feed into a passive DNS system, the resulting data gets
+        mixed together, reducing the likelihood that Passive DNS systems are able to find out much
+        about the actual person querying the DNS records. In this sense, passive DNS systems are
         similar to keeping an archive of all previous phone books - if public DNS records can be
         compared to phone numbers - as they often are. Nevertheless, the authors strongly encourage
-        Passive DNS implementors to take special care of privacy issues.
-        bortzmeyer-dnsop-dns-privacy is an excellent starting point for this. Finally, the overall
+        Passive DNS implementors to take special care of privacy issues. Finally, the overall
         recommendations in <xref target="RFC6973">RFC6973</xref> should be taken into consideration
         when designing any application which uses Passive DNS data.</t>
+
+      <t>Passive DNS attempts to collect information necessary for security (such as malware protection)
+        in as privacy protecting a manner as possible, and is intended to be
+        used instead of more invasive methods. It does this by only collecting
+      DNS cache-fill answers, and not any information associated with who caused the
+    name to be resolved, nor why the name was resolved. Nevertheless, it is possible that
+  this may still lead to privacy concerns - for example, if Passive DNS records show that
+  a recursive resolver resolved the name the-mary-and-john-smith-family.example.com, it may be
+  possible to infer that the Smith family is using that resolver. Operators of Passive DNS
+  servers should be aware of this and take appropriate steps to limit access to the data.</t>
+
+  <t>Passive DNS operators are encouraged to read and understand
+    <xref target="RFC7258">RFC7258</xref> </t>
+
+
       <t>In the scope of the General Data Protection Regulation (GDPR - Directive 95/46/EC),
-        operators of Passive DNS Server needs to ensure the legal ground and lawfulness of its
+        operators of Passive DNS server needs to ensure the legal ground and lawfulness of its
         operation.</t>
     </section>
 
     <section anchor="Security" title="Security Considerations">
       <t>In some cases, Passive DNS output might contain confidential information and its access
-        might be restricted. When a user is querying multiple Passive DNS and aggregating the data,
+        should be restricted. When a user is querying multiple Passive DNS and aggregating the data,
         the sensitivity of the data must be considered.</t>
     </section>
   </middle>
   <!--  *****BACK MATTER ***** -->
   <back>
+  <references>
+      <name>Normative References</name>
+      &RFC2119; &RFC1035; &RFC1034; &RFC3912; &RFC4627;
+      &RFC3597; &RFC6648; &RFC2234; &RFC6973; &RFC3986;
+      &RFC7258;
 
-    <references title="Normative References"><!--?rfc
-      include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml"?--> &RFC2119; &RFC1035; &RFC1034; &RFC3912; &RFC4627;
-      &RFC3597; &RFC6648; &RFC2234; &RFC6973; &RFC3986; </references>
-
-    <references>
       <reference anchor="WEIMERPDNS"
         target="http://www.enyo.de/fw/software/dnslogger/first2005-paper.pdf">
         <front>
@@ -397,78 +453,11 @@ ws              = *(
         </front>
       </reference>
 
-      <reference anchor="CACHEPOISONING" target="http://kurser.lobner.dk/dDist/DMK_BO2K8.pdf">
-        <front>
-          <title>Black ops 2008: It's the end of the cache as we know it.</title>
-          <author fullname="Dan Kaminsky" />
-          <date year="2008" />
-        </front>
-      </reference>
-
-      <reference anchor="BAILIWICK"
-        target="https://archive.farsightsecurity.com/Passive_DNS/passive_dns_hardening_handout.pdf">
-        <front>
-          <title>Passive DNS Hardening</title>
-          <author fullname="Robert Edmonds" />
-          <date year="2010" />
-        </front>
-      </reference>
-
-      <reference anchor="PDNSCLIENT" target="https://github.com/chrislee35/passivedns-client">
-        <front>
-          <title>Queries 5 major Passive DNS databases: BFK, CERTEE, DNSParse, ISC, and VirusTotal.</title>
-          <author fullname="Chris Lee" />
-          <date year="2013" />
-        </front>
-      </reference>
-
-      <reference anchor="REST"
-        target="http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">
-        <front>
-          <title>Representational State Transfer (REST)</title>
-          <author fullname="Roy Thomas Fielding" />
-          <date year="2000" />
-        </front>
-      </reference>
-
-      <reference anchor="DNSDB" target="https://api.dnsdb.info/">
-        <front>
-          <title>DNSDB API</title>
-          <author fullname="Farsight Security" />
-          <date year="2013" />
-        </front>
-      </reference>
-
-      <reference anchor="PDNSCERTAT"
-        target="http://www.centr.org/system/files/agenda/attachment/d4-papst-passive_dns.pdf">
-        <front>
-          <title>pDNS presentation at 4th Centr R&amp;D workshop Frankfurt Jun 5th 2012</title>
-          <author fullname="CERT.at" />
-          <date year="2012" />
-        </front>
-      </reference>
-
-      <reference anchor="PDNSCIRCL" target="https://www.circl.lu/services/passive-dns/">
-        <front>
-          <title>CIRCL Passive DNS</title>
-          <author fullname="CIRCL -Computer Incident Response Center Luxembourg" />
-          <date year="2012" />
-        </front>
-      </reference>
-
       <reference anchor="PDNSCOF" target="https://github.com/D4-project/analyzer-d4-passivedns/">
         <front>
           <title>Passive DNS server interface using the common output format</title>
           <author fullname="D4 Project, Alexandre Dulaunoy" />
           <date year="2019" />
-        </front>
-      </reference>
-
-      <reference anchor="DNSDBQ" target="https://github.com/dnsdb/dnsdbq">
-        <front>
-          <title>DNSDB API Client, C Version</title>
-          <author fullname="Paul Vixie" />
-          <date year="2018" />
         </front>
       </reference>
 
@@ -482,11 +471,68 @@ ws              = *(
       </reference>
     </references>
 
+    <references>
+      <name>Informative References</name>
+      &RFC7871;
 
-    <references title="Informative References">
-      <!-- Here we use entities that we defined at the beginning. -->
-      <!-- &I-D.narten-iana-considerations-rfc2434bis; -->
-      <!-- &I-D.draft-bortzmeyer-dnsop-dns-privacy; -->
+      <reference anchor="BAILIWICK"
+      target="https://archive.farsightsecurity.com/Passive_DNS/passive_dns_hardening_handout.pdf">
+      <front>
+        <title>Passive DNS Hardening</title>
+        <author fullname="Robert Edmonds" />
+        <date year="2010" />
+      </front>
+    </reference>
+
+      <reference anchor="PDNSCLIENT" target="https://github.com/chrislee35/passivedns-client">
+        <front>
+          <title>Queries 5 major Passive DNS databases: BFK, CERTEE, DNSParse, ISC, and VirusTotal.</title>
+          <author fullname="Chris Lee" />
+          <date year="2013" />
+        </front>
+      </reference>
+
+      <reference anchor="REST"
+      target="http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">
+      <front>
+        <title>Representational State Transfer (REST)</title>
+        <author fullname="Roy Thomas Fielding" />
+        <date year="2000" />
+      </front>
+    </reference>
+
+    <reference anchor="DNSDB" target="https://api.dnsdb.info/">
+      <front>
+        <title>DNSDB API</title>
+        <author fullname="Farsight Security" />
+        <date year="2013" />
+      </front>
+    </reference>
+
+    <reference anchor="PDNSCERTAT"
+      target="http://www.centr.org/system/files/agenda/attachment/d4-papst-passive_dns.pdf">
+      <front>
+        <title>pDNS presentation at 4th Centr R&amp;D workshop Frankfurt Jun 5th 2012</title>
+        <author fullname="CERT.at" />
+        <date year="2012" />
+      </front>
+    </reference>
+
+    <reference anchor="PDNSCIRCL" target="https://www.circl.lu/services/passive-dns/">
+      <front>
+        <title>CIRCL Passive DNS</title>
+        <author fullname="CIRCL -Computer Incident Response Center Luxembourg" />
+        <date year="2012" />
+      </front>
+    </reference>
+
+    <reference anchor="DNSDBQ" target="https://github.com/dnsdb/dnsdbq">
+      <front>
+        <title>DNSDB API Client, C Version</title>
+        <author fullname="Paul Vixie" />
+        <date year="2018" />
+      </front>
+    </reference>
     </references>
 
     <section anchor="app-additional" title="Examples">
