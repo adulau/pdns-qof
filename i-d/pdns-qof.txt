@@ -5,21 +5,21 @@
 Domain Name System Operations                                A. Dulaunoy
 Internet-Draft                                                     CIRCL
 Intended status: Informational                                 A. Kaplan
-Expires: 29 October 2024                                                
+Expires: 28 February 2025                                               
                                                                 P. Vixie
                                                                 H. Stern
                                                  Farsight Security, Inc.
                                                                W. Kumari
                                                                   Google
-                                                           27 April 2024
+                                                          27 August 2024
 
 
                    Passive DNS - Common Output Format
-                draft-dulaunoy-dnsop-passive-dns-cof-11
+                draft-dulaunoy-dnsop-passive-dns-cof-12
 
 Abstract
 
-   This document describes a common output format of Passive DNS Servers
+   This document describes a common output format of Passive DNS servers
    that clients can query.  The output format description also includes
    a common semantic for each Passive DNS system.  By having multiple
    Passive DNS Systems adhere to the same output format for queries,
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 October 2024.
+   This Internet-Draft will expire on 28 February 2025.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Dulaunoy, et al.         Expires 29 October 2024                [Page 1]
+Dulaunoy, et al.        Expires 28 February 2025                [Page 1]
 
-Internet-Draft     Passive DNS - Common Output Format         April 2024
+Internet-Draft     Passive DNS - Common Output Format        August 2024
 
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -70,80 +70,114 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
 Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
-     1.1.  Requirements Language . . . . . . . . . . . . . . . . . .   3
-   2.  Limitation  . . . . . . . . . . . . . . . . . . . . . . . . .   3
+     1.1.  Requirements Language . . . . . . . . . . . . . . . . . .   4
+   2.  Limitations . . . . . . . . . . . . . . . . . . . . . . . . .   4
    3.  Common Output Format  . . . . . . . . . . . . . . . . . . . .   4
      3.1.  Overview  . . . . . . . . . . . . . . . . . . . . . . . .   4
      3.2.  ABNF grammar  . . . . . . . . . . . . . . . . . . . . . .   4
      3.3.  Mandatory Fields  . . . . . . . . . . . . . . . . . . . .   5
-       3.3.1.  rrname  . . . . . . . . . . . . . . . . . . . . . . .   5
-       3.3.2.  rrtype  . . . . . . . . . . . . . . . . . . . . . . .   5
+       3.3.1.  rrname  . . . . . . . . . . . . . . . . . . . . . . .   6
+       3.3.2.  rrtype  . . . . . . . . . . . . . . . . . . . . . . .   6
        3.3.3.  rdata . . . . . . . . . . . . . . . . . . . . . . . .   6
        3.3.4.  time_first  . . . . . . . . . . . . . . . . . . . . .   6
-       3.3.5.  time_last . . . . . . . . . . . . . . . . . . . . . .   6
-     3.4.  Optional Fields . . . . . . . . . . . . . . . . . . . . .   6
-       3.4.1.  count . . . . . . . . . . . . . . . . . . . . . . . .   6
+       3.3.5.  time_last . . . . . . . . . . . . . . . . . . . . . .   7
+     3.4.  Optional Fields . . . . . . . . . . . . . . . . . . . . .   7
+       3.4.1.  count . . . . . . . . . . . . . . . . . . . . . . . .   7
        3.4.2.  bailiwick . . . . . . . . . . . . . . . . . . . . . .   7
      3.5.  Additional Fields . . . . . . . . . . . . . . . . . . . .   7
        3.5.1.  sensor_id . . . . . . . . . . . . . . . . . . . . . .   7
        3.5.2.  zone_time_first . . . . . . . . . . . . . . . . . . .   7
-       3.5.3.  zone_time_last  . . . . . . . . . . . . . . . . . . .   7
-       3.5.4.  origin  . . . . . . . . . . . . . . . . . . . . . . .   7
-       3.5.5.  time_first_ms . . . . . . . . . . . . . . . . . . . .   7
+       3.5.3.  zone_time_last  . . . . . . . . . . . . . . . . . . .   8
+       3.5.4.  origin  . . . . . . . . . . . . . . . . . . . . . . .   8
+       3.5.5.  time_first_ms . . . . . . . . . . . . . . . . . . . .   8
        3.5.6.  time_last_ms  . . . . . . . . . . . . . . . . . . . .   8
      3.6.  Additional Fields Registry  . . . . . . . . . . . . . . .   8
      3.7.  Additional notes  . . . . . . . . . . . . . . . . . . . .   8
      3.8.  Suggested MIME Types  . . . . . . . . . . . . . . . . . .   8
-   4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   8
-   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   8
-   6.  Privacy Considerations  . . . . . . . . . . . . . . . . . . .   8
-   7.  Security Considerations . . . . . . . . . . . . . . . . . . .   9
-   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   9
-     8.1.  Normative References  . . . . . . . . . . . . . . . . . .   9
-     8.2.  References  . . . . . . . . . . . . . . . . . . . . . . .  10
-     8.3.  Informative References  . . . . . . . . . . . . . . . . .  11
-   Appendix A.  Examples . . . . . . . . . . . . . . . . . . . . . .  11
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  12
+   4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   9
+   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   9
+   6.  Privacy Considerations  . . . . . . . . . . . . . . . . . . .   9
+   7.  Security Considerations . . . . . . . . . . . . . . . . . . .  10
+   8.  Normative References  . . . . . . . . . . . . . . . . . . . .  10
+   9.  Informative References  . . . . . . . . . . . . . . . . . . .  11
+   Appendix A.  Examples . . . . . . . . . . . . . . . . . . . . . .  12
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  13
 
 
 
 
 
-Dulaunoy, et al.         Expires 29 October 2024                [Page 2]
+
+
+Dulaunoy, et al.        Expires 28 February 2025                [Page 2]
 
-Internet-Draft     Passive DNS - Common Output Format         April 2024
+Internet-Draft     Passive DNS - Common Output Format        August 2024
 
 
 1.  Introduction
 
    Passive DNS is a technique described by Florian Weimer in 2005 in
    Passive DNS replication, F Weimer - 17th Annual FIRST Conference on
-   Computer Security [WEIMERPDNS].  Since then, multiple Passive DNS
-   implementations were created and have evolved over time.  Users of
-   these Passive DNS servers may query a server (often via WHOIS
-   [RFC3912] or HTTP REST [REST]), parse the results, and process them
-   in other applications.
+   Computer Security [WEIMERPDNS].  It is a mechanism for logging DNS
+   answers in a manner intended to minimize the privacy implications to
+   users, and is widely by security researchers to investigate malware
+   (for example to discover command and control servers), and other
+   security threats.  By capturing only the "cache fill" DNS responses
+   (responses from authoritative servers in response to queries
+   performed by a recursive resolver when iteratively resolving a name),
+   Passive DNS does not have access to the client (users) source IP,
+   source port, destination IP, or destination port.
 
-   There are multiple implementations of Passive DNS software.  Users of
-   Passive DNS query each implementation and aggregate the results for
-   their search.  This document describes the output format of four
-   Passive DNS Systems ([DNSDB], [DNSDBQ] , [PDNSCERTAT], [PDNSCIRCL]
-   and [PDNSCOF]) that are in use today and that already share a nearly
-   identical output format.  As the format and the meaning of output
-   fields from each Passive DNS need to be consistent, this document
-   proposes a solution to commonly name each field along with its
-   corresponding interpretation.  The format follows a simple key-value
-   structure in JSON [RFC4627] format.  The benefit of having a
-   consistent Passive DNS output format is that multiple client
-   implementations can query different servers without having to have a
-   separate parser for each individual server. passivedns-client
-   [PDNSCLIENT] currently implements multiple parsers due to a lack of
-   standardization.  The document does not describe the protocol (e.g.
-   WHOIS [RFC3912], HTTP REST [REST]) nor the query format used to query
-   the Passive DNS.  Neither does this document describe "pre-recursor"
-   Passive DNS Systems.  Each of these are separate topics and deserve
-   their own RFC documents.  This document describes the current best
-   practices implemented in various Passive DNS server implementations.
+   As these answers are served in response to queries originally
+   initiated by user devices, the Passive DNS data can be used to detect
+   if devices using the resolver are connecting to known malicious
+   domains, without identifying the individual users / devices.  In
+   addition, as answers are responses to queries made by the recursive
+   server itself, Passive DNS records the answers which are ultimately
+   served to users.  This is important as authoritative servers may
+   serve different answers to different query addresses, for example to
+   increase performance (e.g Client Subnet in DNS Queries [RFC7871]) or
+   to hide malicious behavior when queried from addresses known to be
+   associated with security researchers.
+
+   Passive DNS is usually implemented either by capturing DNS response
+   packets themselves (i.e packets with a destination address of the
+   recursive resolver, a source port of 53, and the QR bit set to 1) or
+   by having the DNS software itself log these responses.  The latter
+   method is likely to become more common as recursive to authoritative
+   DNS communication becomes encrypted.
+
+   Multiple Passive DNS implementations and services exist.  Users of
+   these Passive DNS services may query a server (often via WHOIS
+   [RFC3912] or HTTP REST [REST]), parse the results, and process them
+   in other applications.  Users of Passive DNS query each
+   implementation and aggregate the results for their search.  This
+   document describes the output format of four Passive DNS Systems
+   ([DNSDB], [DNSDBQ] , [PDNSCERTAT], [PDNSCIRCL] and [PDNSCOF]) that
+   are in use today and that already share a nearly identical output
+   format.  As the format and the meaning of output fields from each
+   Passive DNS need to be consistent, this document proposes a solution
+   to commonly name each field along with its corresponding
+   interpretation.  The format follows a simple key-value structure in
+   JSON [RFC4627] format.  The benefit of having a consistent Passive
+   DNS output format is that multiple client implementations can query
+   different servers without having to have a separate parser for each
+
+
+
+Dulaunoy, et al.        Expires 28 February 2025                [Page 3]
+
+Internet-Draft     Passive DNS - Common Output Format        August 2024
+
+
+   individual server.  passivedns-client [PDNSCLIENT] currently
+   implements multiple parsers due to a lack of standardization.  The
+   document does not describe the protocol (e.g.  WHOIS [RFC3912], HTTP
+   REST [REST]) nor the query format used to query the Passive DNS.
+   Neither does this document describe "pre-recursor" Passive DNS
+   Systems.  Each of these are separate topics and deserve their own RFC
+   documents.  This document describes the current best practices
+   implemented in various Passive DNS server implementations.
 
 1.1.  Requirements Language
 
@@ -151,26 +185,18 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
    document are to be interpreted as described in RFC 2119 [RFC2119].
 
-2.  Limitation
+2.  Limitations
 
    As Passive DNS servers can include protection mechanisms for their
    operation, results might be different due to those protection
    measures.  These mechanisms filter out DNS answers if they fail some
    criteria.  The bailiwick algorithm [BAILIWICK] protects the Passive
-   DNS Database from cache poisoning attacks [CACHEPOISONING].  Another
-   limitation that clients querying the database need to be aware of is
-   that each query simply gets a snapshot-in-time answer at the time of
-   querying.  Clients MUST NOT rely on existing answers from different
-   Passive DNS database.  Nor should they assume that answers will be
-
-
-
-Dulaunoy, et al.         Expires 29 October 2024                [Page 3]
-
-Internet-Draft     Passive DNS - Common Output Format         April 2024
-
-
-   identical across multiple Passive DNS Servers.
+   DNS Database from cache poisoning attacks.  Another limitation that
+   clients querying the database need to be aware of is that each query
+   simply gets a snapshot-in-time answer at the time of querying.
+   Clients MUST NOT rely on existing answers from different Passive DNS
+   database.  Nor should they assume that answers will be identical
+   across multiple Passive DNS servers.
 
 3.  Common Output Format
 
@@ -191,6 +217,14 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
 3.2.  ABNF grammar
 
    Formal grammar as defined in ABNF [RFC2234]
+
+
+
+
+Dulaunoy, et al.        Expires 28 February 2025                [Page 4]
+
+Internet-Draft     Passive DNS - Common Output Format        August 2024
+
 
    answer          = entries
    entries         = * ( entry newline )
@@ -215,16 +249,7 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
                        )
 
 
-
-
-
-
-
-
-Dulaunoy, et al.         Expires 29 October 2024                [Page 4]
-
-Internet-Draft     Passive DNS - Common Output Format         April 2024
-
+                                  Figure 1
 
    Note that value is defined in JSON [RFC4627] and has the same
    specification as there.  The same goes for the definition of string.
@@ -245,6 +270,17 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
    MUST be a JSON string or a JSON array containing one JSON string.
    Senders SHOULD send an array for rdata, but receivers MUST be able to
    accept a single-string result for rdata.
+
+
+
+
+
+
+
+Dulaunoy, et al.        Expires 28 February 2025                [Page 5]
+
+Internet-Draft     Passive DNS - Common Output Format        August 2024
+
 
 3.3.1.  rrname
 
@@ -267,20 +303,6 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
    JSON [RFC4627] string.  In addition, a client MUST be able to handle
    a decimal value (as mentioned above) answer represented as a JSON
    [RFC4627] number.
-
-
-
-
-
-
-
-
-
-
-Dulaunoy, et al.         Expires 29 October 2024                [Page 5]
-
-Internet-Draft     Passive DNS - Common Output Format         April 2024
-
 
 3.3.3.  rdata
 
@@ -306,6 +328,16 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
    timestamp).  The time zone MUST be UTC.  This field is represented as
    a JSON [RFC4627] number.
 
+
+
+
+
+
+Dulaunoy, et al.        Expires 28 February 2025                [Page 6]
+
+Internet-Draft     Passive DNS - Common Output Format        August 2024
+
+
 3.3.5.  time_last
 
    This field returns the last time that the unique tuple (rrname,
@@ -321,22 +353,11 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
 3.4.1.  count
 
    Specifies how many authoritative DNS answers were received at the
-   Passive DNS Server's collectors with exactly the given set of values
+   Passive DNS server's collectors with exactly the given set of values
    as answers (i.e. same data in the answer set - compare with the
    uniqueness property in "Mandatory Fields").  The number of requests
    is expressed as a decimal value.  This field is represented as a JSON
    [RFC4627] number.
-
-
-
-
-
-
-
-Dulaunoy, et al.         Expires 29 October 2024                [Page 6]
-
-Internet-Draft     Passive DNS - Common Output Format         April 2024
-
 
 3.4.2.  bailiwick
 
@@ -365,6 +386,14 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
    timestamp).  The time zone MUST be UTC.  This field is represented as
    a JSON [RFC4627] number.
 
+
+
+
+Dulaunoy, et al.        Expires 28 February 2025                [Page 7]
+
+Internet-Draft     Passive DNS - Common Output Format        August 2024
+
+
 3.5.3.  zone_time_last
 
    This field returns the last time that the unique tuple (rrname,
@@ -385,15 +414,6 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
    that the resolution is in milliseconds since 1st of January 1970
    (UTC).
 
-
-
-
-
-Dulaunoy, et al.         Expires 29 October 2024                [Page 7]
-
-Internet-Draft     Passive DNS - Common Output Format         April 2024
-
-
 3.5.6.  time_last_ms
 
    Same meaning as the field "time_last", with the only difference, that
@@ -408,7 +428,7 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
 
 3.7.  Additional notes
 
-   An implementer of a passive DNS Server MAY chose to either return
+   An implementer of a passive DNS server MAY chose to either return
    time_first and time_last OR return zone_time_first and
    zone_time_last.  In pseudocode: (time_first AND time_last) OR
    (zone_time_first AND zone_time_last).  In this case,
@@ -419,9 +439,16 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
 
 3.8.  Suggested MIME Types
 
-   An implementer of a passive DNS Server SHOULD serve a document in
+   An implementer of a passive DNS server SHOULD serve a document in
    this Common Output Format with a MIME header of "application/
    x-ndjson".
+
+
+
+Dulaunoy, et al.        Expires 28 February 2025                [Page 8]
+
+Internet-Draft     Passive DNS - Common Output Format        August 2024
+
 
 4.  Acknowledgements
 
@@ -433,92 +460,86 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
 
 6.  Privacy Considerations
 
-   Passive DNS Servers capture DNS answers from multiple collection
+   Passive DNS servers capture DNS answers from multiple collection
    points ("sensors") which are located on the Internet-facing side of
    DNS recursors ("post-recursor passive DNS").  In this process, they
    intentionally omit the source IP, source port, destination IP and
    destination port from the captured packets.  Since the data is
    captured "post-recursor", the timing information (who queries what)
    is lost, since the recursor will cache the results.  Furthermore,
-   since multiple sensors feed into a passive DNS server, the resulting
+   since multiple sensors feed into a passive DNS system, the resulting
    data gets mixed together, reducing the likelihood that Passive DNS
-
-
-
-Dulaunoy, et al.         Expires 29 October 2024                [Page 8]
-
-Internet-Draft     Passive DNS - Common Output Format         April 2024
-
-
-   Servers are able to find out much about the actual person querying
-   the DNS records.  In this sense, passive DNS Servers are similar to
+   systems are able to find out much about the actual person querying
+   the DNS records.  In this sense, passive DNS systems are similar to
    keeping an archive of all previous phone books - if public DNS
    records can be compared to phone numbers - as they often are.
    Nevertheless, the authors strongly encourage Passive DNS implementors
-   to take special care of privacy issues.  bortzmeyer-dnsop-dns-privacy
-   is an excellent starting point for this.  Finally, the overall
+   to take special care of privacy issues.  Finally, the overall
    recommendations in RFC6973 [RFC6973] should be taken into
    consideration when designing any application which uses Passive DNS
    data.
 
+   Passive DNS attempts to collect information necessary for security
+   (such as malware protection) in as privacy protecting a manner as
+   possible, and is intended to be used instead of more invasive
+   methods.  It does this by only collecting DNS cache-fill answers, and
+   not any information associated with who caused the name to be
+   resolved, nor why the name was resolved.  Nevertheless, it is
+   possible that this may still lead to privacy concerns - for example,
+   if Passive DNS records show that a recursive resolver resolved the
+   name the-mary-and-john-smith-family.example.com, it may be possible
+   to infer that the Smith family is using that resolver.  Operators of
+   Passive DNS servers should be aware of this and take appropriate
+   steps to limit access to the data.
+
+   Passive DNS operators are encouraged to read and understand RFC7258
+   [RFC7258]
+
    In the scope of the General Data Protection Regulation (GDPR -
-   Directive 95/46/EC), operators of Passive DNS Server needs to ensure
+   Directive 95/46/EC), operators of Passive DNS server needs to ensure
    the legal ground and lawfulness of its operation.
+
+
+
+Dulaunoy, et al.        Expires 28 February 2025                [Page 9]
+
+Internet-Draft     Passive DNS - Common Output Format        August 2024
+
 
 7.  Security Considerations
 
    In some cases, Passive DNS output might contain confidential
-   information and its access might be restricted.  When a user is
+   information and its access should be restricted.  When a user is
    querying multiple Passive DNS and aggregating the data, the
    sensitivity of the data must be considered.
 
-8.  References
-
-8.1.  Normative References
-
-   [RFC1034]  Mockapetris, P., "Domain names - concepts and facilities",
-              STD 13, RFC 1034, DOI 10.17487/RFC1034, November 1987,
-              <https://www.rfc-editor.org/info/rfc1034>.
-
-   [RFC1035]  Mockapetris, P., "Domain names - implementation and
-              specification", STD 13, RFC 1035, DOI 10.17487/RFC1035,
-              November 1987, <https://www.rfc-editor.org/info/rfc1035>.
+8.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
-   [RFC2234]  Crocker, D., Ed. and P. Overell, "Augmented BNF for Syntax
-              Specifications: ABNF", RFC 2234, DOI 10.17487/RFC2234,
-              November 1997, <https://www.rfc-editor.org/info/rfc2234>.
+   [RFC1035]  Mockapetris, P., "Domain names - implementation and
+              specification", STD 13, RFC 1035, DOI 10.17487/RFC1035,
+              November 1987, <https://www.rfc-editor.org/info/rfc1035>.
 
-   [RFC3597]  Gustafsson, A., "Handling of Unknown DNS Resource Record
-              (RR) Types", RFC 3597, DOI 10.17487/RFC3597, September
-              2003, <https://www.rfc-editor.org/info/rfc3597>.
-
-
-
-
-
-Dulaunoy, et al.         Expires 29 October 2024                [Page 9]
-
-Internet-Draft     Passive DNS - Common Output Format         April 2024
-
+   [RFC1034]  Mockapetris, P., "Domain names - concepts and facilities",
+              STD 13, RFC 1034, DOI 10.17487/RFC1034, November 1987,
+              <https://www.rfc-editor.org/info/rfc1034>.
 
    [RFC3912]  Daigle, L., "WHOIS Protocol Specification", RFC 3912,
               DOI 10.17487/RFC3912, September 2004,
               <https://www.rfc-editor.org/info/rfc3912>.
 
-   [RFC3986]  Berners-Lee, T., Fielding, R., and L. Masinter, "Uniform
-              Resource Identifier (URI): Generic Syntax", STD 66,
-              RFC 3986, DOI 10.17487/RFC3986, January 2005,
-              <https://www.rfc-editor.org/info/rfc3986>.
-
    [RFC4627]  Crockford, D., "The application/json Media Type for
               JavaScript Object Notation (JSON)", RFC 4627,
               DOI 10.17487/RFC4627, July 2006,
               <https://www.rfc-editor.org/info/rfc4627>.
+
+   [RFC3597]  Gustafsson, A., "Handling of Unknown DNS Resource Record
+              (RR) Types", RFC 3597, DOI 10.17487/RFC3597, September
+              2003, <https://www.rfc-editor.org/info/rfc3597>.
 
    [RFC6648]  Saint-Andre, P., Crocker, D., and M. Nottingham,
               "Deprecating the "X-" Prefix and Similar Constructs in
@@ -526,47 +547,83 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
               DOI 10.17487/RFC6648, June 2012,
               <https://www.rfc-editor.org/info/rfc6648>.
 
+   [RFC2234]  Crocker, D., Ed. and P. Overell, "Augmented BNF for Syntax
+              Specifications: ABNF", RFC 2234, DOI 10.17487/RFC2234,
+              November 1997, <https://www.rfc-editor.org/info/rfc2234>.
+
+
+
+
+
+
+
+Dulaunoy, et al.        Expires 28 February 2025               [Page 10]
+
+Internet-Draft     Passive DNS - Common Output Format        August 2024
+
+
    [RFC6973]  Cooper, A., Tschofenig, H., Aboba, B., Peterson, J.,
               Morris, J., Hansen, M., and R. Smith, "Privacy
               Considerations for Internet Protocols", RFC 6973,
               DOI 10.17487/RFC6973, July 2013,
               <https://www.rfc-editor.org/info/rfc6973>.
 
-8.2.  References
+   [RFC3986]  Berners-Lee, T., Fielding, R., and L. Masinter, "Uniform
+              Resource Identifier (URI): Generic Syntax", STD 66,
+              RFC 3986, DOI 10.17487/RFC3986, January 2005,
+              <https://www.rfc-editor.org/info/rfc3986>.
 
-   [BAILIWICK]
-              Edmonds, R., "Passive DNS Hardening", 2010,
-              <https://archive.farsightsecurity.com/Passive_DNS/
-              passive_dns_hardening_handout.pdf>.
+   [RFC7258]  Farrell, S. and H. Tschofenig, "Pervasive Monitoring Is an
+              Attack", BCP 188, RFC 7258, DOI 10.17487/RFC7258, May
+              2014, <https://www.rfc-editor.org/info/rfc7258>.
 
-   [CACHEPOISONING]
-              Kaminsky, D., "Black ops 2008: It's the end of the cache
-              as we know it.", 2008,
-              <http://kurser.lobner.dk/dDist/DMK_BO2K8.pdf>.
+   [WEIMERPDNS]
+              Weimer, F., "Passive DNS Replication", 2005,
+              <http://www.enyo.de/fw/software/dnslogger/
+              first2005-paper.pdf>.
 
-   [DNSDB]    Security, F., "DNSDB API", 2013,
-              <https://api.dnsdb.info/>.
-
-   [DNSDBQ]   Vixie, P., "DNSDB API Client, C Version", 2018,
-              <https://github.com/dnsdb/dnsdbq>.
-
-
-
-
-
-
-
-
-Dulaunoy, et al.         Expires 29 October 2024               [Page 10]
-
-Internet-Draft     Passive DNS - Common Output Format         April 2024
-
+   [PDNSCOF]  Dulaunoy, D. P. A., "Passive DNS server interface using
+              the common output format", 2019,
+              <https://github.com/D4-project/analyzer-d4-passivedns/>.
 
    [github_issue_17]
               et.al, P. V. W. A. K., "Discussion on the existing
               implementations of returning either zone_time{first,last}
               OR time_{first,last}", 2020,
               <https://github.com/adulau/pdns-qof/issues/17>.
+
+9.  Informative References
+
+   [RFC7871]  Contavalli, C., van der Gaast, W., Lawrence, D., and W.
+              Kumari, "Client Subnet in DNS Queries", RFC 7871,
+              DOI 10.17487/RFC7871, May 2016,
+              <https://www.rfc-editor.org/info/rfc7871>.
+
+   [BAILIWICK]
+              Edmonds, R., "Passive DNS Hardening", 2010,
+              <https://archive.farsightsecurity.com/Passive_DNS/
+              passive_dns_hardening_handout.pdf>.
+
+   [PDNSCLIENT]
+              Lee, C., "Queries 5 major Passive DNS databases: BFK,
+              CERTEE, DNSParse, ISC, and VirusTotal.", 2013,
+              <https://github.com/chrislee35/passivedns-client>.
+
+
+
+
+
+Dulaunoy, et al.        Expires 28 February 2025               [Page 11]
+
+Internet-Draft     Passive DNS - Common Output Format        August 2024
+
+
+   [REST]     Fielding, R. T., "Representational State Transfer (REST)",
+              2000, <http://www.ics.uci.edu/~fielding/pubs/dissertation/
+              rest_arch_style.htm>.
+
+   [DNSDB]    Security, F., "DNSDB API", 2013,
+              <https://api.dnsdb.info/>.
 
    [PDNSCERTAT]
               CERT.at, "pDNS presentation at 4th Centr R&D workshop
@@ -578,25 +635,8 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
               Luxembourg, C. -. I. R. C., "CIRCL Passive DNS", 2012,
               <https://www.circl.lu/services/passive-dns/>.
 
-   [PDNSCLIENT]
-              Lee, C., "Queries 5 major Passive DNS databases: BFK,
-              CERTEE, DNSParse, ISC, and VirusTotal.", 2013,
-              <https://github.com/chrislee35/passivedns-client>.
-
-   [PDNSCOF]  Dulaunoy, D. P. A., "Passive DNS server interface using
-              the common output format", 2019,
-              <https://github.com/D4-project/analyzer-d4-passivedns/>.
-
-   [REST]     Fielding, R. T., "Representational State Transfer (REST)",
-              2000, <http://www.ics.uci.edu/~fielding/pubs/dissertation/
-              rest_arch_style.htm>.
-
-   [WEIMERPDNS]
-              Weimer, F., "Passive DNS Replication", 2005,
-              <http://www.enyo.de/fw/software/dnslogger/
-              first2005-paper.pdf>.
-
-8.3.  Informative References
+   [DNSDBQ]   Vixie, P., "DNSDB API Client, C Version", 2018,
+              <https://github.com/dnsdb/dnsdbq>.
 
 Appendix A.  Examples
 
@@ -606,18 +646,6 @@ Appendix A.  Examples
    If you query a passive DNS for the rrname www.ietf.org, the passive
    dns common output format can be:
 
-
-
-
-
-
-
-
-Dulaunoy, et al.         Expires 29 October 2024               [Page 11]
-
-Internet-Draft     Passive DNS - Common Output Format         April 2024
-
-
    {"count": 102, "time_first": 1298412391, "rrtype": "AAAA",
    "rrname": "www.ietf.org", "rdata": "2001:1890:1112:1::20",
    "time_last": 1302506851}
@@ -625,8 +653,26 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
    "rrname": "www.ietf.org", "rdata": "4.31.198.44",
    "time_last": 1389022219}
 
+                                  Figure 2
+
    If you query a passive DNS for the rrname ietf.org, the passive dns
    common output format can be:
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy, et al.        Expires 28 February 2025               [Page 12]
+
+Internet-Draft     Passive DNS - Common Output Format        August 2024
+
 
    {"count": 109877, "time_first": 1298398002, "rrtype": "NS",
    "rrname": "ietf.org", "rdata": "ns1.yyz1.afilias-nst.info",
@@ -637,6 +683,8 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
    {"count": 9, "time_first": 1317037550, "rrtype": "AAAA",
    "rrname": "ietf.org", "rdata": "2001:1890:123a::1:1e",
    "time_last": 1330209752}
+
+                                  Figure 3
 
    Please note that the examples imply that a single query returns a
    single set of JSON objects.  For example, two queries were made; one
@@ -655,7 +703,7 @@ Authors' Addresses
    Alexandre Dulaunoy
    CIRCL
    122, rue Adolphe Fischer
-   L-1521 Luxembourg
+   L-L-1521 Luxembourg
    Luxembourg
    Phone: (+352) 247 88444
    Email: alexandre.dulaunoy@circl.lu
@@ -668,18 +716,20 @@ Authors' Addresses
    Email: aaron@lo-res.org
 
 
-
-Dulaunoy, et al.         Expires 29 October 2024               [Page 12]
-
-Internet-Draft     Passive DNS - Common Output Format         April 2024
-
-
    Paul Vixie
    Farsight Security, Inc.
    11400 La Honda Road
    Woodside, California 94062
    United States of America
    Email: paul@redbarn.org
+
+
+
+Dulaunoy, et al.        Expires 28 February 2025               [Page 13]
+
+Internet-Draft     Passive DNS - Common Output Format        August 2024
+
+
    URI:   https://www.farsightsecurity.com/
 
 
@@ -725,4 +775,10 @@ Internet-Draft     Passive DNS - Common Output Format         April 2024
 
 
 
-Dulaunoy, et al.         Expires 29 October 2024               [Page 13]
+
+
+
+
+
+
+Dulaunoy, et al.        Expires 28 February 2025               [Page 14]
