@@ -157,8 +157,8 @@
       them in other applications. Users of Passive DNS query each
       implementation and aggregate the results for their search. This document
       describes the output format of four Passive DNS Systems (<xref
-      target="DNSDB" />, <xref target="DNSDBQ" /> , <xref target="PDNSCERTAT"
-      />, <xref target="PDNSCIRCL" /> and <xref target="PDNSCOF" />) that are
+      target="DNSDB" />, <xref target="DNSDBQ" />,
+      <xref target="PDNSCIRCL" /> and <xref target="PDNSCOF" />) that are
       in use today and that already share a nearly identical output format. As
       the format and the meaning of output fields from each Passive DNS need to
       be consistent, this document proposes a solution to commonly name each
@@ -506,15 +506,6 @@ ws              = *(
         <title>DNSDB API</title>
         <author fullname="Farsight Security" />
         <date year="2013" />
-      </front>
-    </reference>
-
-    <reference anchor="PDNSCERTAT"
-      target="http://www.centr.org/system/files/agenda/attachment/d4-papst-passive_dns.pdf">
-      <front>
-        <title>pDNS presentation at 4th Centr R&amp;D workshop Frankfurt Jun 5th 2012</title>
-        <author fullname="CERT.at" />
-        <date year="2012" />
       </front>
     </reference>
 
